@@ -1,0 +1,12 @@
+.menuBox {
+  position: "absolute";
+  bottom: 280;
+  right: 155;
+}
+.menuItem {
+  cursor: pointer;
+}
+.menuItem:hover {
+  background-color: #fc0;
+  fill: #fc0;
+}
