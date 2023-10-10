@@ -1,5 +1,17 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --shinhan_blue: #0046ff;
+  --main_dialog: #ebf3fc;
+  --sol_backgroud: #88bde7;
+  --sol_text: #1d449b;
+  --ray_blue: #a3c7f7;
+  --ray_yellow: #ffe27a;
+  --ray_beige: #ffe8d4;
+}
+
 body {
-    font-family: "Pretendard Variable";
-    letter-spacing: -0.1px;
-    background-color: black;
-  }
+  font-family: "Pretendard Variable";
+  letter-spacing: -0.1px;
+  background-color: white;
+}
