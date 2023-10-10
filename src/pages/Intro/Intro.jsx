@@ -1,5 +1,9 @@
-import DialogBox from "../componets/DialogBox";
-import palette from "../styles/color";
+import "../../styles/reset.css";
+import "../../styles/global.css";
+import "./Intro.css";
+import DialogBox from "../../componets/DialogBox";
+import palette from "../../styles/color";
+
 function Intro() {
   return (
     <div className="root">

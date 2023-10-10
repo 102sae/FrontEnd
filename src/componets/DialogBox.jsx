@@ -9,6 +9,11 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
       height="400"
       viewBox="0 -20 1105 400"
       fill="none"
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 155,
+      }}
     >
       <path
         d="M985.305 17.7771C785.524 -6.68392 320.28 -5.15518 112.289 17.7771C-49.1781 60.5844 -1.28535 169.131 41.1339 219.582C41.1339 248.63 23.3451 309.783 79.4481 322.013C112.289 344.946 688.826 349.023 985.305 329.658C1080.54 325.988 1068.77 262.389 1060.56 219.582C1165.93 100.334 1060.56 26.9919 985.305 17.7771Z"
@@ -57,6 +62,8 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
             color: palette.black,
             whiteSpace: "pre-wrap",
             textAlign: "center",
+            letterSpacing: "2px",
+            lineHeight: "1.5",
           }}
         >
           {dialog}
