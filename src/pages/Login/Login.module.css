@@ -1,0 +1,65 @@
+
+.wrap {
+    margin: 10vw;
+    padding: 3vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section1{
+
+}
+
+.section2{
+    padding: 2vw;
+}
+
+.inputBox {
+    margin-bottom: 20px;
+  }
+  
+.inputBox label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .email, .password {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .email img, .password img {
+    margin-right: 10px;
+    width: 20px; /* 이미지 크기에 따라 조절하세요 */
+    height: 20px; /* 이미지 크기에 따라 조절하세요 */
+  }
+  
+  .email input, .password input {
+    flex: 1;
+    border: none;
+    outline: none;
+  }
+  
+  button {
+    width: 15vw;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+
+  .LoginTeamImg{
+    width: 50vw;
+    height: auto;
+  }
