@@ -1,0 +1,9 @@
+.root {
+  width: 1440px;
+  height: 1024px;
+  margin: 100px auto;
+  background-color: var(--black);
+  position: relative;
+  background-image: url("../../assests/images/stars.png");
+  background-position: -7px;
+}
