@@ -54,13 +54,13 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
       </svg>
 
       {/* 대화 내용 */}
-      <foreignObject x="150" y="100" width="800" height="300">
+      <foreignObject x="150" y="80" width="850" height="300">
         <div
           xmlns="http://www.w3.org/1999/xhtml"
           style={{
-            fontSize: "24px",
-            color: palette.black,
             whiteSpace: "pre-wrap",
+            fontSize: "32px",
+            color: palette.black,
             textAlign: "center",
             letterSpacing: "2px",
             lineHeight: "1.5",
