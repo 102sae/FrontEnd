@@ -14,6 +14,21 @@
     padding: 2vw;
 }
 
+.title{
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+}
+
+.subtitle{
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+
+}
+
+
 .inputBox {
     margin-bottom: 20px;
   }
@@ -24,42 +39,53 @@
     font-weight: bold;
   }
   
-  .email, .password {
+.email, .password {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
+    background-color: rgba(236, 236, 236, 1);
     border-radius: 5px;
     padding: 10px;
   }
   
-  .email img, .password img {
+.email img, .password img {
     margin-right: 10px;
     width: 20px; /* 이미지 크기에 따라 조절하세요 */
     height: 20px; /* 이미지 크기에 따라 조절하세요 */
   }
   
-  .email input, .password input {
-    flex: 1;
+.email input, .password input {
+    background-color: rgba(236, 236, 236, 1);
     border: none;
     outline: none;
   }
   
-  button {
-    width: 15vw;
-    background-color: #4CAF50;
+button {
+    width: 25vw;
+    background-color: rgba(0, 70, 255, 1);
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
+    margin-bottom: 20px;
     cursor: pointer;
   }
   
-  button:hover {
-    background-color: #45a049;
+button:hover {
+    background-color: rgba(163, 199, 247, 1);
   }
-  
 
-  .LoginTeamImg{
-    width: 50vw;
+.link{
+  color: rgba(0, 70, 255, 1);
+  transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
+}
+
+.link:hover {
+  color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
+}
+
+.LoginTeamImg{
+    width: 40vw;
     height: auto;
+    padding: 3vw;
   }
