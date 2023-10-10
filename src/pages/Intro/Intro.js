@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/reset.css";
 import "../../styles/global.css";
-import "./Intro.css";
+import styles from "./Intro.module.css";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 function Intro() {
@@ -17,7 +17,7 @@ function Intro() {
     }
   };
   return (
-    <div className="root">
+    <div className={styles.root}>
       <div onClick={handleDialogBoxClick}>
         <DialogBox
           dialog={introScenario[currentScenarioIndex]}
