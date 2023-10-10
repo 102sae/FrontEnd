@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import styles from "./Signup.module.css"
+import LoginTeam from "../../assets/images/Login_Team.png"
+import IconEmail from "../../assets/images/Icon_Email.svg"
+import IconPassword from "../../assets/images/Icon_Password.svg"
+import IconUser from "../../assets/images/Icon_User.svg"
+import { Link } from 'react-router-dom';
 
 const Signup = ({ toggleForm, onSignup }) => {
   const [nickname, setNickname] = useState('');
@@ -31,14 +37,47 @@ const Signup = ({ toggleForm, onSignup }) => {
   };
 
   return (
-    <div>
-      <h2>회원가입</h2>
-      <input type="text" placeholder="닉네임" value={nickname} onChange={(e) => setNickname(e.target.value)} />
-      <input type="email" placeholder="이메일" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleSignup}>회원가입</button>
-      <p onClick={toggleForm}>이미 계정이 있으신가요? 로그인으로 이동</p>
+    <div className={styles.wrap}>
+      <div className={styles.section1}>
+        <h3 className={styles.subtitle}>두근두근!</h3>
+        <h2 className={styles.title}>주식 프렌즈!</h2>
+        <img src={LoginTeam} className={styles.LoginTeamImg} alt="로그인 팀" />
+      </div>
+      
+      <div className={styles.section2}>
+          <h3 className={styles.subtitle}>회원가입</h3>
+
+          <div className={styles.inputBox}>
+            <label>Name</label>
+            <div className={styles.email}>
+              <img src={IconUser} alt="닉네임 아이콘" />
+              <input type="text" placeholder="닉네임" value={nickname} onChange={(e) => setNickname(e.target.value)} />
+            </div>
+          </div>
+
+          <div className={styles.inputBox}>
+            <label>Email</label>
+            <div className={styles.email}>
+              <img src={IconEmail} alt="이메일 아이콘" />
+              <input type="email" placeholder="이메일" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+          </div>
+
+          <div className={styles.inputBox}>
+            <label>Password</label>
+            <div className={styles.password}>
+              <img src={IconPassword} alt="비밀번호 아이콘" />
+              <input type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+          
+          </div>
+          <button onClick={handleSignup}>회원가입</button>
+          
+      </div>
     </div>
+      
+
+      
   );
 };
 

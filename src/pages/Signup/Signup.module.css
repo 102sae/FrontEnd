@@ -13,7 +13,7 @@
 .section2{
     padding: 2vw;
 }
-
+ 
 .title{
   font-size: 28px;
   font-weight: bold;
@@ -84,8 +84,15 @@ button:hover {
   color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
 }
 
+.successMessage {
+    font-size: 20px;
+    color: green;
+    margin-top: 20px;
+  }
+
 .LoginTeamImg{
     width: 40vw;
     height: auto;
     padding: 3vw;
   }
+
