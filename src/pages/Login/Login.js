@@ -3,6 +3,7 @@ import styles from "./Login.module.css"
 import LoginTeam from "../../assets/images/Login_Team.png"
 import IconEmail from "../../assets/images/Icon_Email.svg"
 import IconPassword from "../../assets/images/Icon_Password.svg"
+import { Link } from 'react-router-dom';
 
 const Login = ({ toggleForm, onLogin }) => {
   const [email, setEmail] = useState('');
@@ -36,14 +37,13 @@ const Login = ({ toggleForm, onLogin }) => {
   return (
     <div className={styles.wrap}>
       <div className={styles.section1}>
-        <h3>두근두근!</h3>
-        <h2>주식 프렌즈!</h2>
+        <h3 className={styles.subtitle}>두근두근!</h3>
+        <h2 className={styles.title}>주식 프렌즈!</h2>
         <img src={LoginTeam} className={styles.LoginTeamImg} alt="로그인 팀" />
       </div>
       
       <div className={styles.section2}>
-          <h4>비회원으로 진행하기</h4>
-          <h3>로그인</h3>
+          <h3 className={styles.subtitle}>로그인</h3>
 
           <div className={styles.inputBox}>
             <label>Email</label>
@@ -62,7 +62,9 @@ const Login = ({ toggleForm, onLogin }) => {
           
           </div>
           <button onClick={handleLogin}>로그인</button>
-          <p onClick={toggleForm}>계정이 없으신가요? <span>회원가입으로 이동</span></p>
+          <p>계정이 없다면? <Link to="/signup" className={styles.link}> 회원가입</Link>하기</p>
+          <p><Link to="/intro" className={styles.link}>비회원으로 진행하기</Link></p>
+          
       </div>
     </div>
       
