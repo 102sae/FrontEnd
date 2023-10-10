@@ -5,6 +5,7 @@ import styles from "./Intro.module.css";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
+import { ReactComponent as SolHi } from "../../assets/images/sol_hi.svg";
 
 function Intro() {
   const introScenario = [
@@ -24,12 +25,15 @@ function Intro() {
       <div className={styles.dialogContainer} onClick={handleDialogBoxClick}>
         {currentScenarioIndex > 2 ? (
           //쏠이 등장 이후
-          <DialogBox
-            dialog={introScenario[currentScenarioIndex]}
-            name="쏠"
-            backgroundColor={palette.main_dialog}
-            arrowColor={palette.sol_text}
-          />
+          <div>
+            <SolHi></SolHi>
+            <DialogBox
+              dialog={introScenario[currentScenarioIndex]}
+              name="쏠"
+              backgroundColor={palette.main_dialog}
+              arrowColor={palette.sol_text}
+            />
+          </div>
         ) : (
           //쏠 등장 전
           <DialogBox
