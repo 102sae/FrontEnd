@@ -1,15 +1,7 @@
 import React from "react";
 import styles from "./MenuBox.module.css";
-
-const MenuBox = ({ select1, select2 }) => {
-  const handleSelect1Click = () => {
-    console.log("첫 번째 선택지를 클릭했습니다.");
-  };
-  // 두 번째 선택지를 클릭할 때 호출되는 함수
-  const handleSelect2Click = () => {
-    console.log("두 번째 선택지를 클릭했습니다.");
-  };
-
+import PropTypes from "prop-types";
+const MenuBox = ({ select, onOptionClick }) => {
   return (
     <svg
       mlns="http://www.w3.org/2000/svg"
@@ -38,9 +30,9 @@ const MenuBox = ({ select1, select2 }) => {
         fontSize="32"
         fill="#000000"
         fontFamily="Roboto"
-        onClick={handleSelect1Click} // 이벤트 핸들러 연결
+        onClick={() => onOptionClick("select1", select.nextIndex[0])}
       >
-        {select1}
+        {select.option[0]}
       </text>
       <text
         className={styles.menuItem}
@@ -51,11 +43,16 @@ const MenuBox = ({ select1, select2 }) => {
         fontSize="32"
         fill="#000000"
         fontFamily="Roboto"
-        onClick={handleSelect2Click} // 이벤트 핸들러 연결
+        onClick={() => onOptionClick("select2", select.nextIndex[1])}
       >
-        {select2}
+        {select.option[1]}
       </text>
     </svg>
   );
 };
 export default MenuBox;
+
+MenuBox.prototype = {
+  select: PropTypes.array.isRequired,
+  onOptionClick: PropTypes.func.isRequired,
+};

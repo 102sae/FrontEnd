@@ -7,3 +7,21 @@
   background-image: url("../../assets/images/stars.png");
   background-position: -7px;
 }
+
+.characterWrap {
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.solBackground {
+  background-color: var(--white);
+  background: linear-gradient(
+    243deg,
+    rgba(235, 243, 252, 0.94) 1.75%,
+    rgba(255, 255, 255, 0.37) 100%
+  );
+  transition: background-color 1s ease;
+}

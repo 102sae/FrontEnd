@@ -1,5 +1,7 @@
 import React from "react";
 import palette from "../styles/color";
+import styles from "./DialogBox.module.css";
+import PropTypes from "prop-types";
 
 const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
   return (
@@ -57,6 +59,7 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
       <foreignObject x="150" y="80" width="850" height="300">
         <div
           xmlns="http://www.w3.org/1999/xhtml"
+          className={styles.dialogText}
           style={{
             whiteSpace: "pre-wrap",
             fontSize: "32px",
@@ -90,3 +93,9 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
 };
 
 export default DialogBox;
+DialogBox.prototype = {
+  dialog: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  arrowColor: PropTypes.string.isRequired,
+};
