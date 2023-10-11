@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./Signup.module.css"
-import LoginTeam from "../../assets/images/Login_Team.png"
+import LoginTeam from "../../assets/images/Login_Team.svg"
 import IconEmail from "../../assets/images/Icon_Email.svg"
 import IconPassword from "../../assets/images/Icon_Password.svg"
 import IconUser from "../../assets/images/Icon_User.svg"

@@ -5,8 +5,9 @@ const palette = {
     main_dialog: '#EBF3FC',
     sol_backgroud : '#88BDE7',
     sol_text:'#1D449B',
-    ray_blue:'#A3C7F7',
-    ray_yellow:'#FFE27A',
-    ray_beige:'#FFE8D4',
+    lay_text:'#A3C7F7',
+    lay_blue:'#A3C7F7',
+    lay_yellow:'#FFE27A',
+    lay_beige:'#FFE8D4',
 }
 export default palette;
