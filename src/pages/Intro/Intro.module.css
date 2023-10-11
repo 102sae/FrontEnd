@@ -9,11 +9,14 @@
 }
 
 .characterWrap {
-  padding-top: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: background-color 1s ease;
+}
+
+.characterImage {
+  position: absolute;
+  bottom: 400px;
+  left: 500px;
+  transition: transform 0.3s ease; /* 부드러운 트랜지션 추가 */
 }
 
 .solBackground {
@@ -24,4 +27,19 @@
     rgba(255, 255, 255, 0.37) 100%
   );
   transition: background-color 1s ease;
+}
+
+.wrap {
+  background: linear-gradient(
+    243deg,
+    rgba(236, 236, 236, 0.49) -0.29%,
+    rgba(255, 255, 255, 0.54) 101.44%
+  );
+}
+
+.friendsWrap {
+  padding: 68px 20px;
+  width: 1440px;
+  display: flex;
+  justify-content: space-around;
 }

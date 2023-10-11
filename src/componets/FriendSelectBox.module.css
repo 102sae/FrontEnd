@@ -1,0 +1,35 @@
+.friends {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 535px;
+  height: 730px;
+  flex-shrink: 0;
+  border-radius: 60px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(235, 243, 252, 0.5);
+}
+
+.friendName {
+  position: absolute;
+  top: 34px;
+}
+
+.friendImage {
+  position: absolute;
+  bottom: 120px;
+}
+
+.friendText {
+  position: absolute;
+  bottom: 50px;
+  color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
