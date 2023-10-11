@@ -1,67 +1,120 @@
 
-.wrap {
-    margin: 10vw;
+@media screen and (min-width:320px){
+  .wrap{
+    background-color: rgb(255, 255, 255);
+     margin: 10vw;
     padding: 3vw;
-    display: flex;
-    justify-content: space-between;
-}
+  }
 
-.section1{
+  .section1{
 
-}
-
-.section2{
-    padding: 2vw;
-}
- 
-.title{
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-
-}
-
-.subtitle{
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
-
-}
-
-
-.inputBox {
-    margin-bottom: 20px;
   }
   
-.inputBox label {
-    display: block;
-    margin-bottom: 10px;
+  .section2{
+      padding: 2vw;
+  }
+
+  .title{
+    font-size: 28px;
     font-weight: bold;
+    margin-bottom: 20px;
+  
   }
   
-.email, .password {
+  .subtitle{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  
+  }
+  
+  .inputBox {
+      margin-bottom: 20px;
+    }
+    
+  .inputBox label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+  .email, .password {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      background-color: rgba(236, 236, 236, 1);
+      border-radius: 5px;
+    }
+    
+  .email img, .password img {
+      margin-right: 10px;
+      width: 20px; /* 이미지 크기에 따라 조절하세요 */
+      height: 20px; /* 이미지 크기에 따라 조절하세요 */
+    }
+    
+  .email input, .password input {
+      background-color: rgba(236, 236, 236, 1);
+      border: none;
+      outline: none;
+    }
+    
+  button {
+      background-color: rgba(0, 70, 255, 1);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    
+  button:hover {
+      background-color: rgba(163, 199, 247, 1);
+    }
+  
+  .link{
+    color: rgba(0, 70, 255, 1);
+    transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
+  }
+  
+  .link:hover {
+    color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
+  }
+  
+  .LoginTeamImg{
+      width: 40vw;
+      height: auto;
+      padding: 3vw;
+    }
+}
+
+
+@media screen and (min-width:768px){
+
+}
+
+
+@media screen and (min-width:1024px){
+  .wrap{
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .email, .password {
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
     background-color: rgba(236, 236, 236, 1);
     border-radius: 5px;
-    padding: 15px;
   }
-  
-.email img, .password img {
-    margin-right: 10px;
-    width: 20px; /* 이미지 크기에 따라 조절하세요 */
-    height: 20px; /* 이미지 크기에 따라 조절하세요 */
-  }
-  
-.email input, .password input {
+
+  .email input, .password input {
     background-color: rgba(236, 236, 236, 1);
     border: none;
     outline: none;
   }
   
 button {
-    width: 25vw;
     background-color: rgba(0, 70, 255, 1);
     color: white;
     border: none;
@@ -70,29 +123,7 @@ button {
     margin-bottom: 20px;
     cursor: pointer;
   }
-  
-button:hover {
-    background-color: rgba(163, 199, 247, 1);
-  }
 
-.link{
-  color: rgba(0, 70, 255, 1);
-  transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
+
 }
-
-.link:hover {
-  color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
-}
-
-.successMessage {
-    font-size: 20px;
-    color: green;
-    margin-top: 20px;
-  }
-
-.LoginTeamImg{
-    width: 40vw;
-    height: auto;
-    padding: 3vw;
-  }
 

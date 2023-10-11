@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from "./Signup.module.css"
-import LoginTeam from "../../assets/images/Login_Team.png"
-import IconEmail from "../../assets/images/Icon_Email.svg"
-import IconPassword from "../../assets/images/Icon_Password.svg"
-import IconUser from "../../assets/images/Icon_User.svg"
+import LoginTeam from "../../assets/images/login_team.svg"
+import IconEmail from "../../assets/images/icon_email.svg"
+import IconPassword from "../../assets/images/icon_password.svg"
+import IconUser from "../../assets/images/icon_user.svg"
 import { Link } from 'react-router-dom';
 
 const Signup = ({ toggleForm, onSignup }) => {

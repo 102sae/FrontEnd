@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from "./Login.module.css"
-import LoginTeam from "../../assets/images/Login_Team.png"
-import IconEmail from "../../assets/images/Icon_Email.svg"
-import IconPassword from "../../assets/images/Icon_Password.svg"
+import LoginTeam from "../../assets/images/login_team.svg"
+import IconEmail from "../../assets/images/icon_email.svg"
+import IconPassword from "../../assets/images/icon_password.svg"
 import { Link } from 'react-router-dom';
 
 const Login = ({ toggleForm, onLogin }) => {
@@ -63,6 +63,7 @@ const Login = ({ toggleForm, onLogin }) => {
           </div>
           <button onClick={handleLogin}>로그인</button>
           <p>계정이 없다면? <Link to="/signup" className={styles.link}> 회원가입</Link>하기</p>
+          <br/>
           <p><Link to="/intro" className={styles.link}>비회원으로 진행하기</Link></p>
           
       </div>
