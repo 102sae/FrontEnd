@@ -98,7 +98,7 @@ function Lay() {
                 dialog={LayScenario[currentScenarioIndex].dialog}
                 name="레이"
                 backgroundColor={palette.main_dialog}
-                arrowColor={palette.lay_text}
+                arrowColor={palette.ray_blue}
                 />
             </div>
             ):null}
