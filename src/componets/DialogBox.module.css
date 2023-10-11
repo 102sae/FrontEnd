@@ -1,0 +1,8 @@
+.dialogText {
+  white-space: pre-wrap;
+  font-size: 32px;
+  color: var(--black);
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
