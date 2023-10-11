@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from "./Login.module.css"
-import LoginTeam from "../../assets/images/Login_Team.svg"
-import IconEmail from "../../assets/images/Icon_Email.svg"
-import IconPassword from "../../assets/images/Icon_Password.svg"
+import LoginTeam from "../../assets/images/login_team.svg"
+import IconEmail from "../../assets/images/icon_email.svg"
+import IconPassword from "../../assets/images/icon_password.svg"
 import { Link } from 'react-router-dom';
 
 const Login = ({ toggleForm, onLogin }) => {

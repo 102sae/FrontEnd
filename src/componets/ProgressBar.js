@@ -1,11 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import styles from './CrushBar.module.css';
-import Crush from "../assets/images/icon_crush.svg"
+import styles from './ProgressBar.module.css';
+import LayPB1 from "../assets/images/Lay/lay_pb1.svg"
 
-const CrushBar = () => {
-    //로컬 스토리지에서 호감도 가져오기
-    //defalt: 50%
+const ProgressBar = () => {
     const [crushPercent, setCrushPercent] = useState(parseInt(localStorage.getItem('crushPercent')) || 50);
 
     useEffect(() => {
@@ -14,15 +12,16 @@ const CrushBar = () => {
     
 
   return (
+    
     <div className={styles.progress_container}>
       <div className={styles.progress_bar} style={{ width: `${crushPercent}%` }}>
-        <img src={Crush} alt="호감도" />
-        <div className={styles.top_txt}>
-            {crushPercent}%
+        <div>
+            <img src={LayPB1} alt="호감도" />
         </div>
+      {/* {crushPercent}% */}
       </div>
     </div>
   );
 };
 
-export default CrushBar;
+export default ProgressBar;
