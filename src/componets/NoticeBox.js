@@ -23,12 +23,12 @@ const NoticeBox = ({ notice }) => {
       <text
         className={styles.noticeItem}
         x="50%"
-        y="35%"
+        y="50%"
         dominantBaseline="middle"
         textAnchor="middle"
-        fontSize="32"
+        fontSize="36px"
         fill="#000000"
-        fontFamily="Roboto"
+        fontFamily="Poppins"
       >
         {notice} {/* Render the text directly */}
       </text>

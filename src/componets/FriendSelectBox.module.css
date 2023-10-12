@@ -15,11 +15,14 @@
 .friendName {
   position: absolute;
   top: 34px;
+  width: 228px;
 }
 
 .friendImage {
   position: absolute;
-  bottom: 120px;
+  bottom: 100px;
+  width: 331px;
+  height: 453px;
 }
 
 .friendText {

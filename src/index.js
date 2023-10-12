@@ -6,6 +6,7 @@ import Intro from "./pages/Intro/Intro";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Lay from "./pages/Lay/Lay";
+import Molly from "./pages/Molly/Molly";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,6 +19,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/lay" element={<Lay />} />
+        <Route path="/molly" element={<Molly />} />
       </Routes>
     </Router>
   </React.StrictMode>

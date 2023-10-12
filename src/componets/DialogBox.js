@@ -43,7 +43,7 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
         {/* 이름표 안에 텍스트 */}
         <text
           x="50%"
-          y="50%"
+          y="57%"
           dominantBaseline="middle"
           textAnchor="middle"
           fontSize="32"

@@ -5,6 +5,7 @@ import styles from "./Intro.module.css";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
+import { Link } from 'react-router-dom';
 import { ReactComponent as SolHi } from "../../assets/images/sol_hi.svg";
 import { ReactComponent as SolSmile } from "../../assets/images/sol_smile.svg";
 import { ReactComponent as SolWhy } from "../../assets/images/sol_why.svg";
@@ -27,7 +28,7 @@ function Intro() {
       nextIndex: 1,
       image: "",
       dialog:
-        "밤하늘의 북쪽에서 가장 밝게 빛나는 별, \n북극성에 우주여행작가 쏠이 살고 있었어요.\n 그날도 어느 때와 같이 글을 써 내려가고 있었습니다.\n 다녀왔던 별들은 전부 아름다웠지만,",
+        "밤하늘의 북쪽에서 가장 밝게 빛나는 별, \n북극성에 우주여행작가 쏠이 살고 있었어요.\n 그날도 어느 때와 같이 글을 써 내려가고 있었습니다.\n ",
       name: "??",
       arrowColor: palette.sol_text,
       menu: {
@@ -38,7 +39,7 @@ function Intro() {
       index: 1,
       nextIndex: 2,
       image: "",
-      dialog: "10년후...",
+      dialog: "다녀왔던 별들은 전부 아름다웠지만, 10년후...",
       name: "??",
       arrowColor: palette.sol_text,
       menu: {
@@ -191,11 +192,16 @@ function Intro() {
 
   return (
     <div
-      className={`${styles.root}  ${
-        introScenario[currentScenarioIndex].name !== "??"
+    key = {currentScenarioIndex}
+      className={`${styles.root} ${
+        introScenario[currentScenarioIndex].name === "몰리"
+          ? styles.mollyBackground
+          : introScenario[currentScenarioIndex].name === "레이"
+          ? styles.rayBackground
+          : introScenario[currentScenarioIndex].name === "쏠"
           ? styles.solBackground
           : ""
-      } `}
+      }`}
     >
       <div className={styles.dialogContainer}>
         {introScenario[currentScenarioIndex].name === "??" ? (
@@ -209,7 +215,7 @@ function Intro() {
               arrowColor={palette.sol_text}
             />
             <div className={styles.dialogText}>
-            <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
+            <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={100} />
             </div>
           </div>
         ) : (
@@ -235,7 +241,7 @@ function Intro() {
                   arrowColor={introScenario[currentScenarioIndex].arrowColor}
                 />
                 <div className={styles.dialogText}>
-                <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
+                <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={100} />
             </div>
               </div>
             )}
@@ -254,18 +260,25 @@ function Intro() {
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-                <FriendSelectBox
+              <Link to="/lay" className={styles.link}>
+              <FriendSelectBox
                   friendNameImage={Layname}
                   friendImage={Lay}
                   hoverFriendImage={LaySmile}
                   category="개념파"
                 />
-                <FriendSelectBox
+              </Link>
+              
+              <Link to="/molly" className={styles.link}>
+              <FriendSelectBox
                   friendNameImage={Mollyname}
                   friendImage={Molly}
                   hoverFriendImage={MollySmile}
                   category="실전파"
                 />
+              </Link>
+              
+                
               </div>
               <NoticeBox notice="누구를 선택할까?" />
             </div>

@@ -5,36 +5,57 @@
   background-color: var(--black);
   position: relative;
   background-image: url("../../assets/images/stars.png");
-  background-position: -7px;
+  background-repeat: repeat; 
+  animation: backgroundMove 20s linear infinite;
+  transition: background-color 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: 0 0; 
+  }
+  50% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 0; 
+}
 }
 
 .characterWrap {
-  transition: background-color 1s ease;
+  transition: background-color 1s ease; 
 }
 
 .characterImage {
   position: absolute;
-  bottom: 400px;
+  bottom: 380px;
   left: 500px;
-  transition: transform 0.3s ease; /* 부드러운 트랜지션 추가 */
 }
 
 .solBackground {
-  background-color: var(--white);
-  background: linear-gradient(
-    243deg,
-    rgba(235, 243, 252, 0.94) 1.75%,
-    rgba(255, 255, 255, 0.37) 100%
-  );
+  background: linear-gradient(0deg, #A3C7F7 0%, #D4EAF7 100%);
   transition: background-color 1s ease;
 }
 
-.wrap {
-  background: linear-gradient(
-    243deg,
-    rgba(236, 236, 236, 0.49) -0.29%,
-    rgba(255, 255, 255, 0.54) 101.44%
-  );
+.mollyBackground{
+  background: linear-gradient(180deg, rgba(255, 224, 224, 0.69) 0%, #E0CEEE 100%);
+  transition: background-color 1s ease;
+  animation: fadeIn 1s ease;
+}
+
+.rayBackground{
+  background: linear-gradient(180deg, #FFE8D4 0%, #D4EAF7 100%);
+  transition: background-color 1s ease;
+  animation: fadeIn 1s ease;
 }
 
 .friendsWrap {
@@ -42,19 +63,6 @@
   width: 1440px;
   display: flex;
   justify-content: space-around;
-}
-
-.DialogBoxWrap{
-  width: 1000px;
-  height: 400px;
-  background-color: var(--black);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0 20px;
-  box-sizing: border-box;
-  transition: background-color 1s ease;
 }
 
 .dialogText{
