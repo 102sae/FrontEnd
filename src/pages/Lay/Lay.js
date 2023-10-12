@@ -82,7 +82,7 @@ function Lay() {
       };
       
     // API 요청을 보내고 데이터를 받아오는 부분
-    // 임시 데이터 사용
+    // 임시 데이터 사용 -> 추후 변경
     const getData = async () => {
         try {
             const response = await axios.get("https://jsonplaceholder.typicode.com/posts"); // API_ENDPOINT_URL 대체
@@ -123,12 +123,15 @@ function Lay() {
                         : handleDialogBoxClick
                     }
                 >
-                <div className={styles.top}>
-                    {/* 프로그레스 바 */}
-                    <ProgressBar />
-                    {/* 호감도 */}
-                    <CrushBar />
+                {/* 프로그레스 바와 호감도 */}
+                {showDialogBox && (
+                    <div className={styles.top}>
+                        {/* 프로그레스 바 */}
+                        <ProgressBar />
+                        {/* 호감도 */}
+                        <CrushBar />
                     </div>
+                )}
                 {showDialogBox && (
                 <div>
                     {/* 이미지 렌더링 */}
@@ -159,7 +162,7 @@ function Lay() {
                 // 퀴즈 화면
                 !showDialogBox && (
                     <div>
-                        {/* <CrushBar /> */}
+                        
                     </div>
                 )
             }
