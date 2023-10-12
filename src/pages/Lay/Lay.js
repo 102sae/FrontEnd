@@ -10,9 +10,14 @@ import LaySmile from "../../assets/images/Lay/lay_smile.svg"
 import LayShiny from "../../assets/images/Lay/lay_shiny.svg"
 import LayThinking from "../../assets/images/Lay/lay_thinking.svg"
 import ProgressBar from "../../componets/ProgressBar";
-
+import axios from 'axios';
 
 function Lay() {
+    const [showMenuBox, setShowMenuBox] = useState(false);
+    const [showDialogBox, setShowDialogBox] = useState(true);
+    const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
+    const [apiData, setApiData] = useState(0);
+
     const LayScenario = [
         {
             index: 0,
@@ -47,22 +52,21 @@ function Lay() {
             index: 3,
             nextIndex: 4,
             image: LayThinking,
-            dialog: "요즘 뉴스에 (채권)을 사라는 말이 많더라고... \n그런데 (채권)이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?",
+            dialog: `요즘 뉴스에 ${apiData}을 사라는 말이 많더라고... \n그런데 ${apiData}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
             menu: {
                 show: false,
             },
         }
     ];
 
-    const [showMenuBox, setShowMenuBox] = useState(false);
-    const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
-
-    //다음 대화로 넘기기
+    
+    // 다음 대화로 넘기기
     const handleDialogBoxClick = () => {
         if (currentScenarioIndex < LayScenario.length - 1) {
             setCurrentScenarioIndex(LayScenario[currentScenarioIndex].nextIndex);
+        } else if (currentScenarioIndex === LayScenario.length - 1) {
+            setShowDialogBox(false);
         }
-        console.log(currentScenarioIndex);
     };
 
     const handleMenuOptionClick = (option, currentIndex) => {
@@ -76,39 +80,89 @@ function Lay() {
           console.log("2선택");
         }
       };
+      
+    // API 요청을 보내고 데이터를 받아오는 부분
+    // 임시 데이터 사용
+    const getData = async () => {
+        try {
+            const response = await axios.get("https://jsonplaceholder.typicode.com/posts"); // API_ENDPOINT_URL 대체
+            console.log(response.data)
+            const firstTitle = response.data[0].title.slice(0, 20); // 첫 번째 객체의 title 속성 값 -> 글자수 제한
+            console.log(firstTitle)
+            setApiData(firstTitle);
+        } catch (error) {
+            console.error("Error fetching data from API: ", error);
+        }
+    };
+
+    useEffect(() => {
+        getData(); 
+    }, []);
+
+    //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
+    useEffect(() => {
+        if (LayScenario[currentScenarioIndex].menu.show) {
+        const timeoutId = setTimeout(() => {
+            setShowMenuBox(true);
+        }, 1000);
+
+        return () => clearTimeout(timeoutId);
+        }
+    }, [currentScenarioIndex]);
+
 
     return (
         <div className={styles.root}>
-            <div className={styles.dialogContainer} onClick={handleDialogBoxClick}>
-            {currentScenarioIndex >= 0 ? (
+        <div className={styles.dialogContainer}>
             <div>
+                <div
+                    onClick={
+                        LayScenario[currentScenarioIndex] &&
+                        LayScenario[currentScenarioIndex].menu.show
+                        ? null
+                        : handleDialogBoxClick
+                    }
+                >
                 <div className={styles.top}>
                     {/* 프로그레스 바 */}
                     <ProgressBar />
                     {/* 호감도 */}
                     <CrushBar />
-                </div>
-                <div className={styles.img_container}>
+                    </div>
+                {showDialogBox && (
+                <div>
                     {/* 이미지 렌더링 */}
-                    <img src={LayScenario[currentScenarioIndex].image} alt="Scenario" />
+                    <div className={styles.img_container}>
+                        <img src={LayScenario[currentScenarioIndex].image} alt="Scenario" />
+                    </div>
+                    {/* 대화 상자 렌더링 */}
+                    <DialogBox
+                        dialog={LayScenario[currentScenarioIndex].dialog}
+                        name="레이"
+                        backgroundColor={palette.main_dialog}
+                        arrowColor={palette.ray_blue}
+                    />
                 </div>
-                
-                {/* 대화 상자 렌더링 */}
-                <DialogBox
-                dialog={LayScenario[currentScenarioIndex].dialog}
-                name="레이"
-                backgroundColor={palette.main_dialog}
-                arrowColor={palette.ray_blue}
-                />
+                )}
             </div>
-            ):null}
-            {showMenuBox && (
-                <MenuBox
-                    select={LayScenario[currentScenarioIndex].menu}
-                    onOptionClick={handleMenuOptionClick}
-                />
-            )}
+            {/* 메뉴 박스 렌더링 */}
             </div>
+                {showMenuBox && (
+                    <MenuBox
+                        select={LayScenario[currentScenarioIndex].menu}
+                        onOptionClick={handleMenuOptionClick}
+                    />
+                )}
+            </div>
+
+            {
+                // 퀴즈 화면
+                !showDialogBox && (
+                    <div>
+                        {/* <CrushBar /> */}
+                    </div>
+                )
+            }
         </div>
     );
 }
