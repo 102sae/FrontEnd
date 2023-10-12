@@ -1,7 +1,7 @@
 .root {
   width: 1440px;
   height: 1024px;
-  margin: 100px auto;
+  margin: 20px auto;
   background-color: var(--black);
   position: relative;
   background-image: url("../../assets/images/stars.png");
@@ -42,4 +42,32 @@
   width: 1440px;
   display: flex;
   justify-content: space-around;
+}
+
+.DialogBoxWrap{
+  width: 1000px;
+  height: 400px;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 20px;
+  box-sizing: border-box;
+  transition: background-color 1s ease;
+}
+
+.dialogText{
+  width: 850px;
+  height: 300px;
+  position: absolute;
+  bottom: 0px;
+  left: 280px;
+  white-space: "pre-wrap";
+  font-size: 32px;
+  color: var(--black);
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  z-index: 100;
 }

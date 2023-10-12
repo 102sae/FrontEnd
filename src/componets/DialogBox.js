@@ -4,6 +4,7 @@ import styles from "./DialogBox.module.css";
 import PropTypes from "prop-types";
 
 const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +73,7 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
           {dialog}
         </div>
       </foreignObject>
+      
 
       {/* 화살표 */}
       <svg
@@ -94,7 +96,7 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
 
 export default DialogBox;
 DialogBox.prototype = {
-  dialog: PropTypes.string.isRequired,
+  dialog: PropTypes.string,
   name: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string.isRequired,
   arrowColor: PropTypes.string.isRequired,

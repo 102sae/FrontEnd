@@ -18,6 +18,8 @@ import NoticeBox from "../../componets/NoticeBox";
 import Layname from "../../assets/images/lay_name.svg";
 import Mollyname from "../../assets/images/molly_name.svg";
 import FriendSelectBox from "../../componets/FriendSelectBox";
+import ReactTyped from "react-typed";
+
 function Intro() {
   const introScenario = [
     {
@@ -70,7 +72,7 @@ function Intro() {
       nextIndex: "",
       image: <SolHi />,
       dialog:
-        "북극성에서 또 다른 내 친구들이 온대! 혹시 그 친구들도 지구에서 부자가 될 수 있도록 도와줄 수 있을까?",
+        "혹시 그 친구들도 지구에서 부자가 될 수 있도록 도와줄 수 있을까?",
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -163,6 +165,7 @@ function Intro() {
     console.log(currentScenarioIndex);
   };
 
+
   const handleMenuOptionClick = (option, currentIndex) => {
     if (option === "select1") {
       setCurrentScenarioIndex(currentIndex);
@@ -180,7 +183,7 @@ function Intro() {
     if (introScenario[currentScenarioIndex].menu.show) {
       const timeoutId = setTimeout(() => {
         setShowMenuBox(true);
-      }, 1000);
+      }, 1500);
 
       return () => clearTimeout(timeoutId);
     }
@@ -197,13 +200,17 @@ function Intro() {
       <div className={styles.dialogContainer}>
         {introScenario[currentScenarioIndex].name === "??" ? (
           //쏠 등장 전
-          <div onClick={handleDialogBoxClick}>
+          <div className={styles.DialogBoxWrap}
+            
+            onClick={handleDialogBoxClick}>
             <DialogBox
-              dialog={introScenario[currentScenarioIndex].dialog}
               name={introScenario[currentScenarioIndex].name}
               backgroundColor={palette.main_dialog}
               arrowColor={palette.sol_text}
             />
+            <div className={styles.dialogText}>
+            <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
+            </div>
           </div>
         ) : (
           //쏠이 등장 이후
@@ -223,11 +230,13 @@ function Intro() {
                   {introScenario[currentScenarioIndex].image}
                 </div>
                 <DialogBox
-                  dialog={introScenario[currentScenarioIndex].dialog}
                   name={introScenario[currentScenarioIndex].name}
                   backgroundColor={palette.main_dialog}
                   arrowColor={introScenario[currentScenarioIndex].arrowColor}
                 />
+                <div className={styles.dialogText}>
+                <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
+            </div>
               </div>
             )}
           </div>
