@@ -16,7 +16,7 @@ const ProgressBar = () => {
     <div className={styles.progress_container}>
       <div className={styles.progress_bar} style={{ width: `${crushPercent}%` }}>
         <div>
-            <img src={LayPB1} alt="호감도" />
+            <img src={LayPB1} alt="레이 프로그레스 기본" />
         </div>
       {/* {crushPercent}% */}
       </div>

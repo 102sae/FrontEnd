@@ -11,6 +11,7 @@ import LayShiny from "../../assets/images/Lay/lay_shiny.svg"
 import LayThinking from "../../assets/images/Lay/lay_thinking.svg"
 import ProgressBar from "../../componets/ProgressBar";
 import axios from 'axios';
+import Quiz from "../../componets/Quiz";
 
 function Lay() {
     const [showMenuBox, setShowMenuBox] = useState(false);
@@ -52,7 +53,7 @@ function Lay() {
             index: 3,
             nextIndex: 4,
             image: LayThinking,
-            dialog: `요즘 뉴스에 ${apiData}을 사라는 말이 많더라고... \n그런데 ${apiData}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
+            dialog: `요즘 뉴스에 ${apiData.title}을 사라는 말이 많더라고... \n그런데 ${apiData.title}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
             menu: {
                 show: false,
             },
@@ -87,9 +88,15 @@ function Lay() {
         try {
             const response = await axios.get("https://jsonplaceholder.typicode.com/posts"); // API_ENDPOINT_URL 대체
             console.log(response.data)
-            const firstTitle = response.data[0].title.slice(0, 20); // 첫 번째 객체의 title 속성 값 -> 글자수 제한
-            console.log(firstTitle)
-            setApiData(firstTitle);
+            //문제(용어)
+            const term = response.data[6]; // 첫 번째 객체의 term 속성 값 -> 글자수 제한
+            console.log(term)
+            setApiData(term);
+            //선택지 리스트
+            // const items = response.data[0].body.slice(0, 20); // 첫 번째 객체의 items 속성 값 -> 글자수 제한
+            // console.log(items)
+            // setApiData(items);
+
         } catch (error) {
             console.error("Error fetching data from API: ", error);
         }
@@ -161,8 +168,13 @@ function Lay() {
             {
                 // 퀴즈 화면
                 !showDialogBox && (
-                    <div>
-                        
+                    <div className={styles.top}>
+                        {/* 퀴즈 타이틀 */}
+                        <Quiz 
+                            term = {apiData.title}
+                        />
+                        {/* 호감도 */}
+                        <CrushBar />
                     </div>
                 )
             }
