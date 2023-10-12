@@ -18,3 +18,14 @@
     font-size: 30px;
     z-index: 1;
 }
+
+.quiz_list{
+    background-color: red;
+    border-radius: 500px;
+}
+.quiz_list:hover {
+    background-color: rgba(0, 0, 0, 0.336);
+    border-radius: 500px;
+
+}
+
