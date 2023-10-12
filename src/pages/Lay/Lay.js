@@ -11,6 +11,7 @@ import LayShiny from "../../assets/images/Lay/lay_shiny.svg"
 import LayThinking from "../../assets/images/Lay/lay_thinking.svg"
 import ProgressBar from "../../componets/ProgressBar";
 import axios from 'axios';
+import QuizTitle from "../../componets/QuizTitle";
 
 function Lay() {
     const [showMenuBox, setShowMenuBox] = useState(false);
@@ -87,9 +88,9 @@ function Lay() {
         try {
             const response = await axios.get("https://jsonplaceholder.typicode.com/posts"); // API_ENDPOINT_URL 대체
             console.log(response.data)
-            const firstTitle = response.data[0].title.slice(0, 20); // 첫 번째 객체의 title 속성 값 -> 글자수 제한
-            console.log(firstTitle)
-            setApiData(firstTitle);
+            const term = response.data[0].title.slice(0, 20); // 첫 번째 객체의 term 속성 값 -> 글자수 제한
+            console.log(term)
+            setApiData(term);
         } catch (error) {
             console.error("Error fetching data from API: ", error);
         }
@@ -161,8 +162,13 @@ function Lay() {
             {
                 // 퀴즈 화면
                 !showDialogBox && (
-                    <div>
-                        
+                    <div className={styles.top}>
+                        {/* 퀴즈 타이틀 */}
+                        <QuizTitle 
+                            term = {apiData}
+                        />
+                        {/* 호감도 */}
+                        <CrushBar />
                     </div>
                 )
             }
