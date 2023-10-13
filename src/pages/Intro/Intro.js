@@ -9,15 +9,15 @@ import { Link } from "react-router-dom";
 import Sol from "../../assets/images/sol_default.png";
 import SolSmile from "../../assets/images/sol_smile.png";
 import SolWhy from "../../assets/images/sol-why.png";
-import { ReactComponent as LayHi } from "../../assets/images/lay_hi.svg";
-import { ReactComponent as MollyHi } from "../../assets/images/molly_hi.svg";
-import Lay from "../../assets/images/lay_default.svg";
-import LaySmile from "../../assets/images/lay_smile.svg";
-import Molly from "../../assets/images/molly_default.svg";
-import MollySmile from "../../assets/images/molly_smile.svg";
+import LayHi from "../../assets/images/lay_hi.png";
+import MollyHi from "../../assets/images/molly_hi.png";
+import Lay from "../../assets/images/lay_default.png";
+import LaySmile from "../../assets/images/lay_smile.png";
+import Molly from "../../assets/images/molly_default.png";
+import MollySmile from "../../assets/images/molly_smile.png";
 import NoticeBox from "../../componets/NoticeBox";
-import Layname from "../../assets/images/lay_name.svg";
-import Mollyname from "../../assets/images/molly_name.svg";
+import Layname from "../../assets/images/lay_name.png";
+import Mollyname from "../../assets/images/molly_name.png";
 import FriendSelectBox from "../../componets/FriendSelectBox";
 import ReactTyped from "react-typed";
 
@@ -63,6 +63,8 @@ function Intro() {
       image: Sol,
       dialog: "난 부자야",
       name: "쏠",
+      width: "278px",
+      height: "328px",
       arrowColor: palette.sol_text,
       menu: {
         show: false,
@@ -74,6 +76,8 @@ function Intro() {
       image: Sol,
       dialog: "혹시 그 친구들도 지구에서 부자가 될 수 있도록 도와줄 수 있을까?",
       name: "쏠",
+      width: "278px",
+      height: "328px",
       arrowColor: palette.sol_text,
       menu: {
         show: true,
@@ -130,7 +134,9 @@ function Intro() {
     {
       index: 9,
       nextIndex: 10,
-      image: <LayHi />,
+      image: LayHi,
+      width: "171px",
+      Height: "209px",
       dialog: "안녕! 나는 지구에서 제일 유명한 뮤지션이 되고 싶은 레이야~",
       name: "레이",
       arrowColor: palette.ray_blue,
@@ -141,7 +147,9 @@ function Intro() {
     {
       index: 10,
       nextIndex: 11,
-      image: <MollyHi />,
+      image: MollyHi,
+      width: "252px",
+      Height: "345px",
       dialog: "안녕~ 나는 지구에서 제일 멋진 식물 카페를 운영하고 있는 몰리야!",
       name: "몰리",
       arrowColor: palette.molly_purple,
@@ -214,7 +222,7 @@ function Intro() {
               <ReactTyped
                 key={currentScenarioIndex}
                 strings={[introScenario[currentScenarioIndex].dialog]}
-                typeSpeed={100}
+                typeSpeed={50}
               />
             </div>
           </div>
@@ -232,10 +240,15 @@ function Intro() {
           >
             {showDialogBox && (
               <div>
-                <div className={styles.characterImage}>
+                <div>
                   <img
+                    className={styles.characterImage}
                     src={introScenario[currentScenarioIndex].image}
                     alt="캐릭터 이미지"
+                    style={{
+                      width: `${introScenario[currentScenarioIndex].width}px`, // width 값에 'px' 단위를 추가
+                      height: `${introScenario[currentScenarioIndex].height}px`,
+                    }}
                   />
                 </div>
                 <DialogBox
@@ -247,7 +260,7 @@ function Intro() {
                   <ReactTyped
                     key={currentScenarioIndex}
                     strings={[introScenario[currentScenarioIndex].dialog]}
-                    typeSpeed={100}
+                    typeSpeed={50}
                   />
                 </div>
               </div>

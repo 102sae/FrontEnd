@@ -4,8 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 535px;
-  height: 730px;
+  width: 418px;
+  height: 541px;
   flex-shrink: 0;
   border-radius: 60px;
   background: #fff;
@@ -14,24 +14,21 @@
 
 .friendName {
   position: absolute;
-  top: 34px;
-  width: 228px;
+  top: 30px;
 }
 
 .friendImage {
   position: absolute;
-  bottom: 100px;
-  width: 331px;
-  height: 453px;
+  bottom: 80px;
 }
 
 .friendText {
   position: absolute;
-  bottom: 50px;
+  bottom: 30px;
   color: #000;
   text-align: center;
   font-family: Poppins;
-  font-size: 36px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
