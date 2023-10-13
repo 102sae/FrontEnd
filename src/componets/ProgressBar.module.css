@@ -1,9 +1,9 @@
 /* ProgressBar.css */
 .progress_container {
-    width: 626px;
-    height: 42px;
-    margin: 100px;
-    margin-left: 80px;
+    width: 400px;
+    height: 32.31px;
+    margin: 50px;
+    margin-left: 50px;
     text-align: left;
     background-color: #FFF;
     border: 1px solid rgba(0, 0, 0, 0.23);
@@ -16,8 +16,8 @@
 .progress_bar {
     display: flex;
     justify-content: left;
+    height: 32.31px;
     align-items: center;
-    height: 42px;
     background: rgba(163, 199, 247, 1);
     border-radius: 100px;
     font-size: 30px;
@@ -26,7 +26,6 @@
 }
 
 img {
-    width: 99px;
-    height: 91px;
+    width: 80px;
     padding: 20px;
 }

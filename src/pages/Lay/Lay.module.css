@@ -1,8 +1,8 @@
 .root {
     display: flex;
     flex-direction: column;
-    width: 1440px;
-    height: 1024px;
+    width: 1024px;
+    height:  767px;
     margin: 100px auto;
     background-color: rgb(255, 145, 145);
     background-image: url("../../assets/images/stars.png");
@@ -43,15 +43,14 @@
   justify-content: space-around;
 }
 
-.img_container {
+.character_wrap {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.img_container img{
+.character_wrap img{
     width: 360px;
-    height: 398px;
 }
 
 .dialogText{

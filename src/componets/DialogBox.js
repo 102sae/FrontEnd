@@ -49,7 +49,7 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
           fontSize="32"
           fill="white"
           fontWeight="bold"
-          fontFamily="Dm Sans"
+          font-family= "ONESHINHANBOLD"
           transform="rotate(-6 50 50)"
         >
           {name}

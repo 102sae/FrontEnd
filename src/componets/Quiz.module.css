@@ -3,19 +3,18 @@
 }
 
 .character_wrap{
-    padding-top: 0;
+    padding-top: 10px;
     position: relative; 
     z-index: 1;
-    width: 183px;
-    height: 192px;
+    width: 150px;
 }
 
 .dialogText{
     margin: 0;
     width: 486px;
     height: 61px;
-    text-align: center;
-    font-size: 30px;
+    text-align: left;
+    font-size: 20px;
     z-index: 1;
 }
 
@@ -23,6 +22,7 @@
     background-color: red;
     border-radius: 500px;
 }
+
 .quiz_list:hover {
     background-color: rgba(0, 0, 0, 0.336);
     border-radius: 500px;

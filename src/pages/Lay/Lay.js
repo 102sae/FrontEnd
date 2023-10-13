@@ -143,7 +143,7 @@ function Lay() {
                 {showDialogBox && (
                 <div>
                     {/* 이미지 렌더링 */}
-                    <div className={styles.img_container}>
+                    <div className={styles.character_wrap}>
                         <img src={LayScenario[currentScenarioIndex].image} alt="Scenario" />
                     </div>
                     {/* 대화 상자 렌더링 */}
