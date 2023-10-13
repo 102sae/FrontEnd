@@ -1,11 +1,11 @@
 .root {
-  width: 1440px;
-  height: 1024px;
+  width: 1024px;
+  height: 767px;
   margin: 20px auto;
   background-color: var(--black);
   position: relative;
   background-image: url("../../assets/images/stars.png");
-  background-repeat: repeat; 
+  background-repeat: repeat;
   animation: backgroundMove 20s linear infinite;
   transition: background-color 0.5s ease;
 }
@@ -21,18 +21,18 @@
 
 @keyframes backgroundMove {
   0% {
-    background-position: 0 0; 
+    background-position: 0 0;
   }
   50% {
     background-position: 0 100%;
   }
   100% {
-    background-position: 0 0; 
-}
+    background-position: 0 0;
+  }
 }
 
 .characterWrap {
-  transition: background-color 1s ease; 
+  transition: background-color 1s ease;
 }
 
 .characterImage {
@@ -42,18 +42,22 @@
 }
 
 .solBackground {
-  background: linear-gradient(0deg, #A3C7F7 0%, #D4EAF7 100%);
+  background: linear-gradient(0deg, #a3c7f7 0%, #d4eaf7 100%);
   transition: background-color 1s ease;
 }
 
-.mollyBackground{
-  background: linear-gradient(180deg, rgba(255, 224, 224, 0.69) 0%, #E0CEEE 100%);
+.mollyBackground {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 224, 224, 0.69) 0%,
+    #e0ceee 100%
+  );
   transition: background-color 1s ease;
   animation: fadeIn 1s ease;
 }
 
-.rayBackground{
-  background: linear-gradient(180deg, #FFE8D4 0%, #D4EAF7 100%);
+.rayBackground {
+  background: linear-gradient(180deg, #ffe8d4 0%, #d4eaf7 100%);
   transition: background-color 1s ease;
   animation: fadeIn 1s ease;
 }
@@ -65,14 +69,14 @@
   justify-content: space-around;
 }
 
-.dialogText{
-  width: 850px;
-  height: 300px;
+.dialogText {
+  width: 600px;
+  height: 100px;
   position: absolute;
-  bottom: 0px;
-  left: 280px;
+  bottom: 120px;
+  left: 220px;
   white-space: "pre-wrap";
-  font-size: 32px;
+  font-size: 24px;
   color: var(--black);
   text-align: center;
   letter-spacing: 2px;

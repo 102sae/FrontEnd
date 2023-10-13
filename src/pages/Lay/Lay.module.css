@@ -53,14 +53,14 @@
     width: 360px;
 }
 
-.dialogText{
-    width: 850px;
-    height: 300px;
+.dialogText {
+    width: 600px;
+    height: 100px;
     position: absolute;
-    bottom: 0px;
-    left: 280px;
+    bottom: 120px;
+    left: 220px;
     white-space: "pre-wrap";
-    font-size: 32px;
+    font-size: 24px;
     color: var(--black);
     text-align: center;
     letter-spacing: 2px;

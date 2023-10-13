@@ -4,53 +4,49 @@ import styles from "./DialogBox.module.css";
 import PropTypes from "prop-types";
 
 const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
-
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="1105"
-      height="400"
-      viewBox="0 -20 1105 400"
+      width="783"
+      height="245"
+      viewBox="0 0 783 250"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       style={{
         position: "absolute",
-        bottom: 0,
-        left: 155,
+        bottom: 30,
+        left: 130,
       }}
     >
       <path
-        d="M985.305 17.7771C785.524 -6.68392 320.28 -5.15518 112.289 17.7771C-49.1781 60.5844 -1.28535 169.131 41.1339 219.582C41.1339 248.63 23.3451 309.783 79.4481 322.013C112.289 344.946 688.826 349.023 985.305 329.658C1080.54 325.988 1068.77 262.389 1060.56 219.582C1165.93 100.334 1060.56 26.9919 985.305 17.7771Z"
+        d="M698.184 12.3192C556.62 -4.63184 226.95 -3.57245 79.5675 12.3192C-34.8475 41.9839 -0.910794 117.205 29.1474 152.167C29.1474 172.296 16.5423 214.674 56.2967 223.15C79.5675 239.041 488.1 241.867 698.184 228.447C765.669 225.904 757.331 181.831 751.513 152.167C826.174 69.5296 751.513 18.7049 698.184 12.3192Z"
         fill={backgroundColor}
       />
-
       {/* 이름표 */}
       <svg
-        width="196"
-        height="99"
-        x="50"
-        y="-20"
-        viewBox="0 0 196 99"
+        width="107"
+        height="57"
+        viewBox="0 0 107 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
-          width="191.87"
-          height="76.8771"
-          rx="38.4386"
-          transform="matrix(0.993558 -0.113322 0.0669585 0.997756 0.143066 21.7441)"
+          width="105"
+          height="45"
+          rx="20"
+          transform="matrix(0.984829 -0.173527 0.150503 0.98861 0 17.6904)"
           fill={arrowColor}
         />
         {/* 이름표 안에 텍스트 */}
         <text
           x="50%"
-          y="57%"
+          y="40%"
           dominantBaseline="middle"
           textAnchor="middle"
-          fontSize="32"
+          fontSize="26px"
           fill="white"
           fontWeight="bold"
-          font-family= "ONESHINHANBOLD"
-          transform="rotate(-6 50 50)"
+          fontFamily="Poppins"
+          transform="matrix(0.984829 -0.173527 0.150503 0.98861 0 17.6904)"
         >
           {name}
         </text>
@@ -73,20 +69,19 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
           {dialog}
         </div>
       </foreignObject>
-      
 
       {/* 화살표 */}
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        x="525"
-        y="320"
-        width="35"
-        height="27"
-        viewBox="0 0 35 27"
+        x="380"
+        y="225"
+        width="25"
+        height="16"
+        viewBox="0 0 25 16"
         fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M5.10997 0C-1.58609 0.489473 -0.291997 7.13784 1.19206 10.4008C4.10081 14.0717 10.7375 22.1885 14.0143 25.2884C17.2911 28.3883 20.6035 26.58 21.8501 25.2884C24.5808 21.8214 30.7545 13.9902 33.6038 10.4008C37.3081 2.24326 32.7728 0.067954 30.0421 0C21.1378 2.2433 12.2334 2.2433 5.10997 0Z"
+          d="M3.62314 0C-1.12459 0.277959 -0.207036 4.05339 0.845208 5.90636C2.90761 7.99097 7.61325 12.6003 9.9366 14.3606C12.26 16.121 14.6086 15.0941 15.4925 14.3606C17.4286 12.3918 21.8059 7.94465 23.8262 5.90636C26.4526 1.27389 23.237 0.0385893 21.3008 0C14.9874 1.27391 8.67391 1.27391 3.62314 0Z"
           fill={arrowColor}
         />
       </svg>

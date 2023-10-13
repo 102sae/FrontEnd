@@ -6,6 +6,7 @@
 .menuItem {
   font-family: "ONESHINHANMEDIUM";
   cursor: pointer;
+  font-size: 20px;
 }
 .menuItem:hover {
   background-color: #fc0;

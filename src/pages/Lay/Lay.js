@@ -153,7 +153,7 @@ function Lay() {
                         arrowColor={palette.ray_blue}
                     />
                     <div className={styles.dialogText}>
-                        <ReactTyped key={currentScenarioIndex} strings={[LayScenario[currentScenarioIndex].dialog]} typeSpeed={100} />
+                        <ReactTyped key={currentScenarioIndex} strings={[LayScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
                     </div>
                 </div>
                 )}

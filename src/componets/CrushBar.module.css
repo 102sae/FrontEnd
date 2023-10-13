@@ -26,9 +26,10 @@
 
 .progress_bar img{
     width: 32px;
+    padding: 15px;
 }
 
 .top_txt{
     font-family: "ONESHINHANBOLD";
-    padding-left: 15px;
+    padding-left: 20px;
 }

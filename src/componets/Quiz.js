@@ -28,7 +28,7 @@ const QuizTitle = ({term}) => {
             <foreignObject x="150" y="80" width="850" height="300">
                 <div
                 xmlns="http://www.w3.org/1999/xhtml"
-                className={styles.dialogText}
+                className={styles.quiz_title}
                 style={{
                     position: "absolute",
                     left: 170,
@@ -43,9 +43,10 @@ const QuizTitle = ({term}) => {
         {/* 용어 게임 바디 */}
         <div >
             {/* 리스트1 */}
-            <div className={styles.quiz_list}>
+            <div >
             <svg xmlns="http://www.w3.org/2000/svg" 
                     width="809" height="133" viewBox="0 0 809 133" fill="none"
+                    className={styles.quiz_list}
                     style={{
                         position: "absolute",
                         top: 192,
@@ -69,13 +70,26 @@ const QuizTitle = ({term}) => {
                     </filter>
                 </defs>
             </svg>
-                {/* 바디 안에 텍스트 */}
+                {/* 리스트1 안에 텍스트 */}
+                <foreignObject x="150" y="80" width="850" height="300">
+                    <div
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    className={styles.quiz_list_txt}
+                    style={{
+                        position: "absolute",
+                        top: 240,
+                    }}
+                    >
+                    {term}이 뭘까?
+                    </div>
+                </foreignObject>
             </div>
 
             <div>
                 {/* 리스트2 */}
                 <svg xmlns="http://www.w3.org/2000/svg" 
                     width="809" height="133" viewBox="0 0 809 133" fill="none"
+                    className={styles.quiz_list}
                     style={{
                         position: "absolute",
                         top: 382,
@@ -99,12 +113,26 @@ const QuizTitle = ({term}) => {
                     </filter>
                 </defs>
                 </svg>
+                {/* 리스트2 안에 텍스트 */}
+                <foreignObject x="150" y="80" width="850" height="300">
+                    <div
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    className={styles.quiz_list_txt}
+                    style={{
+                        position: "absolute",
+                        top: 430,
+                    }}
+                    >
+                    {term}이 뭘까?
+                    </div>
+                </foreignObject>
             </div>
 
             <div>
                 {/* 리스트3 */}
                 <svg xmlns="http://www.w3.org/2000/svg" 
                     width="809" height="133" viewBox="0 0 809 133" fill="none"
+                    className={styles.quiz_list}
                     style={{
                         position: "absolute",
                         top: 572,
@@ -128,6 +156,19 @@ const QuizTitle = ({term}) => {
                     </filter>
                 </defs>
                 </svg>
+                {/* 리스트3 안에 텍스트 */}
+                <foreignObject x="150" y="80" width="850" height="300">
+                    <div
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    className={styles.quiz_list_txt}
+                    style={{
+                        position: "absolute",
+                        top: 620,
+                    }}
+                    >
+                    {term}이 뭘까?
+                    </div>
+                </foreignObject>
             </div>
 
         </div>
