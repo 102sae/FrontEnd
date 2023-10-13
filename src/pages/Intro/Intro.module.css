@@ -57,7 +57,7 @@
 }
 
 .rayBackground {
-  background: linear-gradient(180deg, #ffe8d4 0%, #d4eaf7 100%);
+  background: linear-gradient(180deg, #e9e7e6 0%, #b9d7ff 100%);
   transition: background-color 1s ease;
   animation: fadeIn 1s ease;
 }
