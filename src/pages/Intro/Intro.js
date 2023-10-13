@@ -5,10 +5,10 @@ import styles from "./Intro.module.css";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
-import { Link } from 'react-router-dom';
-import { ReactComponent as SolHi } from "../../assets/images/sol_hi.svg";
-import { ReactComponent as SolSmile } from "../../assets/images/sol_smile.svg";
-import { ReactComponent as SolWhy } from "../../assets/images/sol_why.svg";
+import { Link } from "react-router-dom";
+import Sol from "../../assets/images/sol_default.png";
+import SolSmile from "../../assets/images/sol_smile.png";
+import SolWhy from "../../assets/images/sol-why.png";
 import { ReactComponent as LayHi } from "../../assets/images/lay_hi.svg";
 import { ReactComponent as MollyHi } from "../../assets/images/molly_hi.svg";
 import Lay from "../../assets/images/lay_default.svg";
@@ -60,7 +60,7 @@ function Intro() {
     {
       index: 3,
       nextIndex: 4,
-      image: <SolHi />,
+      image: Sol,
       dialog: "난 부자야",
       name: "쏠",
       arrowColor: palette.sol_text,
@@ -71,9 +71,8 @@ function Intro() {
     {
       index: 4,
       nextIndex: "",
-      image: <SolHi />,
-      dialog:
-        "혹시 그 친구들도 지구에서 부자가 될 수 있도록 도와줄 수 있을까?",
+      image: Sol,
+      dialog: "혹시 그 친구들도 지구에서 부자가 될 수 있도록 도와줄 수 있을까?",
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -85,7 +84,7 @@ function Intro() {
     {
       index: 5,
       nextIndex: 8,
-      image: <SolSmile />,
+      image: SolSmile,
       dialog: "와! 고마워ㅎㅎ 너라면 들어줄줄 알았어!",
       name: "쏠",
       arrowColor: palette.sol_text,
@@ -96,7 +95,7 @@ function Intro() {
     {
       index: 6,
       nextIndex: "",
-      image: <SolWhy />,
+      image: SolWhy,
       dialog: "오잉? 내가 사람을 잘못봤나? 다시 한번 생각해봐~",
       name: "쏠",
       arrowColor: palette.sol_text,
@@ -109,7 +108,7 @@ function Intro() {
     {
       index: 7,
       nextIndex: "",
-      image: <SolHi />,
+      image: Sol,
       dialog: "아쉽네~ 다음에 또 보자~",
       name: "쏠",
       arrowColor: palette.sol_text,
@@ -120,7 +119,7 @@ function Intro() {
     {
       index: 8,
       nextIndex: 9,
-      image: <SolHi />,
+      image: Sol,
       dialog: "내 친구들을 소개시켜줄게~",
       name: "쏠",
       arrowColor: palette.sol_text,
@@ -166,7 +165,6 @@ function Intro() {
     console.log(currentScenarioIndex);
   };
 
-
   const handleMenuOptionClick = (option, currentIndex) => {
     if (option === "select1") {
       setCurrentScenarioIndex(currentIndex);
@@ -192,7 +190,7 @@ function Intro() {
 
   return (
     <div
-    key = {currentScenarioIndex}
+      key={currentScenarioIndex}
       className={`${styles.root} ${
         introScenario[currentScenarioIndex].name === "몰리"
           ? styles.mollyBackground
@@ -206,16 +204,18 @@ function Intro() {
       <div className={styles.dialogContainer}>
         {introScenario[currentScenarioIndex].name === "??" ? (
           //쏠 등장 전
-          <div className={styles.DialogBoxWrap}
-            
-            onClick={handleDialogBoxClick}>
+          <div className={styles.DialogBoxWrap} onClick={handleDialogBoxClick}>
             <DialogBox
               name={introScenario[currentScenarioIndex].name}
               backgroundColor={palette.main_dialog}
               arrowColor={palette.sol_text}
             />
             <div className={styles.dialogText}>
-            <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={100} />
+              <ReactTyped
+                key={currentScenarioIndex}
+                strings={[introScenario[currentScenarioIndex].dialog]}
+                typeSpeed={100}
+              />
             </div>
           </div>
         ) : (
@@ -233,7 +233,10 @@ function Intro() {
             {showDialogBox && (
               <div>
                 <div className={styles.characterImage}>
-                  {introScenario[currentScenarioIndex].image}
+                  <img
+                    src={introScenario[currentScenarioIndex].image}
+                    alt="캐릭터 이미지"
+                  />
                 </div>
                 <DialogBox
                   name={introScenario[currentScenarioIndex].name}
@@ -241,8 +244,12 @@ function Intro() {
                   arrowColor={introScenario[currentScenarioIndex].arrowColor}
                 />
                 <div className={styles.dialogText}>
-                <ReactTyped key={currentScenarioIndex} strings={[introScenario[currentScenarioIndex].dialog]} typeSpeed={100} />
-            </div>
+                  <ReactTyped
+                    key={currentScenarioIndex}
+                    strings={[introScenario[currentScenarioIndex].dialog]}
+                    typeSpeed={100}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -260,25 +267,23 @@ function Intro() {
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-              <Link to="/lay" className={styles.link}>
-              <FriendSelectBox
-                  friendNameImage={Layname}
-                  friendImage={Lay}
-                  hoverFriendImage={LaySmile}
-                  category="개념파"
-                />
-              </Link>
-              
-              <Link to="/molly" className={styles.link}>
-              <FriendSelectBox
-                  friendNameImage={Mollyname}
-                  friendImage={Molly}
-                  hoverFriendImage={MollySmile}
-                  category="실전파"
-                />
-              </Link>
-              
-                
+                <Link to="/lay" className={styles.link}>
+                  <FriendSelectBox
+                    friendNameImage={Layname}
+                    friendImage={Lay}
+                    hoverFriendImage={LaySmile}
+                    category="개념파"
+                  />
+                </Link>
+
+                <Link to="/molly" className={styles.link}>
+                  <FriendSelectBox
+                    friendNameImage={Mollyname}
+                    friendImage={Molly}
+                    hoverFriendImage={MollySmile}
+                    category="실전파"
+                  />
+                </Link>
               </div>
               <NoticeBox notice="누구를 선택할까?" />
             </div>
