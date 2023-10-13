@@ -174,7 +174,8 @@ function Lay() {
                 <div className={styles.top}>
                     {/* 퀴즈 타이틀 */}
                     <Quiz 
-                        term = {apiData.title}
+                        term = {apiData.title} //용어
+                        list = {apiData.id} //리스트 배열 
                     />
                     {/* 호감도 */}
                     <CrushBar />
