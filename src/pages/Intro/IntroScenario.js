@@ -2,8 +2,8 @@ import palette from "../../styles/color";
 import Sol from "../../assets/images/sol_default.png";
 import SolSmile from "../../assets/images/sol_smile.png";
 import SolWhy from "../../assets/images/sol-why.png";
-import LayHi from "../../assets/images/lay_hi.png";
-import MollyHi from "../../assets/images/molly_hi.png";
+import LayHi from "../../assets/images/Lay/lay_hi.png";
+import MollyHi from "../../assets/images/Molly/molly_hi.png";
 const introScenario = [
   {
     index: 0,
