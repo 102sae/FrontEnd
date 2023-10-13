@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "ONESHINHANBOLD";
+  src: url("../assets/font/ONESHINHANBOLD.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "ONESHINHANMEDIUM";
+  src: url("../assets/font/ONESHINHANMEDIUM.TTF") format("truetype");
+}
+
+
+@font-face {
+  font-family: "ONESHINHANLIGHT";
+  src: url("../assets/font/ONESHINHANLIGHT.TTF") format("truetype");
+}
+
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -12,6 +28,6 @@
 }
 
 body {
-  font-family: "Pretendard Variable";
+  font-family: "ONESHINHANLIGHT";
   letter-spacing: -0.1px;
 }

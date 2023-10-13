@@ -12,6 +12,7 @@ import LayThinking from "../../assets/images/Lay/lay_thinking.svg"
 import ProgressBar from "../../componets/ProgressBar";
 import axios from 'axios';
 import Quiz from "../../componets/Quiz";
+import ReactTyped from "react-typed";
 
 function Lay() {
     const [showMenuBox, setShowMenuBox] = useState(false);
@@ -142,16 +143,18 @@ function Lay() {
                 {showDialogBox && (
                 <div>
                     {/* 이미지 렌더링 */}
-                    <div className={styles.img_container}>
+                    <div className={styles.character_wrap}>
                         <img src={LayScenario[currentScenarioIndex].image} alt="Scenario" />
                     </div>
                     {/* 대화 상자 렌더링 */}
                     <DialogBox
-                        dialog={LayScenario[currentScenarioIndex].dialog}
                         name="레이"
                         backgroundColor={palette.main_dialog}
                         arrowColor={palette.ray_blue}
                     />
+                    <div className={styles.dialogText}>
+                        <ReactTyped key={currentScenarioIndex} strings={[LayScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
+                    </div>
                 </div>
                 )}
             </div>
@@ -166,17 +169,17 @@ function Lay() {
             </div>
 
             {
-                // 퀴즈 화면
-                !showDialogBox && (
-                    <div className={styles.top}>
-                        {/* 퀴즈 타이틀 */}
-                        <Quiz 
-                            term = {apiData.title}
-                        />
-                        {/* 호감도 */}
-                        <CrushBar />
-                    </div>
-                )
+            // 퀴즈 화면
+            !showDialogBox && (
+                <div className={styles.top}>
+                    {/* 퀴즈 타이틀 */}
+                    <Quiz 
+                        term = {apiData.title}
+                    />
+                    {/* 호감도 */}
+                    <CrushBar />
+                </div>
+            )
             }
         </div>
     );

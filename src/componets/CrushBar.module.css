@@ -1,8 +1,8 @@
 /* ProgressBar.css */
 .progress_container {
-    width: 295px;
-    height: 77px;
-    margin: 80px;
+    width: 203px;
+    height: 50px;
+    margin: 40px;
     background-color: #FFF;
     border: 1px solid rgba(0, 0, 0, 0.23);
     border-radius: 50px;
@@ -15,19 +15,21 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 139px;
-    height: 77px;
+    width: 96.068px;
+    height: 50px;
     background: rgba(252, 221, 221, 0.65);
     color: rgb(0, 0, 0);
     border-radius: 50px;
-    font-size: 40px;
+    font-size: 20px;
     text-align: center;
 }
 
 .progress_bar img{
-    width: 50px;
+    width: 32px;
+    padding: 15px;
 }
 
 .top_txt{
-    padding-left: 30px;
+    font-family: "ONESHINHANBOLD";
+    padding-left: 20px;
 }

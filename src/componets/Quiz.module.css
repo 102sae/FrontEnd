@@ -3,29 +3,37 @@
 }
 
 .character_wrap{
-    padding-top: 0;
+    padding-top: 10px;
+    padding-left: 2cqmax;
     position: relative; 
     z-index: 1;
-    width: 183px;
-    height: 192px;
+    width: 150px;
 }
 
-.dialogText{
+.quiz_title{
     margin: 0;
     width: 486px;
     height: 61px;
-    text-align: center;
-    font-size: 30px;
+    text-align: left;
+    font-size: 20px;
     z-index: 1;
 }
 
 .quiz_list{
-    background-color: red;
     border-radius: 500px;
 }
+
 .quiz_list:hover {
-    background-color: rgba(0, 0, 0, 0.336);
+    background-color: rgba(32, 22, 22, 0.466);
     border-radius: 500px;
-
+    z-index: 1;
 }
 
+.quiz_list_txt{
+    margin: 0;
+    width: 486px;
+    height: 61px;
+    text-align: center;
+    font-size: 20px;
+    z-index: 1;
+}
