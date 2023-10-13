@@ -9,6 +9,8 @@ import CrushBar from "../../componets/CrushBar";
 import LaySmile from "../../assets/images/Lay/lay_smile.svg"
 import LayShiny from "../../assets/images/Lay/lay_shiny.svg"
 import LayThinking from "../../assets/images/Lay/lay_thinking.svg"
+import SolSolution from "../../assets/images/sol_solution.png"
+import SolKKK from "../../assets/images/sol_kkk.png"
 import ProgressBar from "../../componets/ProgressBar";
 import axios from 'axios';
 import Quiz from "../../componets/Quiz";
@@ -52,9 +54,45 @@ function Lay() {
         },
         {
             index: 3,
-            nextIndex: 4,
+            nextIndex: "",
             image: LayThinking,
             dialog: `요즘 뉴스에 ${apiData.title}을 사라는 말이 많더라고... \n그런데 ${apiData.title}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
+            menu: {
+                show: false,
+            },
+        },
+        {
+            index: 4,
+            nextIndex: 5,
+            image: SolSolution,
+            dialog: "내가 다시 한번 설명해주지~",
+            menu: {
+                show: false,
+            },
+        },
+        {
+            index: 5,
+            nextIndex: 6,
+            image: SolSolution,
+            dialog: `${apiData.title}는(은) 한국예탁결제원에 따르면\n ${apiData.description}(이)야~`,
+            menu: {
+                show: false,
+            },
+        },
+        {
+            index: 6,
+            nextIndex: 7,
+            image: SolKKK,
+            dialog: "하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~",
+            menu: {
+                show: false,
+            },
+        },
+        {
+            index: 7,
+            nextIndex: 8,
+            image: SolKKK,
+            dialog: `${apiData.title}는(은) 한국예탁결제원에 따르면\n ${apiData.explanation}(이)야~`,
             menu: {
                 show: false,
             },
@@ -118,6 +156,13 @@ function Lay() {
         }
     }, [currentScenarioIndex]);
 
+    // useEffect(() =>{
+    //     if (!showDialogBox && apiData !== null) {
+    //         setShowDialogBox(true);
+    //         setCurrentScenarioIndex(4);
+    //     }
+    //     }, [apiData, showDialogBox]);
+
 
     return (
         <div className={styles.root}>
@@ -140,6 +185,7 @@ function Lay() {
                         <CrushBar />
                     </div>
                 )}
+
                 {showDialogBox && (
                 <div>
                     {/* 이미지 렌더링 */}
@@ -158,19 +204,18 @@ function Lay() {
                 </div>
                 )}
             </div>
-            {/* 메뉴 박스 렌더링 */}
-            </div>
-                {showMenuBox && (
-                    <MenuBox
-                        select={LayScenario[currentScenarioIndex].menu}
-                        onOptionClick={handleMenuOptionClick}
-                    />
-                )}
-            </div>
+                {/* 메뉴 박스 렌더링 */}
+                </div>
+                    {showMenuBox && (
+                        <MenuBox
+                            select={LayScenario[currentScenarioIndex].menu}
+                            onOptionClick={handleMenuOptionClick}
+                        />
+                    )}
+                </div>
 
-            {
-            // 퀴즈 화면
-            !showDialogBox && (
+            {/* 퀴즈 화면 */}
+            {currentScenarioIndex === 3 && !showDialogBox && (
                 <div className={styles.top}>
                     {/* 퀴즈 타이틀 */}
                     <Quiz 
@@ -180,8 +225,7 @@ function Lay() {
                     {/* 호감도 */}
                     <CrushBar />
                 </div>
-            )
-            }
+            )}
         </div>
     );
 }
