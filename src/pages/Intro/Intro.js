@@ -6,11 +6,7 @@ import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
 import { Link } from "react-router-dom";
-import Sol from "../../assets/images/sol_default.png";
-import SolSmile from "../../assets/images/sol_smile.png";
-import SolWhy from "../../assets/images/sol-why.png";
-import LayHi from "../../assets/images/lay_hi.png";
-import MollyHi from "../../assets/images/molly_hi.png";
+
 import Lay from "../../assets/images/lay_default.png";
 import LaySmile from "../../assets/images/lay_smile.png";
 import Molly from "../../assets/images/molly_default.png";
@@ -20,148 +16,13 @@ import Layname from "../../assets/images/lay_name.png";
 import Mollyname from "../../assets/images/molly_name.png";
 import FriendSelectBox from "../../componets/FriendSelectBox";
 import ReactTyped from "react-typed";
+import introScenario from "./IntroScenario";
 
 function Intro() {
-  const introScenario = [
-    {
-      index: 0,
-      nextIndex: 1,
-      image: "",
-      dialog:
-        "밤하늘의 북쪽에서 가장 밝게 빛나는 별, \n북극성에 우주여행작가 쏠이 살고 있었어요.\n 그날도 어느 때와 같이 글을 써 내려가고 있었습니다.\n ",
-      name: "??",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 1,
-      nextIndex: 2,
-      image: "",
-      dialog: "다녀왔던 별들은 전부 아름다웠지만, 10년후...",
-      name: "??",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 2,
-      nextIndex: 3,
-      image: "",
-      dialog: "안녕? 난 쏠이야",
-      name: "??",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 3,
-      nextIndex: 4,
-      image: Sol,
-      dialog: "난 부자야",
-      name: "쏠",
-      width: "278px",
-      height: "328px",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 4,
-      nextIndex: "",
-      image: Sol,
-      dialog: "혹시 그 친구들도 지구에서 부자가 될 수 있도록 도와줄 수 있을까?",
-      name: "쏠",
-      width: "278px",
-      height: "328px",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: true,
-        option: ["나한테 맡겨!", "내가 왜?"],
-        nextIndex: [5, 6],
-      },
-    },
-    {
-      index: 5,
-      nextIndex: 8,
-      image: SolSmile,
-      dialog: "와! 고마워ㅎㅎ 너라면 들어줄줄 알았어!",
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 6,
-      nextIndex: "",
-      image: SolWhy,
-      dialog: "오잉? 내가 사람을 잘못봤나? 다시 한번 생각해봐~",
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: true,
-        option: ["알겠어!", "미안.."],
-        nextIndex: [8, 7],
-      },
-    },
-    {
-      index: 7,
-      nextIndex: "",
-      image: Sol,
-      dialog: "아쉽네~ 다음에 또 보자~",
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 8,
-      nextIndex: 9,
-      image: Sol,
-      dialog: "내 친구들을 소개시켜줄게~",
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 9,
-      nextIndex: 10,
-      image: LayHi,
-      width: "171px",
-      Height: "209px",
-      dialog: "안녕! 나는 지구에서 제일 유명한 뮤지션이 되고 싶은 레이야~",
-      name: "레이",
-      arrowColor: palette.ray_blue,
-      menu: {
-        show: false,
-      },
-    },
-    {
-      index: 10,
-      nextIndex: 11,
-      image: MollyHi,
-      width: "252px",
-      Height: "345px",
-      dialog: "안녕~ 나는 지구에서 제일 멋진 식물 카페를 운영하고 있는 몰리야!",
-      name: "몰리",
-      arrowColor: palette.molly_purple,
-      menu: {
-        show: false,
-      },
-    },
-  ];
-
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
+  const [typingComplete, setTypingComplete] = useState(false);
 
   //다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -222,7 +83,10 @@ function Intro() {
               <ReactTyped
                 key={currentScenarioIndex}
                 strings={[introScenario[currentScenarioIndex].dialog]}
-                typeSpeed={50}
+                typeSpeed={40}
+                onComplete={() => {
+                  console.log("타이핑 끝");
+                }}
               />
             </div>
           </div>
@@ -245,10 +109,6 @@ function Intro() {
                     className={styles.characterImage}
                     src={introScenario[currentScenarioIndex].image}
                     alt="캐릭터 이미지"
-                    style={{
-                      width: `${introScenario[currentScenarioIndex].width}px`, // width 값에 'px' 단위를 추가
-                      height: `${introScenario[currentScenarioIndex].height}px`,
-                    }}
                   />
                 </div>
                 <DialogBox
@@ -260,7 +120,7 @@ function Intro() {
                   <ReactTyped
                     key={currentScenarioIndex}
                     strings={[introScenario[currentScenarioIndex].dialog]}
-                    typeSpeed={50}
+                    typeSpeed={40}
                   />
                 </div>
               </div>
