@@ -4,6 +4,7 @@
   right: 155;
 }
 .menuItem {
+  font-family: "ONESHINHANMEDIUM";
   cursor: pointer;
 }
 .menuItem:hover {

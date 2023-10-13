@@ -9,6 +9,26 @@
     position: relative;
 }
 
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+@keyframes backgroundMove {
+    0% {
+    background-position: 0 0; 
+    }
+    50% {
+    background-position: 0 100%;
+    }
+    100% {
+    background-position: 0 0; 
+}
+}
 .top{
     margin: 0;
     display: flex;
@@ -33,3 +53,18 @@
     width: 360px;
     height: 398px;
 }
+
+.dialogText{
+    width: 850px;
+    height: 300px;
+    position: absolute;
+    bottom: 0px;
+    left: 280px;
+    white-space: "pre-wrap";
+    font-size: 32px;
+    color: var(--black);
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    z-index: 100;
+  }
