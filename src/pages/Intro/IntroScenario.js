@@ -197,7 +197,7 @@ const introScenario = [
     index: 16,
     nextIndex: 17,
     image: LayHi,
-    dialog: "안녕! 나는 지구에서 제일 유명한 뮤지션이 되고 싶은 레이야~",
+    dialog: "안녕! 나는 지구에서 제일 유명한 뮤지션이 되고 싶은 레이야~ 나는 얼른 멋진 음반을 내고 싶어서 돈이 필요한데 투자에 대해서 하나도 알지 못해.",
     name: "레이",
     arrowColor: palette.ray_blue,
     menu: {
@@ -207,8 +207,41 @@ const introScenario = [
   {
     index: 17,
     nextIndex: 18,
+    image: LayHi,
+    dialog: "혹시 내가 투자를 하기 전 너에게 주식 용어에 대해서 물어봐도 될까?",
+    name: "레이",
+    arrowColor: palette.ray_blue,
+    menu: {
+      show: false,
+    },
+  },
+  {
+    index: 18,
+    nextIndex: 19,
     image: MollyHi,
     dialog: "안녕~ 나는 지구에서 제일 멋진 식물 카페를 운영하고 있는 몰리야!",
+    name: "몰리",
+    arrowColor: palette.molly_purple,
+    menu: {
+      show: false,
+    }, 
+  },
+  {
+    index: 19,
+    nextIndex: 20,
+    image: MollyHi,
+    dialog: "나는 어느덧 지구에 산지 5년차인데 더 큰 카페를 운영하기위한 자금이 필요해. 이미 투자를 하고 있긴 하지만, 시작한지 얼마 안된 초보라 어려운게 많아.",
+    name: "몰리",
+    arrowColor: palette.molly_purple,
+    menu: {
+      show: false,
+    },
+  },
+  {
+    index: 20,
+    nextIndex: 21,
+    image: MollyHi,
+    dialog: "그래서 내가 생각해봤는데, 북극성에만 있는 타임머신을 사용해서 과거로 돌아가 지금까지 지구에서 있었던 상황들을 투자해보려고 해. 혹시 나 좀 도와줄래?",
     name: "몰리",
     arrowColor: palette.molly_purple,
     menu: {

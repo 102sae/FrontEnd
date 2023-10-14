@@ -22,15 +22,20 @@ function Intro() {
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
+  const [showFullText, setShowFullText] = useState(false);
 
   //다음 대화로 넘기기
   const handleDialogBoxClick = () => {
-    if (currentScenarioIndex < introScenario.length - 1) {
-      setCurrentScenarioIndex(introScenario[currentScenarioIndex].nextIndex);
-    } else {
-      setShowDialogBox(false);
-    }
-    console.log(currentScenarioIndex);
+    if (!showFullText) {
+      setShowFullText(true);
+  } else {
+      setShowFullText(false);
+      if (currentScenarioIndex < introScenario.length - 1) {
+          setCurrentScenarioIndex(introScenario[currentScenarioIndex].nextIndex);
+      } else if (currentScenarioIndex === introScenario.length - 1) {
+          setShowDialogBox(false);
+      }
+  }
   };
 
   const handleKeyDown = (e) => {
@@ -75,7 +80,7 @@ function Intro() {
         {introScenario[currentScenarioIndex].name === "??" ? (
           //쏠 등장 전
           <div 
-          tabIndex={0}
+          tabIndex={1}
           className={styles.DialogBoxWrap} onClick={handleDialogBoxClick}
           onKeyDown={handleKeyDown}>
             <DialogBox
@@ -84,19 +89,25 @@ function Intro() {
               arrowColor={palette.sol_text}
             />
             <div className={styles.dialogText}>
-              <ReactTyped
-                key={currentScenarioIndex}
-                strings={[introScenario[currentScenarioIndex].dialog]}
-                typeSpeed={40}
-
-              />
+            {showFullText 
+            ? (
+                  introScenario[currentScenarioIndex].dialog
+              ) : (
+                  <ReactTyped
+                    key={currentScenarioIndex}
+                    strings={[introScenario[currentScenarioIndex].dialog]}
+                    typeSpeed={50}
+                    onComplete={() => setShowFullText(true)} 
+                     />
+                  )
+            }
             </div>
           </div>
         ) : (
           //쏠이 등장 이후
 
           <div
-          tabIndex={0}
+          tabIndex={1}
             className={styles.characterWrap}
             onClick={
               introScenario[currentScenarioIndex] &&
@@ -127,11 +138,18 @@ function Intro() {
                   arrowColor={introScenario[currentScenarioIndex].arrowColor}
                 />
                 <div className={styles.dialogText}>
+              {showFullText 
+                ? (
+                  introScenario[currentScenarioIndex].dialog
+                ) : (
                   <ReactTyped
                     key={currentScenarioIndex}
                     strings={[introScenario[currentScenarioIndex].dialog]}
-                    typeSpeed={40}
-                  />
+                    typeSpeed={50}
+                    onComplete={() => setShowFullText(true)} 
+                   />
+                  )
+            }
                 </div>
               </div>
             )}
