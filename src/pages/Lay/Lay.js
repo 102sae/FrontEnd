@@ -13,13 +13,15 @@ import SolSolution from "../../assets/images/sol_solution.png"
 import SolKKK from "../../assets/images/sol_kkk.png"
 import ProgressBar from "../../componets/ProgressBar";
 import axios from 'axios';
-import Quiz from "../../componets/Quiz";
+import Quiz from "../../componets/TermQuiz";
+import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
 
 function Lay() {
     const [showMenuBox, setShowMenuBox] = useState(false);
     const [showDialogBox, setShowDialogBox] = useState(true);
     const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
+    const [showFullText, setShowFullText] = useState(false);
     const [apiData, setApiData] = useState(0);
 
     const LayScenario = [
@@ -28,6 +30,8 @@ function Lay() {
             nextIndex:1,
             image: LaySmile,
             dialog: "날 선택해줘서 고마워~ㅇㅇ아~\n 우리 같이 용어 공부 열심히 해보자!!",
+            name: "레이",
+            arrowColor: palette.ray_blue,
             menu: {
                 show: false,
               },
@@ -37,6 +41,8 @@ function Lay() {
             nextIndex: 2,
             image: LayShiny,
             dialog: "다음날...",
+            name: "레이",
+            arrowColor: palette.ray_blue,
             menu: {
                 show: false,
             },
@@ -46,6 +52,8 @@ function Lay() {
             nextIndex: "",
             image: LayThinking,
             dialog: "레이가 무슨 고민에 빠진 듯 하다..\n 가서 말을 걸어보자",
+            name: "레이",
+            arrowColor: palette.ray_blue,
             menu: {
               show: true,
               option: ["무슨 고민있어?", "인상 좀 펴라"],
@@ -54,9 +62,11 @@ function Lay() {
         },
         {
             index: 3,
-            nextIndex: "",
+            nextIndex: 4,
             image: LayThinking,
             dialog: `요즘 뉴스에 ${apiData.title}을 사라는 말이 많더라고... \n그런데 ${apiData.title}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
+            name: "레이",
+            arrowColor: palette.ray_blue,
             menu: {
                 show: false,
             },
@@ -66,6 +76,8 @@ function Lay() {
             nextIndex: 5,
             image: SolSolution,
             dialog: "내가 다시 한번 설명해주지~",
+            name: "쏠",
+            arrowColor: palette.sol_text,
             menu: {
                 show: false,
             },
@@ -75,6 +87,8 @@ function Lay() {
             nextIndex: 6,
             image: SolSolution,
             dialog: `${apiData.title}는(은) 한국예탁결제원에 따르면\n ${apiData.description}(이)야~`,
+            name: "쏠",
+            arrowColor: palette.sol_text,
             menu: {
                 show: false,
             },
@@ -84,6 +98,8 @@ function Lay() {
             nextIndex: 7,
             image: SolKKK,
             dialog: "하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~",
+            name: "쏠",
+            arrowColor: palette.sol_text,
             menu: {
                 show: false,
             },
@@ -93,22 +109,30 @@ function Lay() {
             nextIndex: 8,
             image: SolKKK,
             dialog: `${apiData.title}는(은) 한국예탁결제원에 따르면\n ${apiData.explanation}(이)야~`,
+            name: "쏠",
+            arrowColor: palette.sol_text,
             menu: {
                 show: false,
             },
         }
     ];
-
     
     // 다음 대화로 넘기기
     const handleDialogBoxClick = () => {
-        if (currentScenarioIndex < LayScenario.length - 1) {
-            setCurrentScenarioIndex(LayScenario[currentScenarioIndex].nextIndex);
-        } else if (currentScenarioIndex === LayScenario.length - 1) {
-            setShowDialogBox(false);
+        if (!showFullText) {
+            setShowFullText(true);
+        } else {
+            setShowFullText(false);
+            if (currentScenarioIndex < LayScenario.length - 1) {
+                setCurrentScenarioIndex(LayScenario[currentScenarioIndex].nextIndex);
+            } else if (currentScenarioIndex === LayScenario.length - 1) {
+                setShowDialogBox(false);
+            }
         }
     };
 
+
+    //메뉴 클릭하기
     const handleMenuOptionClick = (option, currentIndex) => {
         if (option === "select1") {
           setCurrentScenarioIndex(currentIndex);
@@ -121,21 +145,16 @@ function Lay() {
         }
       };
       
-    // API 요청을 보내고 데이터를 받아오는 부분
-    // 임시 데이터 사용 -> 추후 변경
+    // 용어게임 문제 API 
     const getData = async () => {
         try {
             const response = await axios.get("https://jsonplaceholder.typicode.com/posts"); // API_ENDPOINT_URL 대체
             console.log(response.data)
             //문제(용어)
-            const term = response.data[6]; // 첫 번째 객체의 term 속성 값 -> 글자수 제한
+            const term = response.data[6];
             console.log(term)
             setApiData(term);
             //선택지 리스트
-            // const items = response.data[0].body.slice(0, 20); // 첫 번째 객체의 items 속성 값 -> 글자수 제한
-            // console.log(items)
-            // setApiData(items);
-
         } catch (error) {
             console.error("Error fetching data from API: ", error);
         }
@@ -156,18 +175,19 @@ function Lay() {
         }
     }, [currentScenarioIndex]);
 
-    // useEffect(() =>{
-    //     if (!showDialogBox && apiData !== null) {
-    //         setShowDialogBox(true);
-    //         setCurrentScenarioIndex(4);
-    //     }
-    //     }, [apiData, showDialogBox]);
-
 
     return (
-        <div className={styles.root}>
-        <div className={styles.dialogContainer}>
-            <div>
+        <div 
+            key={currentScenarioIndex}
+            className={`${styles.root} ${
+                LayScenario[currentScenarioIndex].name === "쏠"
+                ? styles.solBackground
+                : LayScenario[currentScenarioIndex].name === "레이"
+                ? styles.layBackground
+                : ""
+            }`}
+        >
+            <div className={styles.dialogContainer}>
                 <div
                     onClick={
                         LayScenario[currentScenarioIndex] &&
@@ -176,56 +196,65 @@ function Lay() {
                         : handleDialogBoxClick
                     }
                 >
-                {/* 프로그레스 바와 호감도 */}
-                {showDialogBox && (
+                    {showDialogBox && (
+                        <div>
+                            {/* 프로그레스바 & 호감도 */}
+                            <div className={styles.top}>
+                                <ProgressBar />
+                                <CrushBar />
+                            </div>
+
+                            {/* 이미지 렌더링 */}
+                            <div className={styles.character_wrap}>
+                                <img src={LayScenario[currentScenarioIndex].image} alt="Scenario" />
+                            </div>
+
+                            {/* 대화 상자 렌더링 */}
+                            <DialogBox
+                                name={LayScenario[currentScenarioIndex].name}
+                                backgroundColor={palette.main_dialog}
+                                arrowColor={LayScenario[currentScenarioIndex].arrowColor}
+                            />
+                            <div className={styles.dialogText}>
+                                    {showFullText ? (
+                                        LayScenario[currentScenarioIndex].dialog
+                                    ) : (
+                                        <ReactTyped
+                                        key={currentScenarioIndex}
+                                        strings={[LayScenario[currentScenarioIndex].dialog]}
+                                        typeSpeed={50}
+                                        onComplete={() => setShowFullText(true)} // 타이핑 완료 후 전체 텍스트를 보여줍니다.
+                                        />
+                                    )}
+                                </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* 메뉴 박스 렌더링 */}
+                {showMenuBox && (
+                    <MenuBox
+                        select={LayScenario[currentScenarioIndex].menu}
+                        onOptionClick={handleMenuOptionClick}
+                    />
+                )}
+                
+
+                {/* 퀴즈 화면 */}
+                {!showDialogBox && (
                     <div className={styles.top}>
-                        {/* 프로그레스 바 */}
-                        <ProgressBar />
+                        {/* 퀴즈 타이틀 */}
+                        <Quiz 
+                            term = {apiData.title} //용어
+                            list = {apiData.id} //리스트 배열 
+                        />
                         {/* 호감도 */}
                         <CrushBar />
                     </div>
                 )}
 
-                {showDialogBox && (
-                <div>
-                    {/* 이미지 렌더링 */}
-                    <div className={styles.character_wrap}>
-                        <img src={LayScenario[currentScenarioIndex].image} alt="Scenario" />
-                    </div>
-                    {/* 대화 상자 렌더링 */}
-                    <DialogBox
-                        name="레이"
-                        backgroundColor={palette.main_dialog}
-                        arrowColor={palette.ray_blue}
-                    />
-                    <div className={styles.dialogText}>
-                        <ReactTyped key={currentScenarioIndex} strings={[LayScenario[currentScenarioIndex].dialog]} typeSpeed={50} />
-                    </div>
-                </div>
-                )}
+                {/* 호감도 변화 */}
             </div>
-                {/* 메뉴 박스 렌더링 */}
-                </div>
-                    {showMenuBox && (
-                        <MenuBox
-                            select={LayScenario[currentScenarioIndex].menu}
-                            onOptionClick={handleMenuOptionClick}
-                        />
-                    )}
-                </div>
-
-            {/* 퀴즈 화면 */}
-            {currentScenarioIndex === 3 && !showDialogBox && (
-                <div className={styles.top}>
-                    {/* 퀴즈 타이틀 */}
-                    <Quiz 
-                        term = {apiData.title} //용어
-                        list = {apiData.id} //리스트 배열 
-                    />
-                    {/* 호감도 */}
-                    <CrushBar />
-                </div>
-            )}
         </div>
     );
 }

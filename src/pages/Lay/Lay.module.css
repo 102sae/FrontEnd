@@ -1,12 +1,12 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    width: 1024px;
-    height:  767px;
-    margin: 100px auto;
-    background-color: rgb(255, 145, 145);
-    background-image: url("../../assets/images/stars.png");
-    position: relative;
+  width: 1024px;
+  height: 767px;
+  margin: 20px auto;
+  position: relative;
+  background-image: url("../../assets/images/stars.png");
+  background-repeat: repeat;
+  animation: backgroundMove 20s linear infinite;
+  transition: background-color 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -67,3 +67,15 @@
     line-height: 1.5;
     z-index: 100;
   }
+
+  .solBackground {
+    background: linear-gradient(0deg, #a3c7f7 0%, #d4eaf7 100%);
+    transition: background-color 1s ease;
+  }
+
+  .layBackground {
+    background: linear-gradient(180deg, rgba(255, 232, 212, 0.70) 0%, rgba(255, 226, 122, 0.00) 100%);
+    transition: background-color 1s ease;
+    /* animation: fadeIn 1s ease; */
+  }
+  
