@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import palette from "../styles/color";
-import styles from "./Quiz.module.css"
+import styles from "./TermQuiz.module.css"
 import PropTypes from "prop-types";
 import LayThinking from "../assets/images/Lay/lay_thinking.svg"
 
 
-const QuizTitle = ({term, list}) => {
+const TermQuiz = ({term, list}) => {
     const [userAnswerId, setUserAnswerId] = useState(null);
     const [answerId, setAnswerId] = useState(null);
 
@@ -124,7 +124,13 @@ const QuizTitle = ({term, list}) => {
         {/* 정답 및 오답 이미지 */}
         {userAnswerId !== null && (
             <div className={styles.quiz_answer}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                width="40" height="40" viewBox="0 0 40 40" fill="none"
+                style={{
+                    position: "absolute",
+                    top:238,
+                    left: 812,
+                }}>
                     <path
                         d={
                             isCorrectAnswer
@@ -140,4 +146,4 @@ const QuizTitle = ({term, list}) => {
     )
 }
 
-export default QuizTitle;
+export default TermQuiz;

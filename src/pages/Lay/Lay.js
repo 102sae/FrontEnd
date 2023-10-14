@@ -13,7 +13,8 @@ import SolSolution from "../../assets/images/sol_solution.png"
 import SolKKK from "../../assets/images/sol_kkk.png"
 import ProgressBar from "../../componets/ProgressBar";
 import axios from 'axios';
-import Quiz from "../../componets/Quiz";
+import Quiz from "../../componets/TermQuiz";
+import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
 
 function Lay() {
@@ -251,6 +252,8 @@ function Lay() {
                         <CrushBar />
                     </div>
                 )}
+
+                {/* 호감도 변화 */}
             </div>
         </div>
     );
