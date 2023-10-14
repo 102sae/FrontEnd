@@ -59,15 +59,10 @@ function Intro() {
 
   return (
     <div
-      key={currentScenarioIndex}
       className={`${styles.root} ${
-        introScenario[currentScenarioIndex].name === "몰리"
-          ? styles.mollyBackground
-          : introScenario[currentScenarioIndex].name === "레이"
-          ? styles.rayBackground
-          : introScenario[currentScenarioIndex].name === "쏠"
+        introScenario[currentScenarioIndex].name !== "??" 
           ? styles.solBackground
-          : ""
+          : styles.selectBackground
       }`}
     >
       <div className={styles.dialogContainer}>
