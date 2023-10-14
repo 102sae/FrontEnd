@@ -61,7 +61,8 @@ const Login = ({ toggleForm, onLogin }) => {
             </div>
           
           </div>
-          <button onClick={handleLogin}>로그인</button>
+
+          <button className={styles.button} onClick={handleLogin}>로그인</button>
           <p>계정이 없다면? <Link to="/signup" className={styles.link}> 회원가입</Link>하기</p>
           <br/>
           <p><Link to="/intro" className={styles.link}>비회원으로 진행하기</Link></p>
