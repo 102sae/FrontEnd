@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const MenuBox = ({ select, onOptionClick }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" 
+
       width="220" 
       height="120" 
       viewBox="0 0 220 120" 
@@ -19,6 +20,7 @@ const MenuBox = ({ select, onOptionClick }) => {
 
       {/* 메뉴박스 안에 텍스트 */}
       <text
+        tabIndex={1}
         className={styles.menuItem}
         x="50%"
         y="35%"
@@ -32,6 +34,7 @@ const MenuBox = ({ select, onOptionClick }) => {
         {select.option[0]}
       </text>
       <text
+        tabIndex={2}
         className={styles.menuItem}
         x="50%"
         y="70%"
