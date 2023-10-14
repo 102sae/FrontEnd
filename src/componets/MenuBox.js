@@ -20,7 +20,8 @@ const MenuBox = ({ select, onOptionClick }) => {
 
       {/* 메뉴박스 안에 텍스트 */}
       <text
-        tabIndex={1}
+        id="select1"
+        tabIndex={0}
         className={styles.menuItem}
         x="50%"
         y="35%"
@@ -30,11 +31,24 @@ const MenuBox = ({ select, onOptionClick }) => {
         fill="#000000"
         fontFamily="Roboto"
         onClick={() => onOptionClick("select1", select.nextIndex[0])}
+        onKeyDown={(e)=>{
+          if (e.key === "Enter") {
+            onOptionClick("select1", select.nextIndex[0]);
+          }
+          else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault(); 
+            const nextOption = document.getElementById("select2");
+            if (nextOption) {
+             nextOption.focus(); 
+            }
+          }
+        }}
       >
         {select.option[0]}
       </text>
       <text
-        tabIndex={2}
+        id="select2"
+        tabIndex={1}
         className={styles.menuItem}
         x="50%"
         y="70%"
@@ -44,6 +58,18 @@ const MenuBox = ({ select, onOptionClick }) => {
         fill="#000000"
         fontFamily="Roboto"
         onClick={() => onOptionClick("select2", select.nextIndex[1])}
+        onKeyDown={(e)=>{
+          if (e.key === "Enter") {
+            onOptionClick("select2", select.nextIndex[1]);
+          }
+          else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault(); 
+            const nextOption = document.getElementById("select1");;
+            if (nextOption) {
+             nextOption.focus(); 
+            }
+          }
+        }}
       >
         {select.option[1]}
       </text>
