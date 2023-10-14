@@ -85,10 +85,10 @@
     color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
   }
   
-  .LoginTeamImg{
-      width: 40vw;
+  .authImg{
+      width: 70vw;
       height: auto;
-      padding: 3vw;
+      padding: 10px;
     }
 }
 
@@ -110,6 +110,11 @@
   .button:hover {
       background-color: rgba(163, 199, 247, 1);
     }
+
+  .authImg{
+    width: 50vw;
+    height: auto;
+  }
 }
 
 
