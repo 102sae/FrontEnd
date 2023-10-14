@@ -244,12 +244,13 @@ function Lay() {
                 {!showDialogBox && (
                     <div className={styles.top}>
                         {/* 퀴즈 타이틀 */}
-                        <Quiz 
+                        {/* <Quiz 
                             term = {apiData.title} //용어
                             list = {apiData.id} //리스트 배열 
-                        />
+                        /> */}
                         {/* 호감도 */}
                         <CrushBar />
+                        <LayCrush />
                     </div>
                 )}
 
