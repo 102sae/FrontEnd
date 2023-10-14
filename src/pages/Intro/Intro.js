@@ -22,7 +22,6 @@ function Intro() {
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
-  const [typingComplete, setTypingComplete] = useState(false);
 
   //다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -33,6 +32,13 @@ function Intro() {
     }
     console.log(currentScenarioIndex);
   };
+
+  const handleKeyDown = (e) => {
+    if(e.key === "Enter" || e.key === " "){
+      handleDialogBoxClick(); 
+    }
+    console.log(e.key);
+  }
 
   const handleMenuOptionClick = (option, currentIndex) => {
     if (option === "select1") {
@@ -59,13 +65,8 @@ function Intro() {
 
   return (
     <div
-      key={currentScenarioIndex}
       className={`${styles.root} ${
-        introScenario[currentScenarioIndex].name === "몰리"
-          ? styles.mollyBackground
-          : introScenario[currentScenarioIndex].name === "레이"
-          ? styles.rayBackground
-          : introScenario[currentScenarioIndex].name === "쏠"
+        introScenario[currentScenarioIndex].name !== "??" 
           ? styles.solBackground
           : ""
       }`}
@@ -73,7 +74,10 @@ function Intro() {
       <div className={styles.dialogContainer}>
         {introScenario[currentScenarioIndex].name === "??" ? (
           //쏠 등장 전
-          <div className={styles.DialogBoxWrap} onClick={handleDialogBoxClick}>
+          <div 
+          tabIndex={0}
+          className={styles.DialogBoxWrap} onClick={handleDialogBoxClick}
+          onKeyDown={handleKeyDown}>
             <DialogBox
               name={introScenario[currentScenarioIndex].name}
               backgroundColor={palette.main_dialog}
@@ -84,9 +88,7 @@ function Intro() {
                 key={currentScenarioIndex}
                 strings={[introScenario[currentScenarioIndex].dialog]}
                 typeSpeed={40}
-                onComplete={() => {
-                  console.log("타이핑 끝");
-                }}
+
               />
             </div>
           </div>
@@ -94,6 +96,7 @@ function Intro() {
           //쏠이 등장 이후
 
           <div
+          tabIndex={0}
             className={styles.characterWrap}
             onClick={
               introScenario[currentScenarioIndex] &&
@@ -101,6 +104,13 @@ function Intro() {
                 ? null
                 : handleDialogBoxClick
             }
+            onKeyDown={
+              introScenario[currentScenarioIndex] &&
+              introScenario[currentScenarioIndex].menu.show
+                ? null
+                : handleKeyDown
+            }
+
           >
             {showDialogBox && (
               <div>

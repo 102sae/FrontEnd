@@ -7,7 +7,6 @@
   background-image: url("../../assets/images/stars.png");
   background-repeat: repeat;
   animation: backgroundMove 20s linear infinite;
-  transition: background-color 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -42,24 +41,12 @@
 }
 
 .solBackground {
+  transition: background-color 0.5  s ease;
+  background-image: url("../../assets/images/intro_bg.jpg");
+}
+
+.selectBackground{
   background: linear-gradient(0deg, #a3c7f7 0%, #d4eaf7 100%);
-  transition: background-color 1s ease;
-}
-
-.mollyBackground {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 224, 224, 0.69) 0%,
-    #e0ceee 100%
-  );
-  transition: background-color 1s ease;
-  animation: fadeIn 1s ease;
-}
-
-.rayBackground {
-  background: linear-gradient(180deg, #e9e7e6 0%, #b9d7ff 100%);
-  transition: background-color 1s ease;
-  animation: fadeIn 1s ease;
 }
 
 .friendsWrap {
