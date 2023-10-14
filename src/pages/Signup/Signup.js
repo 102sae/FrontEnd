@@ -71,7 +71,7 @@ const Signup = ({ toggleForm, onSignup }) => {
             </div>
           
           </div>
-          <button onClick={handleSignup}>회원가입</button>
+          <button className={styles.button} onClick={handleSignup}>회원가입</button>
           
       </div>
     </div>
