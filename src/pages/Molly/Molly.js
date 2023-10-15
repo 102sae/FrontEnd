@@ -7,7 +7,7 @@ import ReactTyped from "react-typed";
 import CrushBar from "../../componets/CrushBar";
 import MenuBox from "../../componets/MenuBox";
 import StockGameBox from "../../componets/StockGameBox";
-import { ReactComponent as HintButton } from "../../assets/images/hintButton.svg";
+import { ReactComponent as HintButton } from "../../assets/images/hint_button.svg";
 import ProgressBar from "../../componets/ProgressBar";
 import TradingButton from "../../componets/TradingButton";
 import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg"
@@ -15,8 +15,6 @@ import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg"
 import BubbleYear from "../../assets/images/Bubble/bubble_year.svg"
 import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg"
 import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg"
-import MollyTrading from "../../assets/images/Molly/molly_trading.png"
-import TradingExplain from "../../componets/TradingExplain"
 
 
 const Molly = () => {
@@ -169,12 +167,23 @@ const Molly = () => {
             <div>
             <div
               className={styles.bubble_container}
-              onMouseEnter={() => setShowBubbleYear(true)}
-              onMouseLeave={() => setShowBubbleYear(false)}>
+              onMouseEnter={() => {
+                setShowBubbleYear(true);
+                setShowBubbleSell(true);
+                setShowBubbleBuy(true);
+              }}
+              onMouseLeave={() => {
+                setShowBubbleYear(false);
+                setShowBubbleSell(false);
+                setShowBubbleBuy(false);
+              }}
+            >
               <TradingButton />
-              {showBubbleYear && <img className={styles.bubble_progress} src={BubbleYear} alt="BubbleYear" />}
+              {showBubbleYear && <img className={styles.bubble_year} src={BubbleYear} alt="BubbleYear" />}
+              {showBubbleSell && <img className={styles.bubble_sell} src={BubbleSell} alt="BubbleSell" />}
+              {showBubbleBuy && <img className={styles.bubble_buy} src={BubbleBuy} alt="BubbleBuy" />}
             </div>
-              
+
               <StockGameBox />
               </div>
             </div>
