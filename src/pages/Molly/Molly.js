@@ -10,6 +10,7 @@ import StockGameBox from "../../componets/StockGameBox";
 import { ReactComponent as HintButton } from "../../assets/images/hint_button.svg";
 import ProgressBar from "../../componets/ProgressBar";
 import TradingButton from "../../componets/TradingButton";
+import StockGameNews from "../../componets/StockGameNews";
 import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg"
 import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg"
 import BubbleYear from "../../assets/images/Bubble/bubble_year.svg"
@@ -27,6 +28,8 @@ const Molly = () => {
   const [showBubbleYear, setShowBubbleYear] = useState(false);
   const [showBubbleSell, setShowBubbleSell] = useState(false);
   const [showBubbleBuy, setShowBubbleBuy] = useState(false);
+  const [showStockGameNews, setShowStockGameNews] = useState(false);
+
 
   // 다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -40,6 +43,10 @@ const Molly = () => {
         setShowDialogBox(false);
       }
     }
+  };
+
+  const handleHintButtonClick = () => {
+    setShowStockGameNews(true);
   };
 
   const handleKeyDown = (e) => {
@@ -150,8 +157,10 @@ const Molly = () => {
               className={styles.bubble_container}
               onMouseEnter={() => setShowBubbleHint(true)}
               onMouseLeave={() => setShowBubbleHint(false)}>
-              <HintButton />
+              <HintButton 
+                onClick={handleHintButtonClick} />
               {showBubbleHint && <img className={styles.bubble_hint} src={BubbleHint} alt="BubbleHint" />}
+              {/* {showStockGameNews && <StockGameNews />} */}
             </div>
 
             <div

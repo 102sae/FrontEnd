@@ -1,0 +1,16 @@
+/* StockGameNews.module.css */
+.news_wrap {
+    position: absolute;
+    z-index: 1000;
+    bottom: 50px;
+    left: 485px;
+    transform: translateX(-50%);
+    animation: slide-up 1.5s ease-out forwards; /* 1.5초 동안 slide-up 애니메이션을 수행하며 ease-out easing을 사용합니다 */
+}
+
+@keyframes slide-up {
+    to {
+        z-index: 1000;
+        top: 50px;
+    }
+}

@@ -49,9 +49,6 @@ const TradingButton = ({ onBuyClick, onSellClick, year }) => {
             onClick={onSellClick}>매도</button>
         </div>
     </div>
-
-        
-        
     );
 };
 
