@@ -12,6 +12,11 @@
   position: relative;
 }
 
+.introHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .top {
   display: flex;
   align-items: center;

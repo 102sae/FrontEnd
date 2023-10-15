@@ -67,7 +67,7 @@ const Molly = () => {
           <div>
             {/* 프로그레스 바와 호감도 */}
             {showDialogBox && (
-              <div className={styles.top}>
+              <div className={styles.introHeader}>
                 {/* 호감도 */}
                 <CrushBar />
               </div>
@@ -127,7 +127,7 @@ const Molly = () => {
         )}
 
         {
-          /* 마지막 시나리오 후 프렌즈 선택창 */
+          /* 투자 설명 이후 투자 게임창 */
           !showDialogBox && (
             <div>
               <div className={styles.top}>
