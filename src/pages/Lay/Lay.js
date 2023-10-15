@@ -22,6 +22,7 @@ function Lay() {
     const [showDialogBox, setShowDialogBox] = useState(true);
     const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
     const [showFullText, setShowFullText] = useState(false);
+    const [showQuiz, setShowQuiz] = useState(false);
     const [apiData, setApiData] = useState(0);
 
     const LayScenario = [
@@ -125,12 +126,13 @@ function Lay() {
             setShowFullText(false);
             if (currentScenarioIndex < LayScenario.length - 1) {
                 setCurrentScenarioIndex(LayScenario[currentScenarioIndex].nextIndex);
-            } else if (currentScenarioIndex === LayScenario.length - 1) {
-                setShowDialogBox(false);
+            } else if (currentScenarioIndex === 3 && showQuiz) {
+            setShowDialogBox(false); // 대화 상자 감추기
+            setShowQuiz(true); // 퀴즈 화면 보이기
+            setCurrentScenarioIndex(4);
             }
-        }
+    }
     };
-
 
     //메뉴 클릭하기
     const handleMenuOptionClick = (option, currentIndex) => {
@@ -164,6 +166,12 @@ function Lay() {
         getData(); 
     }, []);
 
+    const handleQuizFinish = () => {
+        setShowQuiz(true); // 퀴즈 화면 감추기
+        setCurrentScenarioIndex(4); // Move to the next scenario after the quiz
+    };
+    
+
     //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
     useEffect(() => {
         if (LayScenario[currentScenarioIndex].menu.show) {
@@ -188,6 +196,7 @@ function Lay() {
             }`}
         >
             <div className={styles.dialogContainer}>
+                
                 <div
                     onClick={
                         LayScenario[currentScenarioIndex] &&
@@ -200,7 +209,7 @@ function Lay() {
                         <div>
                             {/* 프로그레스바 & 호감도 */}
                             <div className={styles.top}>
-                                <ProgressBar />
+                                <ProgressBar character="레이"/>
                                 <CrushBar />
                             </div>
 
@@ -241,12 +250,13 @@ function Lay() {
                 
 
                 {/* 퀴즈 화면 */}
-                {!showDialogBox && (
+                {showQuiz && (
                     <div className={styles.top}>
                         {/* 퀴즈 타이틀 */}
                         <Quiz 
                             term = {apiData.title} //용어
                             list = {apiData.id} //리스트 배열 
+                            onQuizFinish={handleQuizFinish}  //퀴즈 끝나면 호출
                         />
                         {/* 호감도 */}
                         <CrushBar />

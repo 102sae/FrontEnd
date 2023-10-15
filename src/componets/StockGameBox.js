@@ -9,8 +9,8 @@ const StockGameBox = () => {
       xmlns="http://www.w3.org/2000/svg"
       style={{
         position: "absolute",
-        left: "70px",
-        top: "100px",
+        left: 70,
+        top: 120,
       }}
     >
       <path

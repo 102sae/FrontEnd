@@ -9,6 +9,11 @@ import MenuBox from "../../componets/MenuBox";
 import StockGameBox from "../../componets/StockGameBox";
 import { ReactComponent as HintButton } from "../../assets/images/hintButton.svg";
 import ProgressBar from "../../componets/ProgressBar";
+import TradingButton from "../../componets/TradingButton";
+import MollyTrading from "../../assets/images/Molly/molly_trading.png"
+import TradingExplain from "../../componets/TradingExplain"
+
+
 const Molly = () => {
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
@@ -133,10 +138,15 @@ const Molly = () => {
               <div className={styles.top}>
                 {/* 호감도 */}
                 <HintButton />
-                <ProgressBar />
+                <ProgressBar character="몰리"/>
                 <CrushBar />
               </div>
+              <div>
+              <TradingExplain />
+              <TradingButton />
               <StockGameBox />
+              {/* <img src={MollyTrading} alt="MollyTrading" /> */}
+              </div>
             </div>
           )
         }

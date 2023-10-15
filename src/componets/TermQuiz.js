@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import LayThinking from "../assets/images/Lay/lay_thinking.svg"
 
 
-const TermQuiz = ({term, list}) => {
+const TermQuiz = ({term, list, onQuizFinish }) => {
     const [userAnswerId, setUserAnswerId] = useState(null);
     const [answerId, setAnswerId] = useState(null);
 
@@ -40,6 +40,7 @@ const TermQuiz = ({term, list}) => {
             console.log("호감도 변화 값:", point);
 
             setAnswerId(answerId);
+            onQuizFinish(correct, point);
 
         } catch (error) {
             console.error("Error submitting answer: ", error);
