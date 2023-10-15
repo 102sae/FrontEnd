@@ -1,127 +1,128 @@
-
-@media screen and (min-width:320px){
-  .wrap{
-    background-color: rgb(255, 255, 255);
+@media screen and (min-width: 320px) {
+  .wrap {
     margin: 50px;
     padding: 3vw;
   }
 
-  .section1{
-
-  }
-  
-  .section2{
-      padding: 2vw;
+  .section1 {
   }
 
-  .title{
+  .section2 {
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .title {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
-  
   }
-  
-  .subtitle{
+
+  .subtitle {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 15px;
-  
   }
-  
+
   .inputBox {
-      margin-bottom: 20px;
-    }
-    
+    width: 645px;
+    height: 77px;
+    margin-bottom: 20px;
+  }
+
   .inputBox label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    
-  .email, .password {
-      width: 70vw;
-      display: flex;
-      align-items: center;
-      border: 1px solid #ccc;
-      background-color: rgba(236, 236, 236, 1);
-      border-radius: 5px;
-    }
-    
-  .email img, .password img {
-      margin-inline: 10px;
-      width: 20px; /* 이미지 크기에 따라 조절하세요 */
-      height: 20px; /* 이미지 크기에 따라 조절하세요 */
-    }
-    
-  .email input, .password input {
-      width: 70vw;
-      height: 40px;
-      background-color: rgba(236, 236, 236, 1);
-      border: none;
-      outline: none;
-    }
-    
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .email,
+  .password {
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: rgba(236, 236, 236, 1);
+    border-radius: 5px;
+  }
+
+  .email img,
+  .password img {
+    margin-inline: 10px;
+    width: 20px; /* 이미지 크기에 따라 조절하세요 */
+    height: 20px; /* 이미지 크기에 따라 조절하세요 */
+  }
+
+  .email input,
+  .password input {
+    width: 70vw;
+    height: 40px;
+    background-color: rgba(236, 236, 236, 1);
+    border: none;
+    outline: none;
+  }
+
   .button {
-      width: 70vw;
-      background-color: rgba(0, 70, 255, 1);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 15px;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-    
+    width: 70vw;
+    background-color: rgba(0, 70, 255, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
   .button:hover {
     background-color: rgba(163, 199, 247, 1);
   }
-  
-  .link{
+
+  .link {
     color: rgba(0, 70, 255, 1);
     transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
   }
-  
+
   .link:hover {
     color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
   }
-  
-  .authImg{
-      width: 70vw;
-      height: auto;
-      padding: 10px;
-    }
+
+  .authImg {
+    width: 70vw;
+    height: auto;
+    padding: 10px;
+  }
 }
 
-
-@media screen and (min-width:768px){
-  .wrap{
+@media screen and (min-width: 768px) {
+  .wrap {
     display: flex;
     justify-content: space-between;
   }
 
-  .email, .password {
-      width: 30vw;
-    }
-    
-  .button {
-      width: 30vw;
-    }
-    
-  .button:hover {
-      background-color: rgba(163, 199, 247, 1);
-    }
+  .email,
+  .password {
+    width: 30vw;
+  }
 
-  .authImg{
+  .button {
+    width: 30vw;
+  }
+
+  .button:hover {
+    background-color: rgba(163, 199, 247, 1);
+  }
+
+  .authImg {
     width: 50vw;
     height: auto;
   }
 }
 
-
-@media screen and (min-width:1024px){
-  .wrap{
-      display: flex;
-      justify-content: space-between;
+@media screen and (min-width: 1024px) {
+  .wrap {
+    display: flex;
+    justify-content: space-between;
   }
 }
-
