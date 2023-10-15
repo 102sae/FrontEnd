@@ -154,21 +154,35 @@ const Lay = () => {
     {
       index: 7,
       nextIndex: 8,
-      image: SolKKK,
-      dialog: `${apiData.title}를(을) 쉽게 다시 설명하자면 \n ${apiData.explanation}(이)야~`,
-      name: "쏠",
-      arrowColor: palette.sol_text,
+      image: LayShiny,
+      dialog: `우와~ OO아 너 정말 똑똑하다~ 고마워~`,
+      name: "레이",
+      arrowColor: palette.ray_blue,
       menu: {
         show: false,
       },
       quiz: {
         show: false,
-        solution: true,
       },
       solution: {
-        show: true,
-        apiText: `${apiData.title}는(은) 한국예탁결제원에 따르면 ${apiData.description}(이)야~`,
-        managerText: `${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~ ${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~ ${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~ ${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~`,
+        show: false,
+      },
+    },
+    {
+      index: 8,
+      nextIndex: 9,
+      image: LayThinking,
+      dialog: `음.. 아직 잘 모르겠다.`,
+      name: "레이",
+      arrowColor: palette.ray_blue,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: false,
+      },
+      solution: {
+        show: false,
       },
     },
   ];
