@@ -16,12 +16,14 @@ import axios from "axios";
 import Quiz from "../../componets/TermQuiz";
 import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
+import SolutionBackground from "../../assets/images/sol_solution_bg.png";
 
-function Lay() {
+const Lay = () => {
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
   const [showFullText, setShowFullText] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [apiData, setApiData] = useState(0);
 
@@ -40,6 +42,9 @@ function Lay() {
       quiz: {
         show: false,
       },
+      solution: {
+        show: false,
+      },
     },
     {
       index: 1,
@@ -52,6 +57,9 @@ function Lay() {
         show: false,
       },
       quiz: {
+        show: false,
+      },
+      solution: {
         show: false,
       },
     },
@@ -70,6 +78,9 @@ function Lay() {
       quiz: {
         show: false,
       },
+      solution: {
+        show: false,
+      },
     },
     {
       index: 3,
@@ -83,6 +94,9 @@ function Lay() {
       },
       quiz: {
         show: true,
+      },
+      solution: {
+        show: false,
       },
     },
     {
@@ -98,6 +112,9 @@ function Lay() {
       quiz: {
         show: false,
       },
+      solution: {
+        show: false,
+      },
     },
     {
       index: 5,
@@ -110,6 +127,9 @@ function Lay() {
         show: false,
       },
       quiz: {
+        show: false,
+      },
+      solution: {
         show: false,
       },
     },
@@ -127,12 +147,15 @@ function Lay() {
       quiz: {
         show: false,
       },
+      solution: {
+        show: false,
+      },
     },
     {
       index: 7,
       nextIndex: 8,
       image: SolKKK,
-      dialog: `${apiData.title}는(은) 한국예탁결제원에 따르면\n ${apiData.explanation}(이)야~`,
+      dialog: `${apiData.title}를(을) 쉽게 다시 설명하자면 \n ${apiData.explanation}(이)야~`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -142,8 +165,21 @@ function Lay() {
         show: false,
         solution: true,
       },
+      solution: {
+        show: true,
+        apiText: `${apiData.title}는(은) 한국예탁결제원에 따르면 ${apiData.description}(이)야~`,
+        managerText: `${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~ ${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~ ${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~ ${apiData.title}를(을) 쉽게 다시 설명하자면 ${apiData.explanation}(이)야~`,
+      },
     },
   ];
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleDialogBoxClick();
+    }
+    console.log(e.key);
+  };
 
   // 다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -159,7 +195,13 @@ function Lay() {
       } else if (LayScenario[currentScenarioIndex].quiz.show === true) {
         setShowDialogBox(false); // 대화 상자 감추기
         setShowQuiz(true); // 퀴즈 화면 보이기
+        setShowSolution(false); // 해설 화면 감추기
         console.log(currentScenarioIndex);
+      } else if (LayScenario[currentScenarioIndex].solution.show === true) {
+        setShowDialogBox(false); // 대화 상자 감추기
+        setShowQuiz(false); // 퀴즈 화면 감추기
+        setShowSolution(true); // 해설 화면 보이기
+        console.log("해설이지롱");
       }
     }
   };
@@ -207,7 +249,7 @@ function Lay() {
     if (LayScenario[currentScenarioIndex].menu.show) {
       const timeoutId = setTimeout(() => {
         setShowMenuBox(true);
-      }, 1000);
+      }, 2000);
 
       return () => clearTimeout(timeoutId);
     }
@@ -226,11 +268,18 @@ function Lay() {
     >
       <div className={styles.dialogContainer}>
         <div
+          tabIndex={1}
           onClick={
             LayScenario[currentScenarioIndex] &&
             LayScenario[currentScenarioIndex].menu.show
               ? null
               : handleDialogBoxClick
+          }
+          onKeyDown={
+            LayScenario[currentScenarioIndex] &&
+            LayScenario[currentScenarioIndex].menu.show
+              ? null
+              : handleKeyDown
           }
         >
           {showDialogBox && (
@@ -262,8 +311,8 @@ function Lay() {
                   <ReactTyped
                     key={currentScenarioIndex}
                     strings={[LayScenario[currentScenarioIndex].dialog]}
-                    typeSpeed={50}
-                    onComplete={() => setShowFullText(true)} // 타이핑 완료 후 전체 텍스트를 보여줍니다.
+                    typeSpeed={40}
+                    onComplete={() => setShowFullText(true)}
                   />
                 )}
               </div>
@@ -296,9 +345,20 @@ function Lay() {
         )}
 
         {/* 호감도 변화 */}
+
+        {/* 해설 화면 */}
+        {showSolution && (
+          <div>
+            <img src={SolutionBackground} alt="해설 배경" />
+            <div className={styles.solutionApiText}>
+              {LayScenario[currentScenarioIndex].solution.apiText}
+              {LayScenario[currentScenarioIndex].solution.managerText}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Lay;
