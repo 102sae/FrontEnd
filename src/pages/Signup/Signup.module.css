@@ -1,127 +1,144 @@
-
-@media screen and (min-width:320px){
-  .wrap{
-    background-color: rgb(255, 255, 255);
+@media screen and (min-width: 320px) {
+  .wrap {
     margin: 50px;
     padding: 3vw;
   }
 
-  .section1{
-
+  .section2 {
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  
-  .section2{
-      padding: 2vw;
-  }
 
-  .title{
-    font-size: 28px;
+  .title {
+    font-size: 42px;
     font-weight: bold;
     margin-bottom: 20px;
-  
+    color: var(--shinhan_blue);
   }
-  
-  .subtitle{
-    font-size: 24px;
+
+  .subtitle {
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 15px;
-  
   }
-  
-  .inputBox {
-      margin-bottom: 20px;
-    }
-    
-  .inputBox label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    
-  .email, .password {
-      width: 70vw;
-      display: flex;
-      align-items: center;
-      border: 1px solid #ccc;
-      background-color: rgba(236, 236, 236, 1);
-      border-radius: 5px;
-    }
-    
-  .email img, .password img {
-      margin-inline: 10px;
-      width: 20px; /* 이미지 크기에 따라 조절하세요 */
-      height: 20px; /* 이미지 크기에 따라 조절하세요 */
-    }
-    
-  .email input, .password input {
-      width: 70vw;
-      height: 40px;
-      background-color: rgba(236, 236, 236, 1);
-      border: none;
-      outline: none;
-    }
-    
+
+  form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .nickname,
+  .password {
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  .nickname input,
+  .password input {
+    width: 70vw;
+    height: 30px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+  }
+
+  select {
+    width: 70vw;
+    padding: 12px;
+    font-family: Poppins;
+    font-size: 18px;
+    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+      no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  select::-ms-expand {
+    /* for IE 11 */
+    display: none;
+  }
+
+  .gender {
+    display: flex;
+    gap: 10px;
+  }
+
+  .gender input {
+    margin-right: 10px;
+  }
+
   .button {
-      width: 70vw;
-      background-color: rgba(0, 70, 255, 1);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 15px;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-    
+    width: 70vw;
+    height: 70px;
+    padding: 10px;
+    background-color: var(--shinhan_blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: Poppins;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
   .button:hover {
     background-color: rgba(163, 199, 247, 1);
   }
-  
-  .link{
-    color: rgba(0, 70, 255, 1);
-    transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
+
+  .authImg {
+    width: 70vw;
+    height: auto;
+    padding: 10px;
   }
-  
-  .link:hover {
-    color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
-  }
-  
-  .authImg{
-      width: 70vw;
-      height: auto;
-      padding: 10px;
-    }
 }
 
-
-@media screen and (min-width:768px){
-  .wrap{
+@media screen and (min-width: 768px) {
+  .wrap {
     display: flex;
     justify-content: space-between;
   }
 
-  .email, .password {
-      width: 30vw;
-    }
-    
-  .button {
-      width: 30vw;
-    }
-    
-  .button:hover {
-      background-color: rgba(163, 199, 247, 1);
-    }
+  .nickname,
+  .password {
+    width: 30vw;
+  }
 
-  .authImg{
+  .button {
+    width: 30vw;
+  }
+
+  .button:hover {
+    background-color: rgba(163, 199, 247, 1);
+  }
+
+  .authImg {
     width: 50vw;
     height: auto;
   }
-}
 
-
-@media screen and (min-width:1024px){
-  .wrap{
-      display: flex;
-      justify-content: space-between;
+  select {
+    width: 30vw;
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+}

@@ -4,9 +4,6 @@
     padding: 3vw;
   }
 
-  .section1 {
-  }
-
   .section2 {
     padding: 2vw;
     display: flex;
@@ -48,8 +45,8 @@
   .nickname img,
   .password img {
     margin-inline: 10px;
-    width: 20px; /* 이미지 크기에 따라 조절하세요 */
-    height: 20px; /* 이미지 크기에 따라 조절하세요 */
+    width: 20px;
+    height: 20px;
   }
 
   .nickname input,
@@ -72,9 +69,9 @@
     border: none;
     border-radius: 8px;
     margin-bottom: 20px;
-    cursor: pointer;
     font-family: Poppins;
     font-size: 24px;
+    cursor: pointer;
   }
 
   .button:hover {

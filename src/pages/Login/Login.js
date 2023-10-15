@@ -11,7 +11,7 @@ const Login = ({ toggleForm, onLogin }) => {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
 
-  // email input 값 변경 시 실행되는 함수
+  // nickname input 값 변경 시 실행되는 함수
   const handleNickNameChange = (event) => {
     setNickname(event.target.value);
   };

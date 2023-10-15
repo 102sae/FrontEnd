@@ -7,34 +7,17 @@ import { Link } from "react-router-dom";
 
 const Signup = ({ toggleForm, onSignup }) => {
   const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async () => {
-    try {
-      // 실제 서버와 통신하여 회원가입 처리
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ nickname, email, password }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // 회원가입이 성공하면 다음 로직을 실행
-        onSignup(); // 대시보드로 이동하거나 다른 작업을 수행할 수 있음
-      } else {
-        // 회원가입 실패 처리
-        console.error("회원가입 실패:", data.message);
-      }
-    } catch (error) {
-      console.error("에러 발생:", error);
-    }
+  // nickname input 값 변경 시 실행되는 함수
+  const handleNickNameChange = (event) => {
+    setNickname(event.target.value);
   };
 
+  // password input 값 변경 시 실행되는 함수
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
   return (
     <div className={styles.wrap}>
       <div className={styles.section1}>
@@ -45,35 +28,67 @@ const Signup = ({ toggleForm, onSignup }) => {
 
       <div className={styles.section2}>
         <h3 className={styles.subtitle}>회원가입</h3>
-
-        <div className={styles.inputBox}>
+        <form>
           <label>Name</label>
-          <div className={styles.email}>
-            <img src={IconUser} alt="닉네임 아이콘" />
+          <div className={styles.nickname}>
             <input
               type="text"
-              placeholder="닉네임"
+              placeholder="닉네임을 입력해주세요"
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              onChange={handleNickNameChange}
             />
           </div>
-        </div>
 
-        <div className={styles.inputBox}>
           <label>Password</label>
           <div className={styles.password}>
-            <img src={IconPassword} alt="비밀번호 아이콘" />
             <input
               type="password"
-              placeholder="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
           </div>
-        </div>
-        <button className={styles.button} onClick={handleSignup}>
-          회원가입
-        </button>
+
+          <label>나이</label>
+          <div className={styles.selectBox}>
+            <select>
+              <option selected>나이</option>
+              <option value={10}>10대</option>
+              <option value={20}>20대</option>
+              <option value={30}>30대</option>
+              <option value={40}>40대</option>
+              <option value={50}>50대</option>
+              <option value={60}>60대 이상</option>
+            </select>
+          </div>
+
+          <label>투자 경험</label>
+          <div className={styles.selectBox}>
+            <select>
+              <option selected>투자 경험</option>
+              <option value={1}>1년 이하</option>
+              <option value={2}>2년 ~5년차</option>
+              <option value={3}>5년 이상</option>
+            </select>
+          </div>
+
+          <label>성별</label>
+          <fieldset className={styles.gender}>
+            <label>
+              <input type="radio" name="gender" value="M" checked />
+              <span>남자</span>
+            </label>
+
+            <label>
+              <input type="radio" name="gender" value="W" />
+              <span>여자</span>
+            </label>
+          </fieldset>
+
+          <button className={styles.button} type="submit">
+            회원가입
+          </button>
+        </form>
       </div>
     </div>
   );
