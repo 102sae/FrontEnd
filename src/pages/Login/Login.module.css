@@ -2,7 +2,7 @@
 @media screen and (min-width:320px){
   .wrap{
     background-color: rgb(255, 255, 255);
-     margin: 10vw;
+    margin: 50px;
     padding: 3vw;
   }
 
@@ -39,6 +39,7 @@
     }
     
   .email, .password {
+      width: 70vw;
       display: flex;
       align-items: center;
       border: 1px solid #ccc;
@@ -47,18 +48,20 @@
     }
     
   .email img, .password img {
-      margin-right: 10px;
+      margin-inline: 10px;
       width: 20px; /* 이미지 크기에 따라 조절하세요 */
       height: 20px; /* 이미지 크기에 따라 조절하세요 */
     }
     
   .email input, .password input {
+      width: 70vw;
+      height: 40px;
       background-color: rgba(236, 236, 236, 1);
       border: none;
       outline: none;
     }
     
-  button {
+  .button {
       width: 70vw;
       background-color: rgba(0, 70, 255, 1);
       color: white;
@@ -69,9 +72,9 @@
       cursor: pointer;
     }
     
-  button:hover {
-      background-color: rgba(163, 199, 247, 1);
-    }
+  .button:hover {
+    background-color: rgba(163, 199, 247, 1);
+  }
   
   .link{
     color: rgba(0, 70, 255, 1);
@@ -82,10 +85,10 @@
     color: rgb(0, 153, 255); /* 마우스 호버 시에 빨간색으로 변경 */
   }
   
-  .LoginTeamImg{
-      width: 40vw;
+  .authImg{
+      width: 70vw;
       height: auto;
-      padding: 3vw;
+      padding: 10px;
     }
 }
 
@@ -97,18 +100,22 @@
   }
 
   .email, .password {
-      width: 25vw;
+      width: 30vw;
     }
     
-  button {
-      width: 25vw;
+  .button {
+      width: 30vw;
     }
     
-  button:hover {
+  .button:hover {
       background-color: rgba(163, 199, 247, 1);
     }
-}
 
+  .authImg{
+    width: 50vw;
+    height: auto;
+  }
+}
 
 
 @media screen and (min-width:1024px){

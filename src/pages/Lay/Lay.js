@@ -250,6 +250,8 @@ function Lay() {
                         />
                         {/* 호감도 */}
                         <CrushBar />
+                        {/* 레이 호감도 변화 */}
+                        {/* <LayCrush /> */}
                     </div>
                 )}
 

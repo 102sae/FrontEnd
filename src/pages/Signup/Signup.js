@@ -41,7 +41,7 @@ const Signup = ({ toggleForm, onSignup }) => {
       <div className={styles.section1}>
         <h3 className={styles.subtitle}>두근두근!</h3>
         <h2 className={styles.title}>주식 프렌즈!</h2>
-        <img src={LoginTeam} className={styles.LoginTeamImg} alt="로그인 팀" />
+        <img src={LoginTeam} className={styles.authImg} alt="로그인 팀" />
       </div>
       
       <div className={styles.section2}>
@@ -71,7 +71,7 @@ const Signup = ({ toggleForm, onSignup }) => {
             </div>
           
           </div>
-          <button onClick={handleSignup}>회원가입</button>
+          <button className={styles.button} onClick={handleSignup}>회원가입</button>
           
       </div>
     </div>
