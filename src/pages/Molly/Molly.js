@@ -160,7 +160,7 @@ const Molly = () => {
               <HintButton 
                 onClick={handleHintButtonClick} />
               {showBubbleHint && <img className={styles.bubble_hint} src={BubbleHint} alt="BubbleHint" />}
-              {/* {showStockGameNews && <StockGameNews />} */}
+              {showStockGameNews && <StockGameNews />}
             </div>
 
             <div
