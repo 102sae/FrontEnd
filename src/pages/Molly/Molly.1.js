@@ -9,7 +9,8 @@ import MenuBox from "../../componets/MenuBox";
 import StockGameBox from "../../componets/StockGameBox";
 import { ReactComponent as HintButton } from "../../assets/images/hintButton.svg";
 import ProgressBar from "../../componets/ProgressBar";
-const Molly = () => {
+
+export const Molly = () => {
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
@@ -144,4 +145,3 @@ const Molly = () => {
     </div>
   );
 };
-export default Molly;
