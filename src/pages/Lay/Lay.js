@@ -209,7 +209,7 @@ function Lay() {
                         <div>
                             {/* 프로그레스바 & 호감도 */}
                             <div className={styles.top}>
-                                <ProgressBar />
+                                <ProgressBar character="레이"/>
                                 <CrushBar />
                             </div>
 
