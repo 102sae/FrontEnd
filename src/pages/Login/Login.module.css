@@ -4,9 +4,6 @@
     padding: 3vw;
   }
 
-  .section1 {
-  }
-
   .section2 {
     padding: 2vw;
     display: flex;
@@ -15,50 +12,49 @@
   }
 
   .title {
-    font-size: 28px;
+    font-size: 42px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: var(--shinhan_blue);
   }
 
   .subtitle {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  form label {
+    display: block;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 15px;
   }
 
-  .inputBox {
-    width: 645px;
-    height: 77px;
-    margin-bottom: 20px;
-  }
-
-  .inputBox label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-
-  .email,
+  .nickname,
   .password {
     width: 70vw;
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
-    background-color: rgba(236, 236, 236, 1);
-    border-radius: 5px;
+    border-radius: 8px;
+    background: #ececec;
+    margin-bottom: 15px;
   }
 
-  .email img,
+  .nickname img,
   .password img {
     margin-inline: 10px;
-    width: 20px; /* 이미지 크기에 따라 조절하세요 */
-    height: 20px; /* 이미지 크기에 따라 조절하세요 */
+    width: 20px;
+    height: 20px;
   }
 
-  .email input,
+  .nickname input,
   .password input {
     width: 70vw;
     height: 40px;
+    padding: 10px;
+    font-size: 18px;
     background-color: rgba(236, 236, 236, 1);
     border: none;
     outline: none;
@@ -66,12 +62,15 @@
 
   .button {
     width: 70vw;
-    background-color: rgba(0, 70, 255, 1);
+    height: 70px;
+    padding: 10px;
+    background-color: var(--shinhan_blue);
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 15px;
+    border-radius: 8px;
     margin-bottom: 20px;
+    font-family: Poppins;
+    font-size: 24px;
     cursor: pointer;
   }
 
@@ -80,7 +79,8 @@
   }
 
   .link {
-    color: rgba(0, 70, 255, 1);
+    font-size: 18px;
+    color: var(--shinhan_blue);
     transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
   }
 
@@ -101,7 +101,7 @@
     justify-content: space-between;
   }
 
-  .email,
+  .nickname,
   .password {
     width: 30vw;
   }
@@ -123,6 +123,8 @@
 @media screen and (min-width: 1024px) {
   .wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
   }
 }
