@@ -233,13 +233,23 @@ const Lay = () => {
     }
   };
 
+  useEffect(() => {
+    getData();
+    getDataSol();
+  }, []);
+
   // 용어게임 문제 API
   const getData = async () => {
     try {
-      const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions"
-      );
+      const token = localStorage.getItem("token");
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.get("/api/term-quiz/questions", { headers });
+
       console.log(response.data);
+
       setApiTermData(response.data);
 
       //문제 번호
@@ -261,9 +271,16 @@ const Lay = () => {
   // 용어게임 해설 API
   const getDataSol = async () => {
     try {
-      const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/solution"
-      );
+      const token = localStorage.getItem("token");
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get("/api/term-quiz/questions/1/solution", {
+        headers,
+      });
+
       console.log(response.data);
       setApiSolData(response.data);
 
@@ -415,6 +432,7 @@ const Lay = () => {
         {showQuiz && (
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
+
             <TermQuiz
               id={apiTermData.id} //용어 문제 번호
               term={apiTermData.term} //용어
