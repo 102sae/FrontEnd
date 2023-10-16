@@ -26,7 +26,7 @@ const Signup = ({ toggleForm, onSignup }) => {
     event.preventDefault();
     try {
       console.log("회원가입 데이터:", signupData);
-      const response = await axios.post("/api/member/signin", signupData);
+      const response = await axios.post("http://localhost:8080/api/member/signin", signupData);
 
       setSignupData({
         nickName: "",

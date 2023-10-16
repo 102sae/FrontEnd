@@ -159,6 +159,20 @@ const Lay = () => {
         show: false,
       },
     },
+    {
+      index: 9,
+      nextIndex: 10,
+      image: LayThinking,
+      dialog: `${apiTermData.term}은 뭔지 알아? \n ${apiTermData.term}이 뭔지 나에게 알려줄래?`,
+      name: "레이",
+      arrowColor: palette.ray_blue,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: true,
+      },
+    },
     
   ];
 
@@ -204,7 +218,7 @@ const Lay = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions"
+        "http://localhost:8080/api/term-quiz/questions"
       );
       console.log(response.data);
       setApiTermData(response.data);
@@ -229,7 +243,7 @@ const Lay = () => {
   const getDataSol = async () => {
     try {
       const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/solution"
+        "http://localhost:8080/api/term-quiz/questions/1/solution"
       );
       console.log(response.data);
       setApiSolData(response.data);
@@ -312,6 +326,10 @@ const Lay = () => {
     console.log("정답 여부:", correct);
     console.log("호감도 변화 값:", point);
   };
+
+  useEffect(() => {
+    getData();
+  })
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
