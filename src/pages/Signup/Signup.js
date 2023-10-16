@@ -6,12 +6,12 @@ import IconPassword from "../../assets/images/icon_password.svg";
 import { Link } from "react-router-dom";
 
 const Signup = ({ toggleForm, onSignup }) => {
-  const [nickname, setNickname] = useState("");
+  const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
 
   // nickname input 값 변경 시 실행되는 함수
   const handleNickNameChange = (event) => {
-    setNickname(event.target.value);
+    setNickName(event.target.value);
   };
 
   // password input 값 변경 시 실행되는 함수
@@ -34,7 +34,7 @@ const Signup = ({ toggleForm, onSignup }) => {
             <input
               type="text"
               placeholder="닉네임을 입력해주세요"
-              value={nickname}
+              value={nickName}
               onChange={handleNickNameChange}
             />
           </div>

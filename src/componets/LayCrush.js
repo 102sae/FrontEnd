@@ -15,7 +15,7 @@ const LayCrush = ({ correct, point }) => {
             fill="none"
             style={{
             position: "absolute",
-            left: 312,
+            left: 302,
             top: 147,
             }}
         >
@@ -29,14 +29,14 @@ const LayCrush = ({ correct, point }) => {
         </g>
         <defs>
         <filter id="filter0_d_74_9425" x="0" y="0" width="420" height="80" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dy="2"/>
-        <feGaussianBlur stdDeviation="5"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_74_9425"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_74_9425" result="shape"/>
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="2"/>
+          <feGaussianBlur stdDeviation="5"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_74_9425"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_74_9425" result="shape"/>
         </filter>
         </defs>
       </svg>
@@ -45,7 +45,7 @@ const LayCrush = ({ correct, point }) => {
       <text x="150" y="80" width="850" height="300"
         style={{
             position: "absolute",
-            left: 380,
+            left: 410,
             top: 175,
             letterSpacing: "1px",
         }}>
