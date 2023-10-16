@@ -4,14 +4,14 @@
   position: relative;
 }
 
-.year {
-  z-index: 1;
-}
-
 .year_txt {
   font-family: "ONESHINHANBOLD";
   font-size: 26px;
   z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 450px;
+  letter-spacing: "1px";
 }
 
 .button_buy,
@@ -29,6 +29,9 @@
 
 .button_buy {
   background: rgba(230, 47, 47, 0.75);
+  position: absolute;
+  top: 450px;
+  left: 190px;
 }
 
 .button_buy:hover {
@@ -37,6 +40,9 @@
 
 .button_sell {
   background: rgba(44, 136, 81, 0.75);
+  position: absolute;
+  top: 450px;
+  left: 600px;
 }
 
 .button_sell:hover {

@@ -11,11 +11,13 @@ import { ReactComponent as HintButton } from "../../assets/images/hint_button.sv
 import ProgressBar from "../../componets/ProgressBar";
 import TradingButton from "../../componets/TradingButton";
 import StockGameNews from "../../componets/StockGameNews";
+import MollyTrading from "../../assets/images/Molly/molly_trading.png";
 import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg";
 import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg";
 import BubbleYear from "../../assets/images/Bubble/bubble_year.svg";
 import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg";
 import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
+import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
 import StockChart from "../../componets/StockChart";
 
 const Molly = () => {
@@ -28,6 +30,7 @@ const Molly = () => {
   const [showBubbleYear, setShowBubbleYear] = useState(false);
   const [showBubbleSell, setShowBubbleSell] = useState(false);
   const [showBubbleBuy, setShowBubbleBuy] = useState(false);
+  const [showBubbleStart, setShowBubbleStart] = useState(false);
   const [showStockGameNews, setShowStockGameNews] = useState(false);
 
   // 다음 대화로 넘기기
@@ -221,6 +224,32 @@ const Molly = () => {
                     />
                   )}
                 </div>
+
+                <div
+                  className={styles.mollyImgWrap}
+                  onMouseEnter={() => {
+                    setShowBubbleStart(true);
+                  }}
+                  onMouseLeave={() => {
+                    setShowBubbleStart(false);
+                  }}
+                >
+                  {showBubbleStart && (
+                    <img
+                      className={styles.bubbleStart}
+                      src={BubbleStart}
+                      alt="bubbleStart"
+                    />
+                  )}
+                  {/* 몰리를 클릭하면 투자 게임 시작 */}
+                  <img
+                    onClick={handleDialogBoxClick}
+                    className={styles.mollyImg}
+                    src={MollyTrading}
+                    alt="MollyTrading"
+                  />
+                </div>
+
                 <StockGameBox />
                 <StockChart />
               </div>

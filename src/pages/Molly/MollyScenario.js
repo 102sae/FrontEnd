@@ -101,19 +101,16 @@ const introScenario = [
       show: false,
     },
   },
-  // {
-  //   index: 9,
-  //   nextIndex: 10,
-  //   image: MollyTrading1,
-  //   dialog:
-  //     "이제 진짜 투자하러 가볼까?",
-  //   name: "몰리",
-  //   arrowColor: palette.molly_purple,
-  //   menu: {
-  //     show: true,
-  //     option: ["렛츠고", "가보자고~"],
-  //     nextIndex: [10, 10],
-  //   },
-  // },
+  {
+    index: 8,
+    nextIndex: 9,
+    image: MollyHi,
+    dialog: "준비가 됐다면 나를 한번 더 클릭해서 게임을 시작하면 돼~",
+    name: "몰리",
+    arrowColor: palette.molly_purple,
+    menu: {
+      show: false,
+    },
+  },
 ];
 export default introScenario;
