@@ -20,38 +20,38 @@ const Login = ({ toggleForm, onLogin }) => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-  // form submit 시 실행되는 함수
-  // Login 컴포넌트에서 로그인 성공 시 토큰 저장
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
 
-  //   try {
-  //     const response = await axios.post("/member/login", {
-  //       nickname: nickname,
-  //       password: password,
-  //     });
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  //     // 토큰 값을 가져옴
-  //     const { token } = response.data;
+    try {
+      const response = await axios.post(
+        "api/member/login",
+        {
+          nickName: nickname,
+          password: password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-  //     // 토큰을 LocalStorage에 저장
-  //     localStorage.setItem("token", token);
+      // 토큰 값을 가져옴
+      const token = response.headers.accesstoken;
 
-  //     // 로그인 성공 처리
-  //     console.log("로그인 성공:", response.data);
-  //     // "/" 로 이동
-  //     navigate("/");
-  //     // 새로고침
-  //     window.location.reload();
-  //     // 로그인 성공 시 다음 동작을 추가할 수 있습니다.
-  //     // 예를 들면, 로그인 정보를 저장하고 홈페이지로 리다이렉트하는 등의 동작을 수행할 수 있습니다.
-  //   } catch (error) {
-  //     // 로그인 실패 처리
-  //     console.error("로그인 실패:", error.response.data.reason);
+      // 토큰을 LocalStorage에 저장
+      localStorage.setItem("token", token);
 
-  //     // 로그인 실패 시 사용자에게 알림을 보여줄 수 있습니다.
-  //   }
-  // };
+      // 로그인 성공 처리
+      console.log("로그인 성공:", response.data);
+
+      // 인트로로 이동
+      navigate("/intro");
+    } catch (error) {
+      // 로그인 실패 처리
+      console.error("로그인 실패:", error.response.data.reason);
+    }
+  };
 
   return (
     <div className={styles.wrap}>
@@ -63,8 +63,8 @@ const Login = ({ toggleForm, onLogin }) => {
 
       <div className={styles.section2}>
         <h3 className={styles.subtitle}>로그인</h3>
-        {/* 로그인 제출 폼  onSubmit={handleFormSubmit}*/}
-        <form>
+        {/* 로그인 제출 폼 */}
+        <form onSubmit={handleFormSubmit}>
           <label>Nickname</label>
           <div className={styles.nickname}>
             <img src={IconUser} alt="유저 아이콘" />
@@ -94,9 +94,8 @@ const Login = ({ toggleForm, onLogin }) => {
         </form>
 
         <p>
-          계정이 없다면?{" "}
+          계정이 없다면?
           <Link to="/signup" className={styles.link}>
-            {" "}
             회원가입
           </Link>
           하기

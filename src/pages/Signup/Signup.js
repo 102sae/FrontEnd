@@ -4,20 +4,52 @@ import LoginTeam from "../../assets/images/login_team.svg";
 import IconUser from "../../assets/images/icon_user.svg";
 import IconPassword from "../../assets/images/icon_password.svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Signup = ({ toggleForm, onSignup }) => {
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
+  const [signupData, setSignupData] = useState({
+    nickName: "",
+    password: "",
+    gender: "",
+    age: "",
+    investCareerYear: "",
+  });
 
   // nickname input 값 변경 시 실행되는 함수
   const handleNickNameChange = (event) => {
-    setNickname(event.target.value);
+    setSignupData({ ...signupData, nickName: event.target.value });
   };
 
   // password input 값 변경 시 실행되는 함수
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+    setSignupData({ ...signupData, password: event.target.value });
   };
+
+  const postSignupData = async () => {
+    try {
+      const response = await axios.post(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/signup",
+        signupData
+      );
+
+      setSignupData({
+        nickName: "",
+        password: "",
+        gender: "",
+        age: "",
+        investCareerYear: "",
+      });
+
+      const { success, message, data } = response.data;
+      alert("회원가입 성공:", success);
+      alert("회원가입 성공");
+    } catch (error) {
+      console.error("회원가입 실패 ", error.response.data.message);
+      alert(error);
+      alert(signupData);
+    }
+  };
+
   return (
     <div className={styles.wrap}>
       <div className={styles.section1}>
@@ -28,13 +60,12 @@ const Signup = ({ toggleForm, onSignup }) => {
 
       <div className={styles.section2}>
         <h3 className={styles.subtitle}>회원가입</h3>
-        <form>
+        <form onSubmit={postSignupData}>
           <label>Name</label>
           <div className={styles.nickname}>
             <input
               type="text"
               placeholder="닉네임을 입력해주세요"
-              value={nickname}
               onChange={handleNickNameChange}
             />
           </div>
@@ -44,14 +75,17 @@ const Signup = ({ toggleForm, onSignup }) => {
             <input
               type="password"
               placeholder="비밀번호를 입력해주세요"
-              value={password}
               onChange={handlePasswordChange}
             />
           </div>
 
           <label>나이</label>
           <div className={styles.selectBox}>
-            <select>
+            <select
+              onChange={(e) => {
+                setSignupData({ ...signupData, age: e.target.value });
+              }}
+            >
               <option selected>나이</option>
               <option value={10}>10대</option>
               <option value={20}>20대</option>
@@ -64,7 +98,14 @@ const Signup = ({ toggleForm, onSignup }) => {
 
           <label>투자 경험</label>
           <div className={styles.selectBox}>
-            <select>
+            <select
+              onChange={(e) => {
+                setSignupData({
+                  ...signupData,
+                  investCareerYear: e.target.value,
+                });
+              }}
+            >
               <option selected>투자 경험</option>
               <option value={1}>1년 이하</option>
               <option value={2}>2년 ~5년차</option>
@@ -75,12 +116,27 @@ const Signup = ({ toggleForm, onSignup }) => {
           <label>성별</label>
           <fieldset className={styles.gender}>
             <label>
-              <input type="radio" name="gender" value="M" checked />
+              <input
+                type="radio"
+                name="gender"
+                value="M"
+                checked
+                onChange={(e) => {
+                  setSignupData({ ...signupData, gender: e.target.value });
+                }}
+              />
               <span>남자</span>
             </label>
 
             <label>
-              <input type="radio" name="gender" value="W" />
+              <input
+                type="radio"
+                name="gender"
+                value="W"
+                onChange={(e) => {
+                  setSignupData({ ...signupData, gender: e.target.value });
+                }}
+              />
               <span>여자</span>
             </label>
           </fieldset>
