@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import styles from "./Signup.module.css";
 import LoginTeam from "../../assets/images/login_team.svg";
-import IconUser from "../../assets/images/icon_user.svg";
-import IconPassword from "../../assets/images/icon_password.svg";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Signup = ({ toggleForm, onSignup }) => {
   const [signupData, setSignupData] = useState({
     nickName: "",
     password: "",
-    gender: "",
-    age: "",
-    investCareerYear: "",
+    gender: "Man",
+    age: 0,
+    investCareerYear: 0,
   });
 
   // nickname input 값 변경 시 실행되는 함수
@@ -25,28 +22,28 @@ const Signup = ({ toggleForm, onSignup }) => {
     setSignupData({ ...signupData, password: event.target.value });
   };
 
-  const postSignupData = async () => {
+  const postSignupData = async (event) => {
+    event.preventDefault();
     try {
-      const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/signup",
-        signupData
-      );
+      console.log("회원가입 데이터:", signupData);
+      const response = await axios.post("/api/member/signin", signupData);
 
       setSignupData({
         nickName: "",
         password: "",
-        gender: "",
-        age: "",
-        investCareerYear: "",
+        gender: "Man",
+        age: 0,
+        investCareerYear: 0,
       });
 
       const { success, message, data } = response.data;
+      if (success) {
+      }
       alert("회원가입 성공:", success);
       alert("회원가입 성공");
     } catch (error) {
       console.error("회원가입 실패 ", error.response.data.message);
       alert(error);
-      alert(signupData);
     }
   };
 
@@ -119,7 +116,7 @@ const Signup = ({ toggleForm, onSignup }) => {
               <input
                 type="radio"
                 name="gender"
-                value="M"
+                value="Man"
                 checked
                 onChange={(e) => {
                   setSignupData({ ...signupData, gender: e.target.value });
@@ -132,7 +129,7 @@ const Signup = ({ toggleForm, onSignup }) => {
               <input
                 type="radio"
                 name="gender"
-                value="W"
+                value="Woman"
                 onChange={(e) => {
                   setSignupData({ ...signupData, gender: e.target.value });
                 }}
@@ -141,7 +138,7 @@ const Signup = ({ toggleForm, onSignup }) => {
             </label>
           </fieldset>
 
-          <button className={styles.button} type="submit">
+          <button tabIndex={0} className={styles.button} type="submit">
             회원가입
           </button>
         </form>

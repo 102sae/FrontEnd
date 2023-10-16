@@ -122,9 +122,10 @@
 
 @media screen and (min-width: 1024px) {
   .wrap {
+    width: 75%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 0;
+    margin: 0 auto;
   }
 }

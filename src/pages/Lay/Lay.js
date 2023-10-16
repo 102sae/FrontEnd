@@ -28,6 +28,7 @@ const Lay = () => {
   const [showLayCrush, setShowLayCrush] = useState(false);
   const [apiTermData, setApiTermData] = useState(0);
   const [apiSolData, setApiSolData] = useState(0);
+  const [progressCount, setProgressCount] = useState(0);
 
   const LayScenario = [
     {
@@ -139,8 +140,7 @@ const Lay = () => {
       index: 6,
       nextIndex: 7,
       image: SolKKK,
-      dialog:
-        `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
+      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -243,7 +243,7 @@ const Lay = () => {
       setApiTermData(response.data);
 
       //문제 번호
-      const id = response.data.id
+      const id = response.data.id;
       console.log(id);
 
       //문제(용어)
@@ -251,14 +251,12 @@ const Lay = () => {
       console.log(term);
 
       //선택지 리스트
-      const items = response.data.items
+      const items = response.data.items;
       console.log(items);
-      
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
-
 
   // 용어게임 해설 API
   const getDataSol = async () => {
@@ -270,7 +268,7 @@ const Lay = () => {
       setApiSolData(response.data);
 
       //문제 번호
-      const id = response.data.id
+      const id = response.data.id;
       console.log(id);
 
       //문제(용어)
@@ -278,18 +276,16 @@ const Lay = () => {
       console.log(term);
 
       //예탁결제원 설명
-      const description = response.data.description
+      const description = response.data.description;
       console.log(description);
 
       //쉬운 설명
-      const explanation = response.data.explanation
+      const explanation = response.data.explanation;
       console.log(explanation);
-      
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
-
 
   //예시 -> api 받아오면 삭제하기
   // const quizItems = [
@@ -307,9 +303,12 @@ const Lay = () => {
   //   },
   // ];
 
+  //프로그레스바 상승
   useEffect(() => {
-    getData();
-  }, []);
+    if (currentScenarioIndex === 8) {
+      setProgressCount((prev) => prev + 1);
+    }
+  }, [currentScenarioIndex]);
 
   const handleQuizFinish = (correct, point) => {
     getDataSol();
@@ -370,7 +369,7 @@ const Lay = () => {
             <div>
               {/* 프로그레스바 & 호감도 */}
               <div className={styles.top}>
-                <ProgressBar character="레이" />
+                <ProgressBar character="레이" progressCount={progressCount} />
                 <CrushBar />
               </div>
 
@@ -417,20 +416,20 @@ const Lay = () => {
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
             <TermQuiz
-                id={apiTermData.id} //용어 문제 번호
-                term={apiTermData.term} //용어
-                items={apiTermData.items} //리스트 배열
-                onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+              id={apiTermData.id} //용어 문제 번호
+              term={apiTermData.term} //용어
+              items={apiTermData.items} //리스트 배열
+              onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
 
-                // id={1} // 용어 문제 번호
-                // term="대량주식보유상황공시제도" // 용어
-                // items={quizItems} // 리스트 배열
-                // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+              // id={1} // 용어 문제 번호
+              // term="대량주식보유상황공시제도" // 용어
+              // items={quizItems} // 리스트 배열
+              // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />
             {/* 레이 호감도 변화 */}
-            {showLayCrush && <LayCrush/>}
+            {showLayCrush && <LayCrush />}
           </div>
         )}
 
