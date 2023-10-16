@@ -43,7 +43,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   const postData = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8080/api/term-quiz/questions/1/answers/check",
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/term-quiz/questions/1/answers/check",
         {
           userAnswerId: userAnswerId, //선택한 답의 번호
         }

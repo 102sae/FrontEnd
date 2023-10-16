@@ -25,6 +25,7 @@ const Lay = () => {
   const [showFullText, setShowFullText] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [showLayCrush, setShowLayCrush] = useState(false);
   const [apiTermData, setApiTermData] = useState(0);
   const [apiSolData, setApiSolData] = useState(0);
 
@@ -311,10 +312,17 @@ const Lay = () => {
   }, []);
 
   const handleQuizFinish = (correct, point) => {
-    getDataSol()
+    getDataSol();
     setShowQuiz(false);
     setShowDialogBox(true);
-    setCurrentScenarioIndex(LayScenario[currentScenarioIndex].nextIndex);
+
+    if (correct) {
+      setCurrentScenarioIndex(7);
+      setShowLayCrush(true);
+    } else {
+      setCurrentScenarioIndex(8);
+      setShowLayCrush(true);
+    }
 
     console.log("정답 여부:", correct);
     console.log("호감도 변화 값:", point);
@@ -422,7 +430,7 @@ const Lay = () => {
             {/* 호감도 */}
             <CrushBar />
             {/* 레이 호감도 변화 */}
-            {/* <LayCrush correct={true} point={30}/> */}
+            {showLayCrush && <LayCrush correct={correct} point={point} />}
           </div>
         )}
 
