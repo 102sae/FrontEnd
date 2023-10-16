@@ -11,12 +11,11 @@ import { ReactComponent as HintButton } from "../../assets/images/hint_button.sv
 import ProgressBar from "../../componets/ProgressBar";
 import TradingButton from "../../componets/TradingButton";
 import StockGameNews from "../../componets/StockGameNews";
-import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg"
-import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg"
-import BubbleYear from "../../assets/images/Bubble/bubble_year.svg"
-import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg"
-import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg"
-
+import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg";
+import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg";
+import BubbleYear from "../../assets/images/Bubble/bubble_year.svg";
+import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg";
+import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
 
 const Molly = () => {
   const [showMenuBox, setShowMenuBox] = useState(false);
@@ -29,7 +28,6 @@ const Molly = () => {
   const [showBubbleSell, setShowBubbleSell] = useState(false);
   const [showBubbleBuy, setShowBubbleBuy] = useState(false);
   const [showStockGameNews, setShowStockGameNews] = useState(false);
-
 
   // 다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -151,49 +149,79 @@ const Molly = () => {
           !showDialogBox && (
             <div>
               <div className={styles.top}>
+                {/* 호감도 */}
+                <div
+                  className={styles.bubble_container}
+                  onMouseEnter={() => setShowBubbleHint(true)}
+                  onMouseLeave={() => setShowBubbleHint(false)}
+                >
+                  <HintButton onClick={handleHintButtonClick} />
+                  {showBubbleHint && (
+                    <img
+                      className={styles.bubble_hint}
+                      src={BubbleHint}
+                      alt="BubbleHint"
+                    />
+                  )}
+                  {showStockGameNews && <StockGameNews />}
+                </div>
 
-            {/* 호감도 */}
-            <div
-              className={styles.bubble_container}
-              onMouseEnter={() => setShowBubbleHint(true)}
-              onMouseLeave={() => setShowBubbleHint(false)}>
-              <HintButton 
-                onClick={handleHintButtonClick} />
-              {showBubbleHint && <img className={styles.bubble_hint} src={BubbleHint} alt="BubbleHint" />}
-              {showStockGameNews && <StockGameNews />}
-            </div>
+                <div
+                  className={styles.bubble_container}
+                  onMouseEnter={() => setShowBubbleProgress(true)}
+                  onMouseLeave={() => setShowBubbleProgress(false)}
+                >
+                  <ProgressBar character="몰리" />
+                  {showBubbleProgress && (
+                    <img
+                      className={styles.bubble_progress}
+                      src={BubbleProgress}
+                      alt="BubbleProgress"
+                    />
+                  )}
+                </div>
 
-            <div
-              className={styles.bubble_container}
-              onMouseEnter={() => setShowBubbleProgress(true)}
-              onMouseLeave={() => setShowBubbleProgress(false)}>
-              <ProgressBar character="몰리"/>
-              {showBubbleProgress && <img className={styles.bubble_progress} src={BubbleProgress} alt="BubbleProgress" />}
-            </div>
-          
-              <CrushBar />
-            </div>
-            <div>
-            <div
-              className={styles.bubble_container}
-              onMouseEnter={() => {
-                setShowBubbleYear(true);
-                setShowBubbleSell(true);
-                setShowBubbleBuy(true);
-              }}
-              onMouseLeave={() => {
-                setShowBubbleYear(false);
-                setShowBubbleSell(false);
-                setShowBubbleBuy(false);
-              }}
-            >
-              <TradingButton />
-              {showBubbleYear && <img className={styles.bubble_year} src={BubbleYear} alt="BubbleYear" />}
-              {showBubbleSell && <img className={styles.bubble_sell} src={BubbleSell} alt="BubbleSell" />}
-              {showBubbleBuy && <img className={styles.bubble_buy} src={BubbleBuy} alt="BubbleBuy" />}
-            </div>
+                <CrushBar />
+              </div>
+              <div>
+                <div
+                  className={styles.bubble_container}
+                  onMouseEnter={() => {
+                    setShowBubbleYear(true);
+                    setShowBubbleSell(true);
+                    setShowBubbleBuy(true);
+                  }}
+                  onMouseLeave={() => {
+                    setShowBubbleYear(false);
+                    setShowBubbleSell(false);
+                    setShowBubbleBuy(false);
+                  }}
+                >
+                  <TradingButton />
+                  {showBubbleYear && (
+                    <img
+                      className={styles.bubble_year}
+                      src={BubbleYear}
+                      alt="BubbleYear"
+                    />
+                  )}
+                  {showBubbleSell && (
+                    <img
+                      className={styles.bubble_sell}
+                      src={BubbleSell}
+                      alt="BubbleSell"
+                    />
+                  )}
+                  {showBubbleBuy && (
+                    <img
+                      className={styles.bubble_buy}
+                      src={BubbleBuy}
+                      alt="BubbleBuy"
+                    />
+                  )}
+                </div>
 
-              <StockGameBox />
+                <StockGameBox />
               </div>
             </div>
           )

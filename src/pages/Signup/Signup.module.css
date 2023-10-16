@@ -30,6 +30,12 @@
     margin-bottom: 15px;
   }
 
+  .sameNickname {
+    color: var(--shinhan_blue);
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
   .nickname,
   .password {
     width: 70vw;

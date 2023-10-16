@@ -173,7 +173,6 @@ const Lay = () => {
         show: true,
       },
     },
-    
   ];
 
   const handleKeyDown = (e) => {
@@ -214,13 +213,26 @@ const Lay = () => {
     }
   };
 
+  useEffect(() => {
+    getData();
+    getDataSol();
+  }, []);
+
   // 용어게임 문제 API
   const getData = async () => {
     try {
+      const token = localStorage.getItem("token");
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
       const response = await axios.get(
-        "http://localhost:8080/api/term-quiz/questions"
+        "http://localhost:8080/api/term-quiz/questions",
+        { headers }
       );
+
       console.log(response.data);
+
       setApiTermData(response.data);
 
       //문제 번호
@@ -242,9 +254,16 @@ const Lay = () => {
   // 용어게임 해설 API
   const getDataSol = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/api/term-quiz/questions/1/solution"
-      );
+      const token = localStorage.getItem("token");
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get("/api/term-quiz/questions/1/solution", {
+        headers,
+      });
+
       console.log(response.data);
       setApiSolData(response.data);
 
@@ -284,8 +303,6 @@ const Lay = () => {
     },
   ];
 
-  
-
   //프로그레스바 상승
   useEffect(() => {
     if (currentScenarioIndex === 8) {
@@ -312,24 +329,21 @@ const Lay = () => {
       const timeoutId = setTimeout(() => {
         setShowLayCrush(false);
       }, 1000);
-      
-    } 
-    else {
+    } else {
       setCurrentScenarioIndex(5);
       setShowLayCrush(true);
       const timeoutId = setTimeout(() => {
         setShowLayCrush(false);
       }, 1000);
-
     }
-    
+
     console.log("정답 여부:", correct);
     console.log("호감도 변화 값:", point);
   };
 
   useEffect(() => {
     getData();
-  })
+  });
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
@@ -419,17 +433,18 @@ const Lay = () => {
         {showQuiz && (
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
-            <TermQuiz
-                // id={apiTermData.id} //용어 문제 번호
-                // term={apiTermData.term} //용어
-                // items={apiTermData.items} //리스트 배열
-                // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
 
-                // 예시
-                id={1} // 용어 문제 번호
-                term="대량주식보유상황공시제도" // 용어
-                items={quizItems} // 리스트 배열
-                onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+            <TermQuiz
+              // id={apiTermData.id} //용어 문제 번호
+              // term={apiTermData.term} //용어
+              // items={apiTermData.items} //리스트 배열
+              // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+
+              // 예시
+              id={1} // 용어 문제 번호
+              term="대량주식보유상황공시제도" // 용어
+              items={quizItems} // 리스트 배열
+              onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />
@@ -437,8 +452,12 @@ const Lay = () => {
         )}
 
         {/* 레이 호감도 변화 */}
-        {showLayCrush && <LayCrush correct={localStorage.getItem("userCorrect")} point={localStorage.getItem("userPoint")}/>}
-
+        {showLayCrush && (
+          <LayCrush
+            correct={localStorage.getItem("userCorrect")}
+            point={localStorage.getItem("userPoint")}
+          />
+        )}
       </div>
     </div>
   );
