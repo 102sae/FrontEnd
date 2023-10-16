@@ -16,6 +16,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     setUserAnswerId(id);
     isCorrectAnswer = quizItems.id === answerId;
     console.log("정답 여부:", isCorrectAnswer);
+    postData();
     setTimeout(() => {
       onQuizFinish(correct, point);
     }, 1000);
@@ -43,15 +44,23 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   const postData = async () => {
     try {
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/term-quiz/questions/1/answers/check",
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/answers/check",
         {
-          userAnswerId: userAnswerId, //선택한 답의 번호
+          userAnswerId: userAnswerId,
         }
       );
-      const { answerId, correct, point } = response.data;
+
+      const { data } = response;
+      const { id, term, answerId, point, correct } = data;
+
+      console.log("질문 ID:", id);
+      console.log("용어:", term);
       console.log("정답 번호:", answerId);
-      console.log("정답 여부:", correct);
       console.log("호감도 변화 값:", point);
+      console.log("정답 여부:", correct);
+
+      setAnswerId(answerId);
+      onQuizFinish(correct, point);
 
       setAnswerId(answerId);
       setCorrect(correct);

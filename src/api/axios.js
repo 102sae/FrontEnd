@@ -1,12 +1,11 @@
-// src/api/axios.js
 import axios from "axios";
 
-const SERVER_URL = "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com";
-console.log(SERVER_URL)
+const { REACT_APP_SERVER_PORT } = process.env;
 
+console.log("REACT_APP_SERVER_PORT", REACT_APP_SERVER_PORT);
 // Create axios instance
 const instance = axios.create({
-  baseURL: SERVER_URL,
+  baseURL: REACT_APP_SERVER_PORT,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",

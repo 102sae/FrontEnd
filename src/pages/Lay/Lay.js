@@ -13,7 +13,7 @@ import SolSolution from "../../assets/images/sol_solution.png";
 import SolKKK from "../../assets/images/sol_kkk.png";
 import ProgressBar from "../../componets/ProgressBar";
 import axios from "axios";
-import Quiz from "../../componets/TermQuiz";
+import TermQuiz from "../../componets/TermQuiz";
 import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
 import SolutionBackground from "../../assets/images/sol_solution_bg.png";
@@ -237,7 +237,7 @@ const Lay = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/term-quiz/questions"
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions"
       );
       console.log(response.data);
       setApiTermData(response.data);
@@ -264,7 +264,7 @@ const Lay = () => {
   const getDataSol = async () => {
     try {
       const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/term-quiz/questions/1/solution"
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/solution"
       );
       console.log(response.data);
       setApiSolData(response.data);
@@ -292,20 +292,20 @@ const Lay = () => {
 
 
   //예시 -> api 받아오면 삭제하기
-  const quizItems = [
-    {
-      id: 1,
-      content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
-    },
-    {
-      id: 2,
-      content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
-    },
-    {
-      id: 3,
-      content: "유동화해 발행하는 구조화사채",
-    },
-  ];
+  // const quizItems = [
+  //   {
+  //     id: 1,
+  //     content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
+  //   },
+  //   {
+  //     id: 2,
+  //     content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
+  //   },
+  //   {
+  //     id: 3,
+  //     content: "유동화해 발행하는 구조화사채",
+  //   },
+  // ];
 
   useEffect(() => {
     getData();
@@ -416,21 +416,21 @@ const Lay = () => {
         {showQuiz && (
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
-            <Quiz
-                // id={apiTermData.id} //용어 문제 번호
-                // term={apiTermData.term} //용어
-                // items={apiTermData.items} //리스트 배열
-                // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
-
-                id={1} // 용어 문제 번호
-                term="대량주식보유상황공시제도" // 용어
-                items={quizItems} // 리스트 배열
+            <TermQuiz
+                id={apiTermData.id} //용어 문제 번호
+                term={apiTermData.term} //용어
+                items={apiTermData.items} //리스트 배열
                 onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+
+                // id={1} // 용어 문제 번호
+                // term="대량주식보유상황공시제도" // 용어
+                // items={quizItems} // 리스트 배열
+                // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />
             {/* 레이 호감도 변화 */}
-            {showLayCrush && <LayCrush correct={correct} point={point} />}
+            {showLayCrush && <LayCrush/>}
           </div>
         )}
 
