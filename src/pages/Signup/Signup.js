@@ -4,7 +4,9 @@ import LoginTeam from "../../assets/images/login_team.svg";
 import axios from "axios";
 
 const Signup = ({ toggleForm, onSignup }) => {
+  const [sameNickname, setSameNickname] = useState(false); //닉네임 중복 확인
   const [signupData, setSignupData] = useState({
+    //회원가입 데이터
     nickName: "",
     password: "",
     gender: "Man",
@@ -22,28 +24,29 @@ const Signup = ({ toggleForm, onSignup }) => {
     setSignupData({ ...signupData, password: event.target.value });
   };
 
+  // 회원가입 데이터 전송
   const postSignupData = async (event) => {
     event.preventDefault();
     try {
       console.log("회원가입 데이터:", signupData);
       const response = await axios.post("/api/member/signin", signupData);
 
-      setSignupData({
-        nickName: "",
-        password: "",
-        gender: "Man",
-        age: 0,
-        investCareerYear: 0,
-      });
-
       const { success, message, data } = response.data;
       if (success) {
+        alert("회원가입 성공:", success);
+        alert("회원가입 성공");
+        setSignupData({
+          nickName: "",
+          password: "",
+          gender: "Man",
+          age: 0,
+          investCareerYear: 0,
+        });
       }
-      alert("회원가입 성공:", success);
-      alert("회원가입 성공");
     } catch (error) {
       console.error("회원가입 실패 ", error.response.data.message);
       alert(error);
+      setSameNickname(true);
     }
   };
 
@@ -66,7 +69,11 @@ const Signup = ({ toggleForm, onSignup }) => {
               onChange={handleNickNameChange}
             />
           </div>
-
+          {sameNickname ? (
+            <p className={styles.sameNickname}>중복되는 닉네임입니다.</p>
+          ) : (
+            ""
+          )}
           <label>Password</label>
           <div className={styles.password}>
             <input
@@ -138,7 +145,7 @@ const Signup = ({ toggleForm, onSignup }) => {
             </label>
           </fieldset>
 
-          <button tabIndex={0} className={styles.button} type="submit">
+          <button className={styles.button} type="submit">
             회원가입
           </button>
         </form>
