@@ -23,7 +23,6 @@ const Lay = () => {
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
   const [showFullText, setShowFullText] = useState(false);
-  const [showSolution, setShowSolution] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showLayCrush, setShowLayCrush] = useState(false);
   const [apiTermData, setApiTermData] = useState(0);
@@ -45,9 +44,6 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
-        show: false,
-      },
     },
     {
       index: 1,
@@ -60,9 +56,6 @@ const Lay = () => {
         show: false,
       },
       quiz: {
-        show: false,
-      },
-      solution: {
         show: false,
       },
     },
@@ -81,9 +74,6 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
-        show: false,
-      },
     },
     {
       index: 3,
@@ -98,64 +88,10 @@ const Lay = () => {
       quiz: {
         show: true,
       },
-      solution: {
-        show: false,
-      },
     },
     {
       index: 4,
-      nextIndex: 5,
-      image: SolSolution,
-      dialog: "내가 다시 한번 설명해주지~",
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-      quiz: {
-        show: false,
-      },
-      solution: {
-        show: false,
-      },
-    },
-    {
-      index: 5,
       nextIndex: 6,
-      image: SolSolution,
-      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면\n ${apiSolData.description}(이)야~`,
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-      quiz: {
-        show: false,
-      },
-      solution: {
-        show: false,
-      },
-    },
-    {
-      index: 6,
-      nextIndex: 7,
-      image: SolKKK,
-      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-      quiz: {
-        show: false,
-      },
-      solution: {
-        show: false,
-      },
-    },
-    {
-      index: 7,
-      nextIndex: 8,
       image: LayShiny,
       dialog: `우와~ OO아 너 정말 똑똑하다~ 고마워~`,
       name: "레이",
@@ -166,13 +102,10 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
-        show: false,
-      },
     },
     {
-      index: 8,
-      nextIndex: 9,
+      index: 5,
+      nextIndex: 6,
       image: LayThinking,
       dialog: `음.. 아직 잘 모르겠다.`,
       name: "레이",
@@ -183,8 +116,61 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
+    },
+    {
+      index: 6,
+      nextIndex: 7,
+      image: SolSolution,
+      dialog: "내가 다시 한번 설명해주지~",
+      name: "쏠",
+      arrowColor: palette.sol_text,
+      menu: {
         show: false,
+      },
+      quiz: {
+        show: false,
+      },
+    },
+    {
+      index: 7,
+      nextIndex: 8,
+      image: SolSolution,
+      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면\n ${apiSolData.description}(이)야~`,
+      name: "쏠",
+      arrowColor: palette.sol_text,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: false,
+      },
+    },
+    {
+      index: 8,
+      nextIndex: 9,
+      image: SolKKK,
+      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
+      name: "쏠",
+      arrowColor: palette.sol_text,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: false,
+      },
+    },
+    {
+      index: 9,
+      nextIndex: 10,
+      image: LayThinking,
+      dialog: `${apiTermData.term}은 뭔지 알아? \n ${apiTermData.term}이 뭔지 나에게 알려줄래?`,
+      name: "레이",
+      arrowColor: palette.ray_blue,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: true,
       },
     },
   ];
@@ -211,13 +197,7 @@ const Lay = () => {
       } else if (LayScenario[currentScenarioIndex].quiz.show === true) {
         setShowDialogBox(false); // 대화 상자 감추기
         setShowQuiz(true); // 퀴즈 화면 보이기
-        setShowSolution(false); // 해설 화면 감추기
         console.log(currentScenarioIndex);
-      } else if (LayScenario[currentScenarioIndex].solution.show === true) {
-        setShowDialogBox(false); // 대화 상자 감추기
-        setShowQuiz(false); // 퀴즈 화면 감추기
-        setShowSolution(true); // 해설 화면 보이기
-        console.log("해설이지롱");
       }
     }
   };
@@ -308,20 +288,20 @@ const Lay = () => {
   };
 
   //예시 -> api 받아오면 삭제하기
-  // const quizItems = [
-  //   {
-  //     id: 1,
-  //     content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
-  //   },
-  //   {
-  //     id: 2,
-  //     content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
-  //   },
-  //   {
-  //     id: 3,
-  //     content: "유동화해 발행하는 구조화사채",
-  //   },
-  // ];
+  const quizItems = [
+    {
+      id: 1,
+      content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
+    },
+    {
+      id: 2,
+      content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
+    },
+    {
+      id: 3,
+      content: "유동화해 발행하는 구조화사채",
+    },
+  ];
 
   //프로그레스바 상승
   useEffect(() => {
@@ -330,22 +310,40 @@ const Lay = () => {
     }
   }, [currentScenarioIndex]);
 
-  const handleQuizFinish = (correct, point) => {
+  const handleQuizFinish = () => {
+    // 로컬 스토리지에서 correct와 point 값을 가져오기
+    const storedCorrect = localStorage.getItem("userCorrect");
+    const storedPoint = localStorage.getItem("userPoint");
+
+    // correct와 point가 저장되어 있다면 해당 값을 사용하고, 그렇지 않다면 기본값을 사용합니다.
+    const correct = storedCorrect ? JSON.parse(storedCorrect) : false;
+    const point = storedPoint ? parseInt(storedPoint, 10) : 0;
+
     getDataSol();
     setShowQuiz(false);
     setShowDialogBox(true);
 
     if (correct) {
-      setCurrentScenarioIndex(7);
+      setCurrentScenarioIndex(4);
       setShowLayCrush(true);
+      const timeoutId = setTimeout(() => {
+        setShowLayCrush(false);
+      }, 1000);
     } else {
-      setCurrentScenarioIndex(8);
+      setCurrentScenarioIndex(5);
       setShowLayCrush(true);
+      const timeoutId = setTimeout(() => {
+        setShowLayCrush(false);
+      }, 1000);
     }
 
     console.log("정답 여부:", correct);
     console.log("호감도 변화 값:", point);
   };
+
+  useEffect(() => {
+    getData();
+  });
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
@@ -437,34 +435,28 @@ const Lay = () => {
             {/* 퀴즈 타이틀 */}
 
             <TermQuiz
-              id={apiTermData.id} //용어 문제 번호
-              term={apiTermData.term} //용어
-              items={apiTermData.items} //리스트 배열
-              onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
-
-              // id={1} // 용어 문제 번호
-              // term="대량주식보유상황공시제도" // 용어
-              // items={quizItems} // 리스트 배열
+              // id={apiTermData.id} //용어 문제 번호
+              // term={apiTermData.term} //용어
+              // items={apiTermData.items} //리스트 배열
               // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+
+              // 예시
+              id={1} // 용어 문제 번호
+              term="대량주식보유상황공시제도" // 용어
+              items={quizItems} // 리스트 배열
+              onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />
-            {/* 레이 호감도 변화 */}
-            {showLayCrush && <LayCrush />}
           </div>
         )}
 
-        {/* 호감도 변화 */}
-
-        {/* 해설 화면 */}
-        {showSolution && (
-          <div>
-            <img src={SolutionBackground} alt="해설 배경" />
-            <div className={styles.solutionApiText}>
-              {LayScenario[currentScenarioIndex].solution.apiText}
-              {LayScenario[currentScenarioIndex].solution.managerText}
-            </div>
-          </div>
+        {/* 레이 호감도 변화 */}
+        {showLayCrush && (
+          <LayCrush
+            correct={localStorage.getItem("userCorrect")}
+            point={localStorage.getItem("userPoint")}
+          />
         )}
       </div>
     </div>

@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import palette from "../styles/color";
 import styles from "./TermQuiz.module.css";
-import PropTypes from "prop-types";
 import LayThinking from "../assets/images/Lay/lay_thinking.svg";
 
 const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   const [userAnswerId, setUserAnswerId] = useState(null);
   const [answerId, setAnswerId] = useState(null);
-  const [correct, setCorrect] = useState(null);
-  const [point, setPoint] = useState(null);
-  let isCorrectAnswer = false;
+  const [userCorrect, setUserCorrect] = useState(null);
+  const [userPoint, setUserPoint] = useState(null);
+  // let isCorrectAnswer = false;
 
-  const onClickAnswer = (id) => {
-    setUserAnswerId(id);
-    isCorrectAnswer = quizItems.id === answerId;
-    console.log("정답 여부:", isCorrectAnswer);
+  const onClickAnswer = (index) => {
+    console.log("userAnswerId", index);
+    setUserAnswerId(index);
     postData();
+    // isCorrectAnswer = userAnswerId === answerId;
     setTimeout(() => {
-      onQuizFinish(correct, point);
+      onQuizFinish(userCorrect, userPoint);
     }, 1000);
   };
+  
 
   const quizItems = [
     {
@@ -42,16 +43,21 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
 
   //정답 확인 POST API
   const postData = async () => {
-    try {
-      const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/answers/check",
-        {
-          userAnswerId: userAnswerId,
-        }
-      );
+    // try {
+    //   const response = await axios.post(
+    //     "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/answers/check",
+    //     {
+    //       userAnswerId: userAnswerId,
+    //     }
+    //   );
 
-      const { data } = response;
-      const { id, term, answerId, point, correct } = data;
+      // const { data } = response;
+      // const { id, term, answerId, point, correct } = data;
+
+      // 예시
+      const answerId = 3;
+      const correct = false;
+      const point = -10;
 
       console.log("질문 ID:", id);
       console.log("용어:", term);
@@ -60,15 +66,22 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
       console.log("정답 여부:", correct);
 
       setAnswerId(answerId);
-      onQuizFinish(correct, point);
+      setUserCorrect(correct);
+      setUserPoint(point);
+      onQuizFinish(userCorrect, userPoint);
 
-      setAnswerId(answerId);
-      setCorrect(correct);
-      setPoint(point);
-      onQuizFinish(correct, point);
-    } catch (error) {
-      console.error("Error submitting answer: ", error);
-    }
+      //로컬 스토리지에 저장
+      localStorage.setItem("answerId", answerId)
+      localStorage.setItem("userCorrect", correct)
+      localStorage.setItem("userPoint", point)
+
+      //호감도 변화
+      const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
+      
+      localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + point)))
+    // } catch (error) {
+    //   console.error("Error submitting answer: ", error);
+    // }
   };
   
   
@@ -195,8 +208,8 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
 
 export default TermQuiz;
 
-TermQuiz.prototype = {
+TermQuiz.propTypes = {
   term: PropTypes.string.isRequired,
-  list: PropTypes.array.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   onQuizFinish: PropTypes.func.isRequired,
 };
