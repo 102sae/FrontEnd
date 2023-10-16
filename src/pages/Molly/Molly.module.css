@@ -10,6 +10,7 @@
     #e0ceee 100%
   );
   position: relative;
+  z-index: -1;
 }
 
 .introHeader {
@@ -66,33 +67,30 @@
   z-index: 2;
 }
 
-.bubble_progress{
+.bubble_progress {
   position: absolute;
   top: 100px;
   left: 200px;
   z-index: 2;
 }
 
-.bubble_year{
+.bubble_year {
   position: absolute;
   top: 100px;
   left: 750px;
   z-index: 2;
 }
 
-.bubble_buy{
+.bubble_buy {
   position: absolute;
   top: 350px;
   left: 100px;
   z-index: 2;
-
 }
 
-.bubble_sell{
+.bubble_sell {
   position: absolute;
   top: 350px;
   left: 600px;
   z-index: 2;
-
 }
-

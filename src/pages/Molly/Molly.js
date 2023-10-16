@@ -16,6 +16,7 @@ import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg";
 import BubbleYear from "../../assets/images/Bubble/bubble_year.svg";
 import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg";
 import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
+import StockChart from "../../componets/StockChart";
 
 const Molly = () => {
   const [showMenuBox, setShowMenuBox] = useState(false);
@@ -149,7 +150,6 @@ const Molly = () => {
           !showDialogBox && (
             <div>
               <div className={styles.top}>
-                {/* 호감도 */}
                 <div
                   className={styles.bubble_container}
                   onMouseEnter={() => setShowBubbleHint(true)}
@@ -220,7 +220,7 @@ const Molly = () => {
                     />
                   )}
                 </div>
-
+                <StockChart />
                 <StockGameBox />
               </div>
             </div>
