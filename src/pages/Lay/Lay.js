@@ -155,7 +155,7 @@ const Lay = () => {
     },
     {
       index: 7,
-      nextIndex: 8,
+      nextIndex: 3,
       image: LayShiny,
       dialog: `우와~ OO아 너 정말 똑똑하다~ 고마워~`,
       name: "레이",
@@ -172,7 +172,7 @@ const Lay = () => {
     },
     {
       index: 8,
-      nextIndex: 9,
+      nextIndex: 3,
       image: LayThinking,
       dialog: `음.. 아직 잘 모르겠다.`,
       name: "레이",
@@ -292,26 +292,34 @@ const Lay = () => {
 
 
   //예시 -> api 받아오면 삭제하기
-  // const quizItems = [
-  //   {
-  //     id: 1,
-  //     content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
-  //   },
-  //   {
-  //     id: 2,
-  //     content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
-  //   },
-  //   {
-  //     id: 3,
-  //     content: "유동화해 발행하는 구조화사채",
-  //   },
-  // ];
+  const quizItems = [
+    {
+      id: 1,
+      content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
+    },
+    {
+      id: 2,
+      content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
+    },
+    {
+      id: 3,
+      content: "유동화해 발행하는 구조화사채",
+    },
+  ];
 
   useEffect(() => {
     getData();
   }, []);
 
-  const handleQuizFinish = (correct, point) => {
+  const handleQuizFinish = () => {
+    // 로컬 스토리지에서 correct와 point 값을 가져오기
+    const storedCorrect = localStorage.getItem("userCorrect");
+    const storedPoint = localStorage.getItem("userPoint");
+
+    // correct와 point가 저장되어 있다면 해당 값을 사용하고, 그렇지 않다면 기본값을 사용합니다.
+    const correct = storedCorrect ? JSON.parse(storedCorrect) : false;
+    const point = storedPoint ? parseInt(storedPoint, 10) : 0;
+
     getDataSol();
     setShowQuiz(false);
     setShowDialogBox(true);
@@ -417,24 +425,25 @@ const Lay = () => {
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
             <TermQuiz
-                id={apiTermData.id} //용어 문제 번호
-                term={apiTermData.term} //용어
-                items={apiTermData.items} //리스트 배열
-                onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
-
-                // id={1} // 용어 문제 번호
-                // term="대량주식보유상황공시제도" // 용어
-                // items={quizItems} // 리스트 배열
+                // id={apiTermData.id} //용어 문제 번호
+                // term={apiTermData.term} //용어
+                // items={apiTermData.items} //리스트 배열
                 // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+
+                // 예시
+                id={1} // 용어 문제 번호
+                term="대량주식보유상황공시제도" // 용어
+                items={quizItems} // 리스트 배열
+                onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />
-            {/* 레이 호감도 변화 */}
-            {showLayCrush && <LayCrush/>}
           </div>
         )}
 
         {/* 호감도 변화 */}
+        {/* 레이 호감도 변화 */}
+        {showLayCrush && <LayCrush correct={localStorage.getItem("userCorrect")} point={localStorage.getItem("userPoint")}/>}
 
         {/* 해설 화면 */}
         {showSolution && (

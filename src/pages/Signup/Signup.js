@@ -28,7 +28,7 @@ const Signup = ({ toggleForm, onSignup }) => {
   const postSignupData = async () => {
     try {
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/signup",
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/signin",
         signupData
       );
 
@@ -119,7 +119,7 @@ const Signup = ({ toggleForm, onSignup }) => {
               <input
                 type="radio"
                 name="gender"
-                value="M"
+                value="Man"
                 checked
                 onChange={(e) => {
                   setSignupData({ ...signupData, gender: e.target.value });
@@ -132,7 +132,7 @@ const Signup = ({ toggleForm, onSignup }) => {
               <input
                 type="radio"
                 name="gender"
-                value="W"
+                value="Women"
                 onChange={(e) => {
                   setSignupData({ ...signupData, gender: e.target.value });
                 }}
