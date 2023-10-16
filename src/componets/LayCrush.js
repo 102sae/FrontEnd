@@ -1,9 +1,8 @@
 import React from "react";
 
 const LayCrush = ({ correct, point }) => {
-  const message = correct
-    ? `호감도가 ${point} 상승하였습니다.`
-    : `호감도가 ${point} 하락하였습니다.`;
+  console.log("corrrect",correct);
+  console.log("point", point);
 
   return (
     <div>
@@ -49,7 +48,13 @@ const LayCrush = ({ correct, point }) => {
             top: 175,
             letterSpacing: "1px",
         }}>
-        {message}
+        <div>
+          {correct == "true" ? (
+            <p>호감도가 {point} 상승하였습니다.</p>
+          ) : (
+            <p>호감도가 {point} 하락하였습니다.</p>
+          )}
+        </div>
       </text>
     </div>
   );

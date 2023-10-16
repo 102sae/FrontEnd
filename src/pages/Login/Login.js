@@ -26,7 +26,7 @@ const Login = ({ toggleForm, onLogin }) => {
 
     try {
       const response = await axios.post(
-        "/api/member/login",
+        "http://localhost:8080/api/member/login",
         {
           nickName: nickname,
           password: password,
