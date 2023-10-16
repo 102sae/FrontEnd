@@ -22,14 +22,11 @@ const Signup = ({ toggleForm, onSignup }) => {
     setSignupData({ ...signupData, password: event.target.value });
   };
 
-  const postSignupData = async () => {
+  const postSignupData = async (event) => {
+    event.preventDefault();
     try {
-      console.log(signupData);
-
-      const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/signin",
-        signupData
-      );
+      console.log("회원가입 데이터:", signupData);
+      const response = await axios.post("/api/member/signin", signupData);
 
       setSignupData({
         nickName: "",
@@ -141,7 +138,7 @@ const Signup = ({ toggleForm, onSignup }) => {
             </label>
           </fieldset>
 
-          <button className={styles.button} type="submit">
+          <button tabIndex={0} className={styles.button} type="submit">
             회원가입
           </button>
         </form>
