@@ -20,7 +20,16 @@
 .top {
   display: flex;
   align-items: center;
+  justify-content: center;
   justify-content: space-around;
+}
+
+.bubble_container {
+  margin-left: 35px;
+}
+
+.progressWrap {
+  width: 630px;
 }
 
 .content {

@@ -84,7 +84,6 @@ const Molly = () => {
       <div className={styles.dialogContainer}>
         <div>
           <div>
-            {/* 프로그레스 바와 호감도 */}
             {showDialogBox && (
               <div className={styles.introHeader}>
                 {/* 호감도 */}
@@ -171,7 +170,9 @@ const Molly = () => {
                   onMouseEnter={() => setShowBubbleProgress(true)}
                   onMouseLeave={() => setShowBubbleProgress(false)}
                 >
-                  <ProgressBar character="몰리" />
+                  <div className={styles.progressWrap}>
+                    <ProgressBar character="몰리" progressCount={3} />
+                  </div>
                   {showBubbleProgress && (
                     <img
                       className={styles.bubble_progress}
