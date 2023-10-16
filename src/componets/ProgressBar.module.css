@@ -22,20 +22,26 @@
   position: relative;
 }
 
-.progress_container img {
-  position: absolute; /* Make the image absolute */
-  top: -10px;
-  width: 60px;
+.progress_bar_lay_img {
+  position: absolute;
+  top: -20px;
+  width: 70px;
 }
 
 .progress_bar_molly {
   display: flex;
   justify-content: left;
-  width: 70px;
   height: 32.31px;
   align-items: center;
   background: #b0a1cc;
   border-radius: 100px;
   font-size: 30px;
   position: relative;
+}
+
+.progress_bar_molly_img{
+  position: absolute;
+  top: -10px;
+  width: 90px;
+  margin: -15px;
 }

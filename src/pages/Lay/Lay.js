@@ -25,8 +25,8 @@ const Lay = () => {
   const [showFullText, setShowFullText] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showLayCrush, setShowLayCrush] = useState(false);
-  const [apiTermData, setApiTermData] = useState(0);
-  const [apiSolData, setApiSolData] = useState(0);
+  const [apiTermData, setApiTermData] = useState(0); //용어 확인 api
+  const [apiSolData, setApiSolData] = useState(0); //해설 api
   const [progressCount, setProgressCount] = useState(0);
 
   const LayScenario = [
@@ -213,11 +213,6 @@ const Lay = () => {
     }
   };
 
-  useEffect(() => {
-    getData();
-    getDataSol();
-  }, []);
-
   // 용어게임 문제 API
   const getData = async () => {
     try {
@@ -227,32 +222,20 @@ const Lay = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
-        "http://localhost:8080/api/term-quiz/questions",
-        { headers }
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions",
+        { 
+          headers }
       );
 
       console.log(response.data);
-
-      setApiTermData(response.data);
-
-      //문제 번호
-      const id = response.data.id;
-      console.log(id);
-
-      //문제(용어)
-      const term = response.data.term;
-      console.log(term);
-
-      //선택지 리스트
-      const items = response.data.items;
-      console.log(items);
+      setApiTermData(response.data.data);
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
 
   // 용어게임 해설 API
-  const getDataSol = async () => {
+  const getDataSol = async (currentId) => {
     try {
       const token = localStorage.getItem("token");
 
@@ -260,48 +243,17 @@ const Lay = () => {
         Authorization: `Bearer ${token}`,
       };
 
-      const response = await axios.get("/api/term-quiz/questions/1/solution", {
+      const response = await axios.get(`http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`, 
+      {
         headers,
       });
+      console.log(response.data.data);
+      setApiSolData(response.data.data);
 
-      console.log(response.data);
-      setApiSolData(response.data);
-
-      //문제 번호
-      const id = response.data.id;
-      console.log(id);
-
-      //문제(용어)
-      const term = response.data.term;
-      console.log(term);
-
-      //예탁결제원 설명
-      const description = response.data.description;
-      console.log(description);
-
-      //쉬운 설명
-      const explanation = response.data.explanation;
-      console.log(explanation);
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
-
-  //예시 -> api 받아오면 삭제하기
-  const quizItems = [
-    {
-      id: 1,
-      content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
-    },
-    {
-      id: 2,
-      content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
-    },
-    {
-      id: 3,
-      content: "유동화해 발행하는 구조화사채",
-    },
-  ];
 
   //프로그레스바 상승
   useEffect(() => {
@@ -310,16 +262,13 @@ const Lay = () => {
     }
   }, [currentScenarioIndex]);
 
-  const handleQuizFinish = () => {
-    // 로컬 스토리지에서 correct와 point 값을 가져오기
-    const storedCorrect = localStorage.getItem("userCorrect");
-    const storedPoint = localStorage.getItem("userPoint");
+  const handleQuizFinish = (quizResult) => {
 
-    // correct와 point가 저장되어 있다면 해당 값을 사용하고, 그렇지 않다면 기본값을 사용합니다.
-    const correct = storedCorrect ? JSON.parse(storedCorrect) : false;
-    const point = storedPoint ? parseInt(storedPoint, 10) : 0;
+    const termId = quizResult.termId;
+    const correct = quizResult.userCorrect;
+    const point = quizResult.userPoint;
 
-    getDataSol();
+    getDataSol(termId);
     setShowQuiz(false);
     setShowDialogBox(true);
 
@@ -343,7 +292,7 @@ const Lay = () => {
 
   useEffect(() => {
     getData();
-  });
+  },[]);
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
@@ -435,16 +384,10 @@ const Lay = () => {
             {/* 퀴즈 타이틀 */}
 
             <TermQuiz
-              // id={apiTermData.id} //용어 문제 번호
-              // term={apiTermData.term} //용어
-              // items={apiTermData.items} //리스트 배열
-              // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
-
-              // 예시
-              id={1} // 용어 문제 번호
-              term="대량주식보유상황공시제도" // 용어
-              items={quizItems} // 리스트 배열
-              onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+              id={apiTermData.id} //용어 문제 번호
+              term={apiTermData.term} //용어
+              items={apiTermData.items} //리스트 배열
+              onQuizFinish={(quizResult) => handleQuizFinish(quizResult)} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />

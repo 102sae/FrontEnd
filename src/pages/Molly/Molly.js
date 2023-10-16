@@ -163,7 +163,7 @@ const Molly = () => {
                       alt="BubbleHint"
                     />
                   )}
-                  {showStockGameNews && <StockGameNews />}
+                  {/* {showStockGameNews && <StockGameNews />} */}
                 </div>
 
                 <div
@@ -220,7 +220,6 @@ const Molly = () => {
                     />
                   )}
                 </div>
-
                 <StockGameBox />
               </div>
             </div>
