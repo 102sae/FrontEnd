@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import styles from "./Signup.module.css";
 import LoginTeam from "../../assets/images/login_team.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ({ toggleForm, onSignup }) => {
+  const navigate = useNavigate();
   const [sameNickname, setSameNickname] = useState(false); //닉네임 중복 확인
   const [signupData, setSignupData] = useState({
     //회원가입 데이터
@@ -27,14 +29,16 @@ const Signup = ({ toggleForm, onSignup }) => {
   // 회원가입 데이터 전송
   const postSignupData = async (event) => {
     event.preventDefault();
+    console.log("회원가입 데이터:", signupData);
     try {
-      console.log("회원가입 데이터:", signupData);
-      const response = await axios.post("/api/member/signin", signupData);
+      const response = await axios.post(
+        "http://localhost:8080/api/member/signin",
+        signupData
+      );
 
       const { success, message, data } = response.data;
       if (success) {
-        alert("회원가입 성공:", success);
-        alert("회원가입 성공");
+        alert("회원가입이 완료되었습니다.");
         setSignupData({
           nickName: "",
           password: "",
@@ -42,6 +46,7 @@ const Signup = ({ toggleForm, onSignup }) => {
           age: 0,
           investCareerYear: 0,
         });
+        navigate("/login");
       }
     } catch (error) {
       console.error("회원가입 실패 ", error.response.data.message);

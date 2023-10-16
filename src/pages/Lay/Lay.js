@@ -246,7 +246,10 @@ const Lay = () => {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await axios.get("/api/term-quiz/questions", { headers });
+      const response = await axios.get(
+        "http://localhost:8080/api/term-quiz/questions",
+        { headers }
+      );
 
       console.log(response.data);
 
