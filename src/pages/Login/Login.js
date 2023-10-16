@@ -26,7 +26,7 @@ const Login = ({ toggleForm, onLogin }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/member/login",
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/login",
         {
           nickName: nickname,
           password: password,

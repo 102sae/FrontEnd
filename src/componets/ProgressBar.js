@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ProgressBar.module.css";
-import LayPB1 from "../assets/images/Lay/lay_pb1.svg";
+import LayPB1 from "../assets/images/Lay/lay_pb1.png";
 import MollyPB1 from "../assets/images/Molly/molly_pb1.png";
 
 const ProgressBar = ({ character, progressCount }) => {
@@ -26,8 +26,8 @@ const ProgressBar = ({ character, progressCount }) => {
   }, [progressCount]);
 
   const progressBarImage = character === "레이" ? LayPB1 : MollyPB1;
-  const progressBarStyle =
-    character === "레이" ? styles.progress_bar_lay : styles.progress_bar_molly;
+  const progressBarStyle = character === "레이" ? styles.progress_bar_lay : styles.progress_bar_molly;
+  const progressBarImgStyle = character === "레이" ? styles.progress_bar_lay_img : styles.progress_bar_molly_img;
 
   return (
     <div className={styles.progress_container}>
@@ -36,6 +36,7 @@ const ProgressBar = ({ character, progressCount }) => {
         style={{ width: `${(count / 10) * 100}%` }}
       >
         <img
+          className={progressBarImgStyle}
           src={progressBarImage}
           alt={`${character} 프로그레스 기본`}
           style={{ left: `${imageLeft}` }}

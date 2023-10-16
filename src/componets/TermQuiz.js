@@ -6,6 +6,8 @@ import styles from "./TermQuiz.module.css";
 import LayThinking from "../assets/images/Lay/lay_thinking.svg";
 
 const TermQuiz = ({ id, term, items, onQuizFinish }) => {
+  const [apiCorrectData, setApiCorrectData] = useState(0); //정답 확인 api
+  const [termId, setTermId] = useState(0);
   const [userAnswerId, setUserAnswerId] = useState(null);
   const [answerId, setAnswerId] = useState(null);
   const [userCorrect, setUserCorrect] = useState(null);
@@ -13,76 +15,84 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   // let isCorrectAnswer = false;
 
   const onClickAnswer = (index) => {
-    console.log("userAnswerId", index);
-    setUserAnswerId(index);
-    postData();
+    console.log("유저 선택 userAnswerId", index);
+    console.log("정답 확인 POST API", id);
+    postData(id, index);
     // isCorrectAnswer = userAnswerId === answerId;
     setTimeout(() => {
-      onQuizFinish(userCorrect, userPoint);
+      const quizResult = {
+        userCorrect: userCorrect,
+        userPoint: userPoint,
+        userAnswerId : index,
+        termId: id
+    };
+    console.log("quizResult", quizResult)
+      onQuizFinish(quizResult);
     }, 1000);
   };
   
-
   const quizItems = [
     {
-      id: 1,
+      id:  items[0].id,
       text: items[0].content,
       position: { top: 192, left: 107.5 },
     },
     {
-      id: 2,
+      id: items[1].id,
       text: items[1].content,
       position: { top: 382, left: 107.5 },
     },
     {
-      id: 3,
+      id: items[2].id,
       text: items[2].content,
       position: { top: 572, left: 107.5 },
     },
   ];
 
   //정답 확인 POST API
-  const postData = async () => {
-    // try {
-    //   const response = await axios.post(
-    //     "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/answers/check",
-    //     {
-    //       userAnswerId: userAnswerId,
-    //     }
-    //   );
+  const postData = async (currentId, a) => {
+    console.log("정답 확인 POST API 인자", currentId);
+    console.log("유저가 선택한 답", a);
+    try {
+        const token = localStorage.getItem("token");
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
 
-      // const { data } = response;
-      // const { id, term, answerId, point, correct } = data;
+        const response = await axios.post(
+            `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/answers/check`,
+            {
+                userAnswerId: a,
+            },
+            {
+                headers: headers,
+            }
+        );
 
-      // 예시
-      const answerId = 3;
-      const correct = false;
-      const point = -10;
+        console.log("setApiCorrectData", response.data);
+        setApiCorrectData(response.data.data);
 
-      console.log("질문 ID:", id);
-      console.log("용어:", term);
-      console.log("정답 번호:", answerId);
-      console.log("호감도 변화 값:", point);
-      console.log("정답 여부:", correct);
+        console.log("질문 ID:", apiCorrectData.id);
+        console.log("용어:", apiCorrectData.term);
+        console.log("정답 번호:", apiCorrectData.answerId);
+        console.log("호감도 변화 값:", apiCorrectData.point);
+        console.log("정답 여부:", apiCorrectData.correct);
 
-      setAnswerId(answerId);
-      setUserCorrect(correct);
-      setUserPoint(point);
-      onQuizFinish(userCorrect, userPoint);
+        setTermId(apiCorrectData.id);
+        setAnswerId(apiCorrectData.answerId);
+        setUserCorrect(apiCorrectData.correct);
+        setUserPoint(apiCorrectData.point);
 
-      //로컬 스토리지에 저장
-      localStorage.setItem("answerId", answerId)
-      localStorage.setItem("userCorrect", correct)
-      localStorage.setItem("userPoint", point)
+        onQuizFinish();
 
-      //호감도 변화
-      const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
-      
-      localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + point)))
-    // } catch (error) {
-    //   console.error("Error submitting answer: ", error);
-    // }
-  };
+        //호감도 변화
+        const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
+        localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + userPoint)));
+    } catch (error) {
+        console.error("Error submitting answer: ", error);
+    }
+};
+
   
   
 
