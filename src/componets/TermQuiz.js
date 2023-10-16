@@ -56,8 +56,8 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
 
       // 예시
       const answerId = 3;
-      const correct = true;
-      const point = +10;
+      const correct = false;
+      const point = -10;
 
       console.log("질문 ID:", id);
       console.log("용어:", term);

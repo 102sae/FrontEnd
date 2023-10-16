@@ -23,11 +23,11 @@ const Lay = () => {
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
   const [showFullText, setShowFullText] = useState(false);
-  const [showSolution, setShowSolution] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showLayCrush, setShowLayCrush] = useState(false);
   const [apiTermData, setApiTermData] = useState(0);
   const [apiSolData, setApiSolData] = useState(0);
+  const [progressCount, setProgressCount] = useState(0);
 
   const LayScenario = [
     {
@@ -44,9 +44,6 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
-        show: false,
-      },
     },
     {
       index: 1,
@@ -59,9 +56,6 @@ const Lay = () => {
         show: false,
       },
       quiz: {
-        show: false,
-      },
-      solution: {
         show: false,
       },
     },
@@ -80,9 +74,6 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
-        show: false,
-      },
     },
     {
       index: 3,
@@ -97,65 +88,10 @@ const Lay = () => {
       quiz: {
         show: true,
       },
-      solution: {
-        show: false,
-      },
     },
     {
       index: 4,
-      nextIndex: 5,
-      image: SolSolution,
-      dialog: "내가 다시 한번 설명해주지~",
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-      quiz: {
-        show: false,
-      },
-      solution: {
-        show: false,
-      },
-    },
-    {
-      index: 5,
       nextIndex: 6,
-      image: SolSolution,
-      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면\n ${apiSolData.description}(이)야~`,
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-      quiz: {
-        show: false,
-      },
-      solution: {
-        show: false,
-      },
-    },
-    {
-      index: 6,
-      nextIndex: 7,
-      image: SolKKK,
-      dialog:
-        `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
-      name: "쏠",
-      arrowColor: palette.sol_text,
-      menu: {
-        show: false,
-      },
-      quiz: {
-        show: false,
-      },
-      solution: {
-        show: false,
-      },
-    },
-    {
-      index: 7,
-      nextIndex: 3,
       image: LayShiny,
       dialog: `우와~ OO아 너 정말 똑똑하다~ 고마워~`,
       name: "레이",
@@ -166,13 +102,10 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
-        show: false,
-      },
     },
     {
-      index: 8,
-      nextIndex: 3,
+      index: 5,
+      nextIndex: 6,
       image: LayThinking,
       dialog: `음.. 아직 잘 모르겠다.`,
       name: "레이",
@@ -183,10 +116,50 @@ const Lay = () => {
       quiz: {
         show: false,
       },
-      solution: {
+    },
+    {
+      index: 6,
+      nextIndex: 7,
+      image: SolSolution,
+      dialog: "내가 다시 한번 설명해주지~",
+      name: "쏠",
+      arrowColor: palette.sol_text,
+      menu: {
+        show: false,
+      },
+      quiz: {
         show: false,
       },
     },
+    {
+      index: 7,
+      nextIndex: 8,
+      image: SolSolution,
+      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면\n ${apiSolData.description}(이)야~`,
+      name: "쏠",
+      arrowColor: palette.sol_text,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: false,
+      },
+    },
+    {
+      index: 8,
+      nextIndex: 9,
+      image: SolKKK,
+      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
+      name: "쏠",
+      arrowColor: palette.sol_text,
+      menu: {
+        show: false,
+      },
+      quiz: {
+        show: false,
+      },
+    },
+    
   ];
 
   const handleKeyDown = (e) => {
@@ -211,13 +184,7 @@ const Lay = () => {
       } else if (LayScenario[currentScenarioIndex].quiz.show === true) {
         setShowDialogBox(false); // 대화 상자 감추기
         setShowQuiz(true); // 퀴즈 화면 보이기
-        setShowSolution(false); // 해설 화면 감추기
         console.log(currentScenarioIndex);
-      } else if (LayScenario[currentScenarioIndex].solution.show === true) {
-        setShowDialogBox(false); // 대화 상자 감추기
-        setShowQuiz(false); // 퀴즈 화면 감추기
-        setShowSolution(true); // 해설 화면 보이기
-        console.log("해설이지롱");
       }
     }
   };
@@ -243,7 +210,7 @@ const Lay = () => {
       setApiTermData(response.data);
 
       //문제 번호
-      const id = response.data.id
+      const id = response.data.id;
       console.log(id);
 
       //문제(용어)
@@ -251,14 +218,12 @@ const Lay = () => {
       console.log(term);
 
       //선택지 리스트
-      const items = response.data.items
+      const items = response.data.items;
       console.log(items);
-      
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
-
 
   // 용어게임 해설 API
   const getDataSol = async () => {
@@ -270,7 +235,7 @@ const Lay = () => {
       setApiSolData(response.data);
 
       //문제 번호
-      const id = response.data.id
+      const id = response.data.id;
       console.log(id);
 
       //문제(용어)
@@ -278,18 +243,16 @@ const Lay = () => {
       console.log(term);
 
       //예탁결제원 설명
-      const description = response.data.description
+      const description = response.data.description;
       console.log(description);
 
       //쉬운 설명
-      const explanation = response.data.explanation
+      const explanation = response.data.explanation;
       console.log(explanation);
-      
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
-
 
   //예시 -> api 받아오면 삭제하기
   const quizItems = [
@@ -307,9 +270,14 @@ const Lay = () => {
     },
   ];
 
+  
+
+  //프로그레스바 상승
   useEffect(() => {
-    getData();
-  }, []);
+    if (currentScenarioIndex === 8) {
+      setProgressCount((prev) => prev + 1);
+    }
+  }, [currentScenarioIndex]);
 
   const handleQuizFinish = () => {
     // 로컬 스토리지에서 correct와 point 값을 가져오기
@@ -325,13 +293,22 @@ const Lay = () => {
     setShowDialogBox(true);
 
     if (correct) {
-      setCurrentScenarioIndex(7);
+      setCurrentScenarioIndex(4);
       setShowLayCrush(true);
-    } else {
-      setCurrentScenarioIndex(8);
+      const timeoutId = setTimeout(() => {
+        setShowLayCrush(false);
+      }, 1000);
+      
+    } 
+    else {
+      setCurrentScenarioIndex(5);
       setShowLayCrush(true);
-    }
+      const timeoutId = setTimeout(() => {
+        setShowLayCrush(false);
+      }, 1000);
 
+    }
+    
     console.log("정답 여부:", correct);
     console.log("호감도 변화 값:", point);
   };
@@ -378,7 +355,7 @@ const Lay = () => {
             <div>
               {/* 프로그레스바 & 호감도 */}
               <div className={styles.top}>
-                <ProgressBar character="레이" />
+                <ProgressBar character="레이" progressCount={progressCount} />
                 <CrushBar />
               </div>
 
@@ -441,20 +418,9 @@ const Lay = () => {
           </div>
         )}
 
-        {/* 호감도 변화 */}
         {/* 레이 호감도 변화 */}
         {showLayCrush && <LayCrush correct={localStorage.getItem("userCorrect")} point={localStorage.getItem("userPoint")}/>}
 
-        {/* 해설 화면 */}
-        {showSolution && (
-          <div>
-            <img src={SolutionBackground} alt="해설 배경" />
-            <div className={styles.solutionApiText}>
-              {LayScenario[currentScenarioIndex].solution.apiText}
-              {LayScenario[currentScenarioIndex].solution.managerText}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
