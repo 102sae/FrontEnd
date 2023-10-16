@@ -28,6 +28,10 @@ const Lay = () => {
   const [apiTermData, setApiTermData] = useState(0); //용어 확인 api
   const [apiSolData, setApiSolData] = useState(0); //해설 api
   const [progressCount, setProgressCount] = useState(0);
+  const [layCrushInfo, setLayCrushInfo] = useState({
+    correct: null,
+    point: null
+  });
 
   const LayScenario = [
     {
@@ -217,7 +221,6 @@ const Lay = () => {
   const getData = async () => {
     try {
       const token = localStorage.getItem("token");
-
       const headers = {
         Authorization: `Bearer ${token}`,
       };
@@ -226,10 +229,10 @@ const Lay = () => {
         { 
           headers }
       );
-
       console.log(response.data);
       setApiTermData(response.data.data);
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
@@ -238,19 +241,17 @@ const Lay = () => {
   const getDataSol = async (currentId) => {
     try {
       const token = localStorage.getItem("token");
-
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-
       const response = await axios.get(`http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`, 
       {
         headers,
       });
       console.log(response.data.data);
       setApiSolData(response.data.data);
-
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
@@ -262,11 +263,14 @@ const Lay = () => {
     }
   }, [currentScenarioIndex]);
 
+  //퀴즈 종료 이후
   const handleQuizFinish = (quizResult) => {
-
     const termId = quizResult.termId;
     const correct = quizResult.userCorrect;
     const point = quizResult.userPoint;
+    setLayCrushInfo({ correct, point }); // 호감도 상태 설정
+    console.log("정답 여부:", correct); //finish
+    console.log("호감도 변화 값:", point); //finish
 
     getDataSol(termId);
     setShowQuiz(false);
@@ -285,9 +289,6 @@ const Lay = () => {
         setShowLayCrush(false);
       }, 1000);
     }
-
-    console.log("정답 여부:", correct);
-    console.log("호감도 변화 값:", point);
   };
 
   useEffect(() => {
@@ -396,10 +397,7 @@ const Lay = () => {
 
         {/* 레이 호감도 변화 */}
         {showLayCrush && (
-          <LayCrush
-            correct={localStorage.getItem("userCorrect")}
-            point={localStorage.getItem("userPoint")}
-          />
+          <LayCrush correct={layCrushInfo.correct} point={layCrushInfo.point} />
         )}
       </div>
     </div>

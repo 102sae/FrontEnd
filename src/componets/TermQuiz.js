@@ -6,30 +6,34 @@ import styles from "./TermQuiz.module.css";
 import LayThinking from "../assets/images/Lay/lay_thinking.svg";
 
 const TermQuiz = ({ id, term, items, onQuizFinish }) => {
-  const [apiCorrectData, setApiCorrectData] = useState(0); //정답 확인 api
-  const [termId, setTermId] = useState(0);
+  const [apiCorrectData, setApiCorrectData] = useState(null); //정답 확인 api
+  // const [termId, setTermId] = useState(0);
   const [userAnswerId, setUserAnswerId] = useState(null);
   const [answerId, setAnswerId] = useState(null);
-  const [userCorrect, setUserCorrect] = useState(null);
-  const [userPoint, setUserPoint] = useState(null);
+  // const [userCorrect, setUserCorrect] = useState(null);
+  // const [userPoint, setUserPoint] = useState(null);
   // let isCorrectAnswer = false;
 
-  const onClickAnswer = (index) => {
+  const onClickAnswer = async (index) => {
     console.log("유저 선택 userAnswerId", index);
     console.log("정답 확인 POST API", id);
-    postData(id, index);
+    await postData(id, index); // postData 함수가 완료될 때까지 기다립니다.
     // isCorrectAnswer = userAnswerId === answerId;
     setTimeout(() => {
       const quizResult = {
-        userCorrect: userCorrect,
-        userPoint: userPoint,
-        userAnswerId : index,
-        termId: id
-    };
-    console.log("quizResult", quizResult)
+        userCorrect: apiCorrectData?.correct, // 선택적 체이닝을 사용하여 안전하게 접근합니다.
+        userPoint: apiCorrectData?.point, // 선택적 체이닝을 사용하여 안전하게 접근합니다.
+        userAnswerId: index,
+        termId: id,
+      };
+      // 호감도 변화
+      const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
+      localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + quizResult?.userPoint))); // 선택적 체이닝을 사용하여 안전하게 접근합니다.
+      console.log("quizResult", quizResult);
       onQuizFinish(quizResult);
     }, 1000);
-  };
+};
+
   
   const quizItems = [
     {
@@ -50,45 +54,29 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   ];
 
   //정답 확인 POST API
-  const postData = async (currentId, a) => {
-    console.log("정답 확인 POST API 인자", currentId);
-    console.log("유저가 선택한 답", a);
+  const postData = async (currentId, userSelectAnswer) => {
+    console.log("정답 확인 POST API 인자(currentId)", currentId);
+    console.log("유저가 선택한 답(userSelectAnswer)", userSelectAnswer);
     try {
         const token = localStorage.getItem("token");
         const headers = {
             Authorization: `Bearer ${token}`,
         };
-
         const response = await axios.post(
             `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/answers/check`,
             {
-                userAnswerId: a,
+                userAnswerId: userSelectAnswer,
             },
             {
                 headers: headers,
             }
         );
-
-        console.log("setApiCorrectData", response.data);
+        console.log("정답 확인 POST API 결과 데이터", response.data);
         setApiCorrectData(response.data.data);
 
-        console.log("질문 ID:", apiCorrectData.id);
-        console.log("용어:", apiCorrectData.term);
-        console.log("정답 번호:", apiCorrectData.answerId);
-        console.log("호감도 변화 값:", apiCorrectData.point);
-        console.log("정답 여부:", apiCorrectData.correct);
-
-        setTermId(apiCorrectData.id);
-        setAnswerId(apiCorrectData.answerId);
-        setUserCorrect(apiCorrectData.correct);
-        setUserPoint(apiCorrectData.point);
-
         onQuizFinish();
-
-        //호감도 변화
-        const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
-        localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + userPoint)));
-    } catch (error) {
+    } 
+    catch (error) {
         console.error("Error submitting answer: ", error);
     }
 };
