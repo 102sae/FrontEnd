@@ -11,7 +11,7 @@ const StockGameBox = () => {
         position: "absolute",
         left: 70,
         top: 120,
-        zIndex: -1,
+        zIndex: 0,
       }}
     >
       <path

@@ -197,7 +197,7 @@ const Molly = () => {
                     setShowBubbleBuy(false);
                   }}
                 >
-                  <TradingButton />
+                  <TradingButton year={2020} />
                   {showBubbleYear && (
                     <img
                       className={styles.bubble_year}
@@ -220,8 +220,9 @@ const Molly = () => {
                     />
                   )}
                 </div>
-                <StockChart />
+
                 <StockGameBox />
+                <StockChart />
               </div>
             </div>
           )
