@@ -13,7 +13,7 @@ import SolSolution from "../../assets/images/sol_solution.png";
 import SolKKK from "../../assets/images/sol_kkk.png";
 import ProgressBar from "../../componets/ProgressBar";
 import axios from "axios";
-import Quiz from "../../componets/TermQuiz";
+import TermQuiz from "../../componets/TermQuiz";
 import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
 import SolutionBackground from "../../assets/images/sol_solution_bg.png";
@@ -25,7 +25,9 @@ const Lay = () => {
   const [showFullText, setShowFullText] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
-  const [apiData, setApiData] = useState(0);
+  const [showLayCrush, setShowLayCrush] = useState(false);
+  const [apiTermData, setApiTermData] = useState(0);
+  const [apiSolData, setApiSolData] = useState(0);
 
   const LayScenario = [
     {
@@ -86,7 +88,7 @@ const Lay = () => {
       index: 3,
       nextIndex: 4,
       image: LayThinking,
-      dialog: `요즘 뉴스에 ${apiData.title}을 사라는 말이 많더라고... \n그런데 ${apiData.title}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
+      dialog: `요즘 뉴스에 ${apiTermData.term}을 사라는 말이 많더라고... \n그런데 ${apiTermData.term}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
       name: "레이",
       arrowColor: palette.ray_blue,
       menu: {
@@ -120,7 +122,7 @@ const Lay = () => {
       index: 5,
       nextIndex: 6,
       image: SolSolution,
-      dialog: `${apiData.title}는(은) 한국예탁결제원에 따르면\n ${apiData.description}(이)야~`,
+      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면\n ${apiSolData.description}(이)야~`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -138,7 +140,7 @@ const Lay = () => {
       nextIndex: 7,
       image: SolKKK,
       dialog:
-        "하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~",
+        `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -235,27 +237,95 @@ const Lay = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      ); // API_ENDPOINT_URL 대체
-      //console.log(response.data);
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions"
+      );
+      console.log(response.data);
+      setApiTermData(response.data);
+
+      //문제 번호
+      const id = response.data.id
+      console.log(id);
+
       //문제(용어)
-      const term = response.data[6];
-      //console.log(term);
-      setApiData(term);
+      const term = response.data.term;
+      console.log(term);
+
       //선택지 리스트
+      const items = response.data.items
+      console.log(items);
+      
     } catch (error) {
-      //console.error("Error fetching data from API: ", error);
+      console.error("Error fetching data from API: ", error);
     }
   };
+
+
+  // 용어게임 해설 API
+  const getDataSol = async () => {
+    try {
+      const response = await axios.get(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/1/solution"
+      );
+      console.log(response.data);
+      setApiSolData(response.data);
+
+      //문제 번호
+      const id = response.data.id
+      console.log(id);
+
+      //문제(용어)
+      const term = response.data.term;
+      console.log(term);
+
+      //예탁결제원 설명
+      const description = response.data.description
+      console.log(description);
+
+      //쉬운 설명
+      const explanation = response.data.explanation
+      console.log(explanation);
+      
+    } catch (error) {
+      console.error("Error fetching data from API: ", error);
+    }
+  };
+
+
+  //예시 -> api 받아오면 삭제하기
+  // const quizItems = [
+  //   {
+  //     id: 1,
+  //     content: "모든 금리부자산을 기초로 유동화해 발행하는 구조화사채",
+  //   },
+  //   {
+  //     id: 2,
+  //     content: "금리부자산을 기초로 유동화해 발행하는 구조화사채",
+  //   },
+  //   {
+  //     id: 3,
+  //     content: "유동화해 발행하는 구조화사채",
+  //   },
+  // ];
 
   useEffect(() => {
     getData();
   }, []);
 
-  const handleQuizFinish = () => {
+  const handleQuizFinish = (correct, point) => {
+    getDataSol();
     setShowQuiz(false);
     setShowDialogBox(true);
-    setCurrentScenarioIndex(LayScenario[currentScenarioIndex].nextIndex);
+
+    if (correct) {
+      setCurrentScenarioIndex(7);
+      setShowLayCrush(true);
+    } else {
+      setCurrentScenarioIndex(8);
+      setShowLayCrush(true);
+    }
+
+    console.log("정답 여부:", correct);
+    console.log("호감도 변화 값:", point);
   };
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
@@ -346,15 +416,21 @@ const Lay = () => {
         {showQuiz && (
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
-            <Quiz
-              term={apiData.title} //용어
-              list={apiData.id} //리스트 배열
-              onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+            <TermQuiz
+                id={apiTermData.id} //용어 문제 번호
+                term={apiTermData.term} //용어
+                items={apiTermData.items} //리스트 배열
+                onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
+
+                // id={1} // 용어 문제 번호
+                // term="대량주식보유상황공시제도" // 용어
+                // items={quizItems} // 리스트 배열
+                // onQuizFinish={handleQuizFinish} //퀴즈 끝나면 호출
             />
             {/* 호감도 */}
             <CrushBar />
             {/* 레이 호감도 변화 */}
-            {/* <LayCrush /> */}
+            {showLayCrush && <LayCrush/>}
           </div>
         )}
 
