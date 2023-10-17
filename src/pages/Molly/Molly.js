@@ -34,10 +34,16 @@ const Molly = () => {
   const [showBubbleStart, setShowBubbleStart] = useState(false);
   const [showStockGameNews, setShowStockGameNews] = useState(false);
   const [startStockGame, setStartStockGame] = useState(false);
+  const [stockGameCount, setStockGameCount] = useState(0);
 
   //투자 게임 시작 버튼
   const handleStartGame = () => {
     setStartStockGame(true);
+  };
+
+  //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
+  const handleGameCount = () => {
+    setStockGameCount((prev) => prev + 1);
   };
 
   // 다음 대화로 넘기기
@@ -180,7 +186,7 @@ const Molly = () => {
                   onMouseLeave={() => setShowBubbleProgress(false)}
                 >
                   <div className={styles.progressWrap}>
-                    <ProgressBar character="몰리" progressCount={3} />
+                    <ProgressBar character="몰리" progressCount={2} />
                   </div>
                   {showBubbleProgress && (
                     <img
@@ -281,7 +287,10 @@ const Molly = () => {
                 onMouseLeave={() => setShowBubbleProgress(false)}
               >
                 <div className={styles.progressWrap}>
-                  <ProgressBar character="몰리" progressCount={0} />
+                  <ProgressBar
+                    character="몰리"
+                    progressCount={stockGameCount}
+                  />
                 </div>
               </div>
               <CrushBar />
