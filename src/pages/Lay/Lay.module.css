@@ -53,12 +53,15 @@
   width: 360px;
 }
 
+
 .dialogText {
   width: 600px;
-  height: 100px;
+  max-height: 165px;
   position: absolute;
-  bottom: 120px;
-  left: 220px;
+  overflow-y: auto;
+
+  top: 540px;
+  left: 230px;
   white-space: "pre-wrap";
   font-size: 24px;
   color: var(--black);
