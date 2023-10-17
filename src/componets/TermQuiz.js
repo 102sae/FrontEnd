@@ -35,7 +35,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     console.log("유저 선택 userAnswerId", index);
     console.log("정답 확인 POST API", id);
 
-    const apiCorrectResponse = await postData(id, index); // postData 함수가 완료될 때까지 기다립니다.
+    const apiCorrectResponse = await postData(id, index); 
     // isCorrectAnswer = userAnswerId === answerId;
 
     console.log("정답 확인 POST API", apiCorrectResponse);

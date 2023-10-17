@@ -290,7 +290,7 @@ const Lay = () => {
 
   //프로그레스바 상승
   useEffect(() => {
-    if (currentScenarioIndex === 3 || currentScenarioIndex === 9) {
+    if (currentScenarioIndex === 3 || currentScenarioIndex === 8) {
       console.log("프로그레스바 단계", progressCount);
       setProgressCount((prev) => prev + 1);
       //10단계 끝나면 레이 결과창으로 이동
@@ -302,7 +302,7 @@ const Lay = () => {
 
   //용어 게임 문제 API 호출
   useEffect(() => {
-    if (currentScenarioIndex === 3 || currentScenarioIndex === 9) {
+    if (currentScenarioIndex === 2 || currentScenarioIndex === 8) {
       getData();
     }
   }, [currentScenarioIndex]);
