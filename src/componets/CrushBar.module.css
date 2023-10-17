@@ -12,21 +12,18 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  width: 96.068px;
   height: 50px;
   background: rgba(252, 221, 221, 0.65);
-  color: rgb(0, 0, 0);
   border-radius: 50px;
   font-size: 20px;
-  text-align: center;
 }
 
 .progress_bar img {
   width: 32px;
-  padding: 15px;
+  padding-left: 15px;
 }
 
 .top_txt {
   font-family: "ONESHINHANBOLD";
-  padding-left: 20px;
+  padding-left: 30px;
 }
