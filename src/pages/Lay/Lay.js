@@ -33,7 +33,7 @@ const Lay = () => {
   const [progressCount, setProgressCount] = useState(0);
   const [layCrushInfo, setLayCrushInfo] = useState({
     correct: null,
-    point: null
+    point: null,
   });
 
   const LayScenario = [
@@ -229,13 +229,13 @@ const Lay = () => {
       };
       const response = await axios.get(
         "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions",
-        { 
-          headers }
+        {
+          headers,
+        }
       );
       console.log("용어게임 문제 API", response.data);
       setApiTermData(response.data.data);
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
@@ -247,14 +247,15 @@ const Lay = () => {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await axios.get(`http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`, 
-      {
-        headers,
-      });
+      const response = await axios.get(
+        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`,
+        {
+          headers,
+        }
+      );
       console.log("용어게임 해설 API", response.data.data);
       setApiSolData(response.data.data);
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
@@ -265,8 +266,8 @@ const Lay = () => {
     const correct = quizResult.userCorrect;
     const point = quizResult.userPoint;
     setLayCrushInfo({ correct, point }); // 호감도 상태 설정
-    console.log("정답 여부:", correct); 
-    console.log("호감도 변화 값:", point); 
+    console.log("정답 여부:", correct);
+    console.log("호감도 변화 값:", point);
 
     getDataSol(termId);
     setShowQuiz(false);
@@ -286,7 +287,6 @@ const Lay = () => {
       }, 5000);
     }
   };
-
 
   //프로그레스바 상승
   useEffect(() => {

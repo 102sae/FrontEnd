@@ -22,18 +22,14 @@ const ProgressBar = ({ character, progressCount }) => {
       imageLeft = `${(count / 10) * 100 - 10}%`;
     }
   } else {
-    if (count < 3) {
-      imageLeft = `${(count / 10) * 100 - 12}%`;
+    if (count < 1) {
+      imageLeft = `${(count / 5) * 100 - 10}%`;
+    } else if (count < 3) {
+      imageLeft = `${(count / 5) * 100 - 15}%`;
     } else if (count < 5) {
-      imageLeft = `${(count / 10) * 100 - 13}%`;
-    } else if (count < 7) {
-      imageLeft = `${(count / 10) * 100 - 14}%`;
-    } else if (count < 9) {
-      imageLeft = `${(count / 10) * 100 - 15}%`;
-    } else if (count === 9) {
-      imageLeft = `${(count / 10) * 100 - 19}%`;
-    } else {
-      imageLeft = `${(count / 10) * 100 - 22}%`;
+      imageLeft = `${(count / 5) * 100 - 13}%`;
+    } else if (count === 5) {
+      imageLeft = `${(count / 5) * 100 - 19}%`;
     }
   }
 
@@ -49,7 +45,11 @@ const ProgressBar = ({ character, progressCount }) => {
             ? `${styles.progressbarLay}`
             : `${styles.progressbarMolly}`
         }
-        style={{ width: `${(count / 10) * 100}%` }}
+        style={
+          character === "레이"
+            ? { width: `${(count / 10) * 100}%` }
+            : { width: `${(count / 5) * 100}%` }
+        }
       >
         <img
           className={
