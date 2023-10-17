@@ -277,6 +277,7 @@ const Molly = () => {
               <HintButton onClick={handleHintButtonClick} />
               {showStockGameNews && (
                 <StockGameNewsPaper
+                  year={2021}
                   showStockGameNews={showStockGameNews}
                   toggleStockGameNews={handleHintButtonClick}
                 />
