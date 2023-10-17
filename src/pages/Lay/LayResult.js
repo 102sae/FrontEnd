@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LayResult.module.css"
 import palette from "../../styles/color";
-import LayShiny from "../../assets/images/Lay/lay_shiny.svg"
-import LayThinking from "../../assets/images/Lay/lay_thinking.svg"
+import LayShiny from "../../assets/images/Lay/lay_shiny.png"
+import LayThinking from "../../assets/images/Lay/lay_thinking.png"
 import CrushBar from "../../componets/CrushBar";
 import DialogBox from "../../componets/DialogBox";
 import ReactTyped from "react-typed";

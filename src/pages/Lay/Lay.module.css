@@ -50,9 +50,10 @@
 }
 
 .character_wrap img {
-  width: 360px;
+  position: absolute;
+  bottom: 280px;
+  left: 380px;
 }
-
 
 .dialogText {
   width: 600px;
