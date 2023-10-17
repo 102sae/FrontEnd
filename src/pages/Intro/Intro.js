@@ -7,7 +7,7 @@ import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 import Lay from "../../assets/images/Lay/lay_default.png";
 import LaySmile from "../../assets/images/Lay/lay_smile.png";
 import Layname from "../../assets/images/Lay/lay_name.png";
