@@ -1,57 +1,60 @@
 .root {
-    width: 1024px;
-    height: 767px;
-    margin: 20px auto;
-    position: relative;
-    background-image: url("../../assets/images/stars.png");
-    background-repeat: repeat;
-    animation: backgroundMove 10s linear infinite;
-    transition: background-color 0.5s ease;
-  }
+  width: 1024px;
+  height: 767px;
+  margin: 20px auto;
+  position: relative;
+  background-image: url("../../assets/images/stars.png");
+  background-repeat: repeat;
+  animation: backgroundMove 10s linear infinite;
+  transition: background-color 0.5s ease;
+}
 
-  .top {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .content {
-    padding: 68px 20px;
-    width: 1440px;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .character_wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .character_wrap img {
-    width: 360px;
-  }
+.top {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
-  .dialogText {
-    width: 600px;
-    max-height: 165px;
-    position: absolute;
-    overflow-y: auto;
-  
-    top: 540px;
-    left: 230px;
-    white-space: "pre-wrap";
-    font-size: 24px;
-    color: var(--black);
-    text-align: center;
-    letter-spacing: 2px;
-    line-height: 1.5;
-    z-index: 100;
-  }
-  
-  .layBackground {
-    background-color: var(--lay_yellow);
-    transition: background-color 1s ease;
-    /* animation: fadeIn 1s ease; */
-  }
+.content {
+  padding: 68px 20px;
+  width: 1440px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.character_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.character_wrap img {
+  width: 285px;
+  position: absolute;
+  top: 60px;
+}
+
+.dialogText {
+  width: 600px;
+  max-height: 165px;
+  position: absolute;
+  overflow-y: auto;
+
+  top: 540px;
+  left: 230px;
+  white-space: "pre-wrap";
+  font-size: 24px;
+  color: var(--black);
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  z-index: 100;
+}
+
+.layBackground {
+  background-color: var(--lay_yellow);
+  transition: background-color 1s ease;
+  /* animation: fadeIn 1s ease; */
+}
