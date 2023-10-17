@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Molly.module.css";
-import MollyScenario from "./MollyScenario";
+import MollyScenarioIntro from "./MollyScenario";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import ReactTyped from "react-typed";
@@ -22,6 +22,9 @@ import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg"
 import StockChart from "../../componets/StockChart";
 
 const Molly = () => {
+  //시나리오 파일 가져오기
+  const MollyScenario = MollyScenarioIntro();
+
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
@@ -108,6 +111,7 @@ const Molly = () => {
             )}
             {showDialogBox && (
               <div>
+                {console.log(MollyScenario)}
                 <div className={styles.characterWrap}>
                   <img
                     src={MollyScenario[currentScenarioIndex].image}
