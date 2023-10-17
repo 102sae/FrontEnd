@@ -1,7 +1,7 @@
 import palette from "../../styles/color";
 import Sol from "../../assets/images/sol_default.png";
 import SolSmile from "../../assets/images/sol_smile.png";
-import SolWhy from "../../assets/images/sol-why.png";
+import SolWhy from "../../assets/images/sol_why.png";
 import LayHi from "../../assets/images/Lay/lay_hi.png";
 import MollyHi from "../../assets/images/Molly/molly_hi.png";
 const introScenario = [
@@ -167,8 +167,8 @@ const introScenario = [
     arrowColor: palette.sol_text,
     menu: {
       show: true,
-      option: ["알겠어!", "미안.."],
-      nextIndex: [12, 14],
+      option: ["알겠어!", "나 맞아~"],
+      nextIndex: [12, 12],
     },
   },
   {

@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import palette from "../styles/color";
 import styles from "./TermQuiz.module.css";
-import LayThinking from "../assets/images/Lay/lay_thinking.svg";
+import LayThinking from "../assets/images/Lay/lay_thinking.png";
 
 const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   // const [termId, setTermId] = useState(0);
@@ -42,8 +42,8 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   
     setTimeout(() => {
       const quizResult = {
-        userCorrect: apiCorrectResponse.correct,
         userPoint: apiCorrectResponse.point,
+        userCorrect: apiCorrectResponse.correct,
         userAnswerId: index,
         termId: id,
       };
@@ -98,7 +98,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
         src={LayThinking}
         alt="레이 고민"
       />
-      <svg
+      {/* <svg
         xmlns="http://www.w3.org/2000/svg"
         width="419"
         height="54"
@@ -115,19 +115,14 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
           d="M372.84 2.76432C297.243 -1.03934 121.194 -0.801625 42.4902 2.76432C-18.609 9.42081 -0.486377 26.2997 15.5651 34.1448C15.5651 38.6617 8.83383 48.1709 30.0632 50.0728C42.4902 53.6387 260.653 54.2727 372.84 51.2614C408.879 50.6909 404.426 40.8013 401.319 34.1448C441.189 15.6018 401.319 4.19722 372.84 2.76432Z"
           fill="#EBF3FC"
         />
-      </svg>
+      </svg> */}
       {/* 헤더 안에 텍스트 */}
       <text
         className={styles.quiz_title}
-        x="150"
-        y="80"
-        width="850"
-        height="300"
         style={{
           position: "absolute",
-          left: 170,
-          top: 80,
-          letterSpacing: "1px",
+          left: 180,
+          top: 40,
         }}
       >
         {term}이 뭘까?

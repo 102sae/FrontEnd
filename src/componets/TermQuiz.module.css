@@ -3,20 +3,22 @@
 }
 
 .character_wrap{
-    padding-top: 10px;
-    padding-left: 2cqmax;
+    padding-top: 20px;
+    padding-left: 30px;
     position: relative; 
     z-index: 1;
-    width: 150px;
+    width: 130px;
 }
 
 .quiz_title{
-    margin: 0;
-    width: 486px;
-    height: 61px;
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.703);
+    padding: 20px;
     text-align: left;
+    line-height: normal;
     font-size: 20px;
     z-index: 1;
+    border-radius: 20px;
 }
 
 .quiz_content{

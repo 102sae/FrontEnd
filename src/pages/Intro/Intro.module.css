@@ -42,7 +42,7 @@
 
 .solBackground {
   transition: background-color 0.5  s ease;
-  background-image: url("../../assets/images/intro_bg.jpg");
+  background-image: url("../../assets/images/intro_bg.png");
 }
 
 .selectBackground{
@@ -51,7 +51,7 @@
 
 .friendsWrap {
   padding: 68px 20px;
-  width: 1024pz;
+  width: 1024px;
   display: flex;
   justify-content: space-around;
 }

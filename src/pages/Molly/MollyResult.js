@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import styles from "./LayResult.module.css"
+import styles from "./MollyResult.module.css"
 import palette from "../../styles/color";
-import LayShiny from "../../assets/images/Lay/lay_shiny.png"
-import LayThinking from "../../assets/images/Lay/lay_thinking.png"
+import MollyPot from "../../assets/images/Molly/molly_pot.png"
+import MollySad from "../../assets/images/Molly/molly_sad.png"
 import CrushBar from "../../componets/CrushBar";
 import DialogBox from "../../componets/DialogBox";
 import ReactTyped from "react-typed";
 import MenuBox from "../../componets/MenuBox";
 import { useNavigate } from "react-router-dom";
 
-const LayResult = () => {
+const MollyResult = () => {
     const navigate = useNavigate();
     const [showMenuBox, setShowMenuBox] = useState(false);
     const [showDialogBox, setShowDialogBox] = useState(true);
@@ -28,14 +28,14 @@ const LayResult = () => {
     },[]);
     
 
-    const LayResultScenario = [
+    const MollyResultScenario = [
         {
             index: 0,
             nextIndex: 1,
-            image:LayShiny,
+            image:MollyPot,
             dialog: "호감도를 다 채웠어! 짝짝짝~ \n 축하해!! 이제 나와 친구가 되었어. 너에게 줄 선물이 있어!",
-            name: "레이",
-            arrowColor: palette.ray_blue,
+            name: "몰리",
+            arrowColor: palette.molly_purple,
             menu: {
                 show: false,
               },
@@ -43,23 +43,23 @@ const LayResult = () => {
         {
             index: 1,
             nextIndex: "",
-            image:LayShiny,
+            image:MollyPot,
             dialog: "짜잔~ 지금 바로 투자하면 수수료가 면제야!\n 투자하러 가볼까?",
-            name: "레이",
-            arrowColor: palette.ray_blue,
+            name: "몰리",
+            arrowColor: palette.molly_purple,
             menu: {
                 show: true,
-                option: ["바로 투자하러 가기", "투자게임 하기"],
+                option: ["바로 투자하러 가기", "용어게임 하러가기"],
                 nextIndex: [0, 0],
               },
         },
         {
             index: 2,
             nextIndex: "",
-            image:LayThinking,
+            image:MollySad,
             dialog: "호감도 달성에 실패했어... \n 아직 준비가 더 필요해 보여",
-            name: "레이",
-            arrowColor: palette.ray_blue,
+            name: "몰리",
+            arrowColor: palette.molly_purple,
             menu: {
                 show: true,
                 option: ["다시 시도", "다른 게임하기"],
@@ -82,8 +82,8 @@ const LayResult = () => {
         setShowFullText(true);
         } else {
         setShowFullText(false);
-        if ( currentScenarioIndex < LayResultScenario.length - 1) {
-            setCurrentScenarioIndex(LayResultScenario[currentScenarioIndex].nextIndex);
+        if ( currentScenarioIndex < MollyResultScenario.length - 1) {
+            setCurrentScenarioIndex(MollyResultScenario[currentScenarioIndex].nextIndex);
         }else {
             setShowDialogBox(false); // 대화 상자 감추기
             console.log(currentScenarioIndex);
@@ -96,15 +96,15 @@ const LayResult = () => {
         console.log("Option:", option);
         console.log("Current Index:", currentIndex);
         if (option === "select1") {
-        navigate("/lay")
-        } else if (option === "select2") {
         navigate("/molly")
+        } else if (option === "select2") {
+        navigate("/lay")
         }
     };
 
     //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
     useEffect(() => {
-        if (LayResultScenario[currentScenarioIndex].menu.show) {
+        if (MollyResultScenario[currentScenarioIndex].menu.show) {
         const timeoutId = setTimeout(() => {
             setShowMenuBox(true);
         }, 2000);
@@ -118,8 +118,8 @@ const LayResult = () => {
         <div
             key={currentScenarioIndex}
             className={`${styles.root} ${
-                LayResultScenario[currentScenarioIndex].name === "레이"
-                  ? styles.layBackground
+                MollyResultScenario[currentScenarioIndex].name === "몰리"
+                  ? styles.mollyBackground
                   : ""
               }`}
         >
@@ -127,14 +127,14 @@ const LayResult = () => {
             <div
                 tabIndex={1}
                 onClick={
-                    LayResultScenario[currentScenarioIndex] &&
-                    LayResultScenario[currentScenarioIndex].menu.show
+                    MollyResultScenario[currentScenarioIndex] &&
+                    MollyResultScenario[currentScenarioIndex].menu.show
                     ? null
                     : handleDialogBoxClick
                 }
                 onKeyDown={
-                    LayResultScenario[currentScenarioIndex] &&
-                    LayResultScenario[currentScenarioIndex].menu.show
+                    MollyResultScenario[currentScenarioIndex] &&
+                    MollyResultScenario[currentScenarioIndex].menu.show
                     ? null
                     : handleKeyDown
                 }
@@ -149,24 +149,24 @@ const LayResult = () => {
               {/* 이미지 렌더링 */}
               <div className={styles.character_wrap}>
                 <img
-                  src={LayResultScenario[currentScenarioIndex].image}
+                  src={MollyResultScenario[currentScenarioIndex].image}
                   alt="Scenario"
                 />
               </div>
 
               {/* 대화 상자 렌더링 */}
               <DialogBox
-                name={LayResultScenario[currentScenarioIndex].name}
+                name={MollyResultScenario[currentScenarioIndex].name}
                 backgroundColor={palette.main_dialog}
-                arrowColor={LayResultScenario[currentScenarioIndex].arrowColor}
+                arrowColor={MollyResultScenario[currentScenarioIndex].arrowColor}
               />
               <div className={styles.dialogText}>
                 {showFullText ? (
-                  LayResultScenario[currentScenarioIndex].dialog
+                  MollyResultScenario[currentScenarioIndex].dialog
                 ) : (
                   <ReactTyped
                     key={currentScenarioIndex}
-                    strings={[LayResultScenario[currentScenarioIndex].dialog]}
+                    strings={[MollyResultScenario[currentScenarioIndex].dialog]}
                     typeSpeed={40}
                     onComplete={() => setShowFullText(true)}
                   />
@@ -178,7 +178,7 @@ const LayResult = () => {
         {/* 메뉴 박스 렌더링 */}
         {showMenuBox && (
           <MenuBox
-            select={LayResultScenario[currentScenarioIndex].menu}
+            select={MollyResultScenario[currentScenarioIndex].menu}
             onOptionClick={handleMenuOptionClick}
           />
         )}
@@ -187,4 +187,4 @@ const LayResult = () => {
     )
 }
 
-export default LayResult;
+export default MollyResult;
