@@ -1,16 +1,19 @@
 /* StockGameNews.module.css */
 .news_wrap {
-    position: absolute;
-    z-index: 1000;
-    bottom: 50px;
-    left: 485px;
-    transform: translateX(-50%);
-    animation: slide-up 1.5s ease-out forwards; /* 1.5초 동안 slide-up 애니메이션을 수행하며 ease-out easing을 사용합니다 */
+  position: absolute;
+  z-index: 100;
+  bottom: 0; /* 시작 위치는 하단에서 */
+  left: 50%;
+  transform: translateX(-50%) translateY(100%); /* translateY 변환 추가 */
+  animation: slide-up 0.5s ease-out forwards;
+  opacity: 0; /* 초기에는 투명하게 설정 */
+  background-image: url("../assets/images/StockGameNews.png");
 }
 
 @keyframes slide-up {
-    to {
-        z-index: 1000;
-        top: 50px;
-    }
+  to {
+    bottom: 20px; /* 목표 위치로 이동 (올라감) */
+    transform: translateX(-50%) translateY(0); /* translateY를 0으로 설정하여 이동 */
+    opacity: 1; /* 페이드 인 효과를 위해 투명도를 1로 설정 */
+  }
 }

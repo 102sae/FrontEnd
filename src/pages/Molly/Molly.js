@@ -10,7 +10,7 @@ import StockGameBox from "../../componets/StockGameBox";
 import { ReactComponent as HintButton } from "../../assets/images/hint_button.svg";
 import ProgressBar from "../../componets/ProgressBar";
 import TradingButton from "../../componets/TradingButton";
-import StockGameNews from "../../componets/StockGameNews";
+import StockGameNewsPaper from "../../componets/StockGameNews";
 import MollyTrading from "../../assets/images/Molly/molly_trading.png";
 import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg";
 import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg";
@@ -18,6 +18,7 @@ import BubbleYear from "../../assets/images/Bubble/bubble_year.svg";
 import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg";
 import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
 import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
+import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg";
 import StockChart from "../../componets/StockChart";
 
 const Molly = () => {
@@ -32,6 +33,12 @@ const Molly = () => {
   const [showBubbleBuy, setShowBubbleBuy] = useState(false);
   const [showBubbleStart, setShowBubbleStart] = useState(false);
   const [showStockGameNews, setShowStockGameNews] = useState(false);
+  const [startStockGame, setStartStockGame] = useState(false);
+
+  //투자 게임 시작 버튼
+  const handleStartGame = () => {
+    setStartStockGame(true);
+  };
 
   // 다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -48,7 +55,7 @@ const Molly = () => {
   };
 
   const handleHintButtonClick = () => {
-    setShowStockGameNews(true);
+    setShowStockGameNews((prev) => !prev);
   };
 
   const handleKeyDown = (e) => {
@@ -95,7 +102,7 @@ const Molly = () => {
             )}
             {showDialogBox && (
               <div>
-                <div className={styles.character_wrap}>
+                <div className={styles.characterWrap}>
                   <img
                     src={MollyScenario[currentScenarioIndex].image}
                     alt="mollyImage"
@@ -148,28 +155,27 @@ const Molly = () => {
         )}
 
         {
-          /* 투자 설명 이후 투자 게임창 */
-          !showDialogBox && (
+          /* 게임 설명 이후 투자 게임창 */
+          !showDialogBox && !startStockGame && (
             <div>
               <div className={styles.top}>
                 <div
-                  className={styles.bubble_container}
+                  className={styles.bubbleContainer}
                   onMouseEnter={() => setShowBubbleHint(true)}
                   onMouseLeave={() => setShowBubbleHint(false)}
                 >
                   <HintButton onClick={handleHintButtonClick} />
                   {showBubbleHint && (
                     <img
-                      className={styles.bubble_hint}
+                      className={styles.bubbleHint}
                       src={BubbleHint}
                       alt="BubbleHint"
                     />
                   )}
-                  {/* {showStockGameNews && <StockGameNews />} */}
                 </div>
 
                 <div
-                  className={styles.bubble_container}
+                  className={styles.bubbleContainer}
                   onMouseEnter={() => setShowBubbleProgress(true)}
                   onMouseLeave={() => setShowBubbleProgress(false)}
                 >
@@ -178,7 +184,7 @@ const Molly = () => {
                   </div>
                   {showBubbleProgress && (
                     <img
-                      className={styles.bubble_progress}
+                      className={styles.bubbleProgress}
                       src={BubbleProgress}
                       alt="BubbleProgress"
                     />
@@ -189,7 +195,7 @@ const Molly = () => {
               </div>
               <div>
                 <div
-                  className={styles.bubble_container}
+                  className={styles.bubbleContainer}
                   onMouseEnter={() => {
                     setShowBubbleYear(true);
                     setShowBubbleSell(true);
@@ -204,21 +210,21 @@ const Molly = () => {
                   <TradingButton year={2020} />
                   {showBubbleYear && (
                     <img
-                      className={styles.bubble_year}
+                      className={styles.bubbleYear}
                       src={BubbleYear}
                       alt="BubbleYear"
                     />
                   )}
                   {showBubbleSell && (
                     <img
-                      className={styles.bubble_sell}
+                      className={styles.bubbleSell}
                       src={BubbleSell}
                       alt="BubbleSell"
                     />
                   )}
                   {showBubbleBuy && (
                     <img
-                      className={styles.bubble_buy}
+                      className={styles.bubbleBuy}
                       src={BubbleBuy}
                       alt="BubbleBuy"
                     />
@@ -243,7 +249,7 @@ const Molly = () => {
                   )}
                   {/* 몰리를 클릭하면 투자 게임 시작 */}
                   <img
-                    onClick={handleDialogBoxClick}
+                    onClick={handleStartGame}
                     className={styles.mollyImg}
                     src={MollyTrading}
                     alt="MollyTrading"
@@ -257,6 +263,65 @@ const Molly = () => {
           )
         }
       </div>
+      {
+        /* 실제 투자 게임 시작 */
+        startStockGame && (
+          <div>
+            <div className={styles.top}>
+              <HintButton onClick={handleHintButtonClick} />
+              {showStockGameNews && (
+                <StockGameNewsPaper
+                  showStockGameNews={showStockGameNews}
+                  toggleStockGameNews={handleHintButtonClick}
+                />
+              )}
+              <div
+                className={styles.bubbleContainer}
+                onMouseEnter={() => setShowBubbleProgress(true)}
+                onMouseLeave={() => setShowBubbleProgress(false)}
+              >
+                <div className={styles.progressWrap}>
+                  <ProgressBar character="몰리" progressCount={0} />
+                </div>
+              </div>
+              <CrushBar />
+            </div>
+            <div>
+              <div className={styles.bubbleContainer}>
+                <TradingButton year={2020} />
+              </div>
+
+              <div
+                className={styles.mollyImgWrap}
+                onMouseEnter={() => {
+                  setShowBubbleStart(true);
+                }}
+                onMouseLeave={() => {
+                  setShowBubbleStart(false);
+                }}
+              >
+                {showBubbleStart && (
+                  <img
+                    className={styles.bubbleStartMsg}
+                    src={BubbleStartMsg}
+                    alt="BubbleStartMsg"
+                  />
+                )}
+
+                <img
+                  onClick={handleDialogBoxClick}
+                  className={styles.mollyImg}
+                  src={MollyTrading}
+                  alt="MollyTrading"
+                />
+              </div>
+
+              <StockGameBox />
+              <StockChart />
+            </div>
+          </div>
+        )
+      }
     </div>
   );
 };
