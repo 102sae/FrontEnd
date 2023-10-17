@@ -6,7 +6,7 @@ import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 import Lay from "../../assets/images/Lay/lay_default.png";
 import LaySmile from "../../assets/images/Lay/lay_smile.png";
 import Layname from "../../assets/images/Lay/lay_name.png";
@@ -54,6 +54,31 @@ function Intro() {
       setCurrentScenarioIndex(currentIndex);
       setShowMenuBox(false);
       console.log("2선택");
+    }
+  };
+
+  //게임 시작 POST API
+  const postGameStart = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // 요청 데이터 (비어있는 객체 또는 필요한 데이터를 넣을 수 있음)
+      const requestData = {};
+      const response = await axios.post(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/start",
+        requestData,
+        {
+          headers: headers,
+        }
+      );
+
+      console.log("게임 시작", response.data);
+      localStorage.setItem("nickName", response.data.data);
+    } catch (error) {
+      console.error("Error submitting answer: ", error);
     }
   };
 
@@ -167,6 +192,7 @@ function Intro() {
               <div className={styles.friendsWrap}>
                 <Link to="/lay" className={styles.link}>
                   <FriendSelectBox
+                    onClick={postGameStart()}
                     friendNameImage={Layname}
                     friendImage={Lay}
                     hoverFriendImage={LaySmile}

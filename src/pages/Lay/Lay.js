@@ -22,6 +22,7 @@ import LayResult from "./LayResult";
 
 const Lay = () => {
   const navigate = useNavigate();
+  const nickName = localStorage.getItem("nickName");
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
@@ -41,8 +42,7 @@ const Lay = () => {
       index: 0,
       nextIndex: 1,
       image: LaySmile,
-      dialog:
-        "날 선택해줘서 고마워~ㅇㅇ아~\n 우리 같이 용어 공부 열심히 해보자!!",
+      dialog: `날 선택해줘서 고마워~${nickName}아~\n 우리 같이 용어 공부 열심히 해보자!!`,
       name: "레이",
       arrowColor: palette.ray_blue,
       menu: {
@@ -100,7 +100,7 @@ const Lay = () => {
       index: 4,
       nextIndex: 6,
       image: LayShiny,
-      dialog: `우와~ OO아 너 정말 똑똑하다~ 고마워~`,
+      dialog: `우와~ ${nickName}아 너 정말 똑똑하다~ 고마워~`,
       name: "레이",
       arrowColor: palette.ray_blue,
       menu: {
@@ -295,7 +295,7 @@ const Lay = () => {
       setProgressCount((prev) => prev + 1);
       //10단계 끝나면 레이 결과창으로 이동
       if (progressCount == 10) {
-        navigate("/lay-result")
+        navigate("/lay-result");
       }
     }
   }, [currentScenarioIndex]);
