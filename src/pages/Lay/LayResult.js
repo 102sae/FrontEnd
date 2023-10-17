@@ -7,12 +7,15 @@ import CrushBar from "../../componets/CrushBar";
 import DialogBox from "../../componets/DialogBox";
 import ReactTyped from "react-typed";
 import MenuBox from "../../componets/MenuBox";
+import { useNavigate } from "react-router-dom";
 
 const LayResult = () => {
+    const navigate = useNavigate();
     const [showMenuBox, setShowMenuBox] = useState(false);
     const [showDialogBox, setShowDialogBox] = useState(true);
     const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
     const [showFullText, setShowFullText] = useState(false);
+    
 
     const result = localStorage.getItem("crushPercent");
 
@@ -38,7 +41,7 @@ const LayResult = () => {
             menu: {
                 show: true,
                 option: ["바로 투자하러 가기", "투자게임 하기"],
-                nextIndex: [3, 3], //신한알파, 투자게임 연결
+                nextIndex: [0, 0],
               },
         },
         {
@@ -51,7 +54,7 @@ const LayResult = () => {
             menu: {
                 show: true,
                 option: ["다시 시도", "다른 게임하기"],
-                nextIndex: [3, 3], //용어게임, 투자게임 연결
+                nextIndex: [0, 0],
             }
         },
     ];
@@ -80,12 +83,12 @@ const LayResult = () => {
 
     //메뉴 클릭하기
     const handleMenuOptionClick = (option, currentIndex) => {
+        console.log("Option:", option);
+        console.log("Current Index:", currentIndex);
         if (option === "select1") {
-        setCurrentScenarioIndex(currentIndex);
-        setShowMenuBox(false);
+        navigate("/lay")
         } else if (option === "select2") {
-        setCurrentScenarioIndex(currentIndex);
-        setShowMenuBox(false);
+        navigate("/molly")
         }
     };
 
