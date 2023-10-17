@@ -17,16 +17,19 @@ import TermQuiz from "../../componets/TermQuiz";
 import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
 import SolutionBackground from "../../assets/images/sol_solution_bg.png";
+import { useNavigate } from "react-router-dom";
+import LayResult from "./LayResult";
 
 const Lay = () => {
+  const navigate = useNavigate();
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
   const [showFullText, setShowFullText] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showLayCrush, setShowLayCrush] = useState(false);
-  const [apiTermData, setApiTermData] = useState(0); //용어 확인 api
-  const [apiSolData, setApiSolData] = useState(0); //해설 api
+  const [apiTermData, setApiTermData] = useState(0); //용어게임문제 api
+  const [apiSolData, setApiSolData] = useState(0); //정답확인 api
   const [progressCount, setProgressCount] = useState(0);
   const [layCrushInfo, setLayCrushInfo] = useState({
     correct: null,
@@ -165,7 +168,7 @@ const Lay = () => {
     },
     {
       index: 9,
-      nextIndex: 10,
+      nextIndex: 6,
       image: LayThinking,
       dialog: `${apiTermData.term}은 무엇인지 맞춰봐!`,
       name: "레이",
@@ -287,8 +290,13 @@ const Lay = () => {
 
   //프로그레스바 상승
   useEffect(() => {
-    if (currentScenarioIndex === 8) {
+    if (currentScenarioIndex === 3 || currentScenarioIndex === 9) {
+      console.log("프로그레스바 단계", progressCount);
       setProgressCount((prev) => prev + 1);
+      //10단계 끝나면 레이 결과창으로 이동
+      if (progressCount == 10) {
+        navigate("/lay-result")
+      }
     }
   }, [currentScenarioIndex]);
 
