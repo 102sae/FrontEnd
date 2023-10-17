@@ -3,10 +3,6 @@
   height: 767px;
   margin: 20px auto;
   position: relative;
-  background-image: url("../../assets/images/stars.png");
-  background-repeat: repeat;
-  animation: backgroundMove 10s linear infinite;
-  transition: background-color 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -78,9 +74,10 @@
 }
 
 .layBackground {
+  transition: background-color 0.5 s ease;
   background-color: var(--lay_yellow);
-  transition: background-color 1s ease;
-  /* animation: fadeIn 1s ease; */
+  background-image: url("../../assets/images/lay_bg.png");
+  background-size: cover;
 }
 
 .solutionApiText {
