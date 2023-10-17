@@ -20,8 +20,10 @@ import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
 import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
 import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg";
 import StockChart from "../../componets/StockChart";
+import { useNavigate } from "react-router-dom";
 
 const Molly = () => {
+  const navigate = useNavigate();
   //시나리오 파일 가져오기
   const MollyScenario = MollyScenarioIntro();
 
@@ -79,6 +81,11 @@ const Molly = () => {
     if (option === "select1") {
       setCurrentScenarioIndex(currentIndex);
       setShowMenuBox(false);
+
+      if (currentIndex === 2) {
+        navigate("/lay");
+      }
+
       console.log("1선택");
     } else if (option === "select2") {
       setCurrentScenarioIndex(currentIndex);
@@ -111,7 +118,6 @@ const Molly = () => {
             )}
             {showDialogBox && (
               <div>
-                {console.log(MollyScenario)}
                 <div className={styles.characterWrap}>
                   <img
                     src={MollyScenario[currentScenarioIndex].image}

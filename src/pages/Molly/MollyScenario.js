@@ -70,7 +70,7 @@ const MollyScenario = () => {
       menu: {
         show: true,
         option: ["용어 공부를 하고 올게", "가보자고~"],
-        nextIndex: [2, 2],
+        nextIndex: [0, 2],
       },
     },
     {
