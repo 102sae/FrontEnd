@@ -34,14 +34,12 @@
   align-items: center;
   justify-content: center;
   justify-content: space-around;
-}
-
-.bubble_container {
   margin-left: 35px;
 }
 
 .progressWrap {
   width: 630px;
+  padding-left: 10px;
 }
 
 .content {
@@ -49,13 +47,13 @@
   height: 767px;
 }
 
-.character_wrap {
+.characterWrap {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.character_wrap img {
+.characterWrap img {
   width: 360px;
 }
 
@@ -74,41 +72,41 @@
   z-index: 100;
 }
 
-.bubble_container {
+.bubbleContainer {
   position: relative;
   cursor: pointer;
   z-index: 2;
 }
 
-.bubble_hint {
+.bubbleHint {
   position: absolute;
   top: 70px;
   left: -20px;
   z-index: 2;
 }
 
-.bubble_progress {
+.bubbleProgress {
   position: absolute;
   top: 110px;
   left: 200px;
   z-index: 2;
 }
 
-.bubble_year {
+.bubbleYear {
   position: absolute;
   top: 50px;
   left: 480px;
   z-index: 2;
 }
 
-.bubble_buy {
+.bubbleBuy {
   position: absolute;
   top: 330px;
   left: 0px;
   z-index: 2;
 }
 
-.bubble_sell {
+.bubbleSell {
   position: absolute;
   top: 330px;
   left: 560px;
@@ -123,8 +121,16 @@
 }
 
 .mollyImg {
+  width: 200px;
   position: absolute;
   bottom: 10px;
-  right: -15px;
+  right: 10px;
   z-index: 1;
+}
+
+.bubbleStartMsg {
+  position: absolute;
+  bottom: 220px;
+  right: 120px;
+  z-index: 5;
 }
