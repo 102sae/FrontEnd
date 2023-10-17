@@ -10,7 +10,7 @@ const Login = ({ toggleForm, onLogin }) => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
-
+  const [successLogin, setSuccessLogin] = useState(true);
   // nickname input 값 변경 시 실행되는 함수
   const handleNickNameChange = (event) => {
     setNickname(event.target.value);
@@ -26,7 +26,7 @@ const Login = ({ toggleForm, onLogin }) => {
 
     try {
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/login",
+        "/api/member/login",
         {
           nickName: nickname,
           password: password,
@@ -49,6 +49,7 @@ const Login = ({ toggleForm, onLogin }) => {
       navigate("/intro");
     } catch (error) {
       // 로그인 실패 처리
+      setSuccessLogin(false);
       console.error("로그인 실패:", error.response.data.reason);
     }
   };
@@ -91,6 +92,11 @@ const Login = ({ toggleForm, onLogin }) => {
           <button className={styles.button} type="submit">
             로그인
           </button>
+          {successLogin ? null : (
+            <p className={styles.loginError}>
+              아이디와 비밀번호를 다시 확인해주세요.
+            </p>
+          )}
         </form>
 
         <p>

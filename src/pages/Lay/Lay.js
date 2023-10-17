@@ -223,8 +223,9 @@ const Lay = () => {
       };
       const response = await axios.get(
         "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions",
-        { 
-          headers }
+        {
+          headers,
+        }
       );
 
       console.log(response.data);
@@ -243,13 +244,14 @@ const Lay = () => {
         Authorization: `Bearer ${token}`,
       };
 
-      const response = await axios.get(`http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`, 
-      {
-        headers,
-      });
+      const response = await axios.get(
+        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`,
+        {
+          headers,
+        }
+      );
       console.log(response.data.data);
       setApiSolData(response.data.data);
-
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
@@ -263,7 +265,6 @@ const Lay = () => {
   }, [currentScenarioIndex]);
 
   const handleQuizFinish = (quizResult) => {
-
     const termId = quizResult.termId;
     const correct = quizResult.userCorrect;
     const point = quizResult.userPoint;
@@ -292,7 +293,7 @@ const Lay = () => {
 
   useEffect(() => {
     getData();
-  },[]);
+  }, []);
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
