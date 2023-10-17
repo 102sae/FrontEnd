@@ -9,12 +9,15 @@ const TradingButton = ({ onBuyClick, onSellClick, year }) => {
       {/* 매수 & 매도 버튼 */}
       <div className={styles.button_wrap}>
         {/* 매수 */}
-        <button className={styles.button_buy} onClick={onBuyClick}>
+        <button className={styles.button_buy} onClick={() => onBuyClick(year)}>
           매수
         </button>
 
         {/* 매도 */}
-        <button className={styles.button_sell} onClick={onSellClick}>
+        <button
+          className={styles.button_sell}
+          onClick={() => onSellClick(year)}
+        >
           매도
         </button>
       </div>

@@ -27,6 +27,7 @@
 .introHeader {
   display: flex;
   justify-content: flex-end;
+  margin-top: -10px;
 }
 
 .top {
@@ -35,6 +36,7 @@
   justify-content: center;
   justify-content: space-around;
   margin-left: 35px;
+  margin-top: -10px;
 }
 
 .progressWrap {
@@ -70,6 +72,12 @@
   letter-spacing: 2px;
   line-height: 1.5;
   z-index: 100;
+}
+
+.progressWrap {
+  position: relative;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .bubbleContainer {

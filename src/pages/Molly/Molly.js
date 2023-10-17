@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Molly.module.css";
-import MollyScenario from "./MollyScenario";
+import axios from "axios";
+import MollyScenarioIntro from "./MollyScenario";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import ReactTyped from "react-typed";
@@ -20,8 +21,13 @@ import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
 import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
 import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg";
 import StockChart from "../../componets/StockChart";
+import { useNavigate } from "react-router-dom";
 
 const Molly = () => {
+  const navigate = useNavigate();
+  //시나리오 파일 가져오기
+  const MollyScenario = MollyScenarioIntro();
+
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
@@ -35,15 +41,112 @@ const Molly = () => {
   const [showStockGameNews, setShowStockGameNews] = useState(false);
   const [startStockGame, setStartStockGame] = useState(false);
   const [stockGameCount, setStockGameCount] = useState(0);
+  const [stockGameYear, setStockGameYear] = useState(2018);
+  const [chartData, setChartData] = useState({
+    id: 1,
+    year: 2019,
+    price: [56000, 56100, 57000, 56500],
+    date: ["2019-01-01", "2019-01-02", "2019-01-03", "2019-01-04"],
+  });
+
+  const [buySellApiData, setBuySellApiData] = useState({
+    id: 0,
+    stockRate: 19.23,
+    answer: false,
+    point: -10,
+  });
+
+  //투자 게임 시작 API 호출
+  const postGameStart = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // 요청 데이터
+      const requestData = {};
+      const response = await axios.post(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/start",
+        requestData,
+        {
+          headers: headers,
+        }
+      );
+
+      console.log("투자 게임 시작", response.data);
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  };
 
   //투자 게임 시작 버튼
   const handleStartGame = () => {
     setStartStockGame(true);
+    //postGameStart();
+  };
+
+  //매수 버튼 클릭
+  const onBuyClick = (currentYear) => {
+    console.log("매수 버튼 클릭");
+    handleGameCount();
+    console.log(currentYear);
+    //postBuySell(currentYear,"BUY");
+  };
+
+  //매도 버튼 클릭
+  const onSellClick = (currentYear) => {
+    console.log("매도 버튼 클릭");
+    handleGameCount();
+    console.log(currentYear);
+    //postBuySell(currentYear,"SELL");
+    //getChartData(currentYear);
   };
 
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
   const handleGameCount = () => {
     setStockGameCount((prev) => prev + 1);
+  };
+
+  //매수&매도 API 연결
+  const postBuySell = async (currentYear, userAnswer) => {
+    console.log("연도 ", currentYear);
+    console.log("BUY or SELL", userAnswer);
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.post(
+        `매수매도API`,
+        {
+          year: currentYear,
+          userAnswerId: userAnswer,
+        },
+        {
+          headers: headers,
+        }
+      );
+      console.log("매수&매도 POST API", response.data);
+      setBuySellApiData(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  };
+
+  //차트 데이터 API
+  const getChartData = async (currentYear) => {
+    try {
+      const response = await axios.get("차트 데이터 API", {
+        params: {
+          year: currentYear,
+        },
+      });
+      console.log("차트 데이터 API", response.data);
+    } catch (error) {
+      console.error("Error : ", error);
+    }
   };
 
   // 다음 대화로 넘기기
@@ -60,6 +163,7 @@ const Molly = () => {
     }
   };
 
+  //뉴스 보는 버튼
   const handleHintButtonClick = () => {
     setShowStockGameNews((prev) => !prev);
   };
@@ -72,10 +176,16 @@ const Molly = () => {
     console.log(e.key);
   };
 
+  // 메뉴 선택창
   const handleMenuOptionClick = (option, currentIndex) => {
     if (option === "select1") {
+      if (MollyScenario[currentIndex].menu.navigate) {
+        console.log(MollyScenario[currentIndex].dialog);
+        navigate("/lay");
+      }
       setCurrentScenarioIndex(currentIndex);
       setShowMenuBox(false);
+
       console.log("1선택");
     } else if (option === "select2") {
       setCurrentScenarioIndex(currentIndex);
@@ -261,8 +371,9 @@ const Molly = () => {
                     alt="MollyTrading"
                   />
                 </div>
-
+                {/* 게임 배경 */}
                 <StockGameBox />
+                {/* 주가 차트 */}
                 <StockChart />
               </div>
             </div>
@@ -273,8 +384,10 @@ const Molly = () => {
         /* 실제 투자 게임 시작 */
         startStockGame && (
           <div>
+            {/* 헤더  */}
             <div className={styles.top}>
               <HintButton onClick={handleHintButtonClick} />
+              {/* 뉴스 버튼이 눌리면 뉴스 기사 나타남 */}
               {showStockGameNews && (
                 <StockGameNewsPaper
                   year={2021}
@@ -282,23 +395,23 @@ const Molly = () => {
                   toggleStockGameNews={handleHintButtonClick}
                 />
               )}
-              <div
-                className={styles.bubbleContainer}
-                onMouseEnter={() => setShowBubbleProgress(true)}
-                onMouseLeave={() => setShowBubbleProgress(false)}
-              >
-                <div className={styles.progressWrap}>
-                  <ProgressBar
-                    character="몰리"
-                    progressCount={stockGameCount}
-                  />
-                </div>
+              {/* 프로그레스바 */}
+              <div className={styles.progressWrap}>
+                <ProgressBar character="몰리" progressCount={stockGameCount} />
               </div>
+              {/* 호감도 바 */}
               <CrushBar />
             </div>
+
+            {/* 투자 게임 화면 */}
             <div>
+              {/* 현재 연도 */}
               <div className={styles.bubbleContainer}>
-                <TradingButton year={2020} />
+                <TradingButton
+                  onBuyClick={onBuyClick}
+                  onSellClick={onSellClick}
+                  year={2020}
+                />
               </div>
 
               <div
@@ -310,6 +423,7 @@ const Molly = () => {
                   setShowBubbleStart(false);
                 }}
               >
+                {/* 게임이 시작되고 마우스가 올라가면 몰리의 말풍선 보여주기*/}
                 {showBubbleStart && (
                   <img
                     className={styles.bubbleStartMsg}
@@ -319,15 +433,16 @@ const Molly = () => {
                 )}
 
                 <img
-                  onClick={handleDialogBoxClick}
                   className={styles.mollyImg}
                   src={MollyTrading}
                   alt="MollyTrading"
                 />
               </div>
 
+              {/* 게임 배경 */}
               <StockGameBox />
-              <StockChart />
+              {/* 주가 차트 */}
+              <StockChart chartData={chartData} />
             </div>
           </div>
         )
