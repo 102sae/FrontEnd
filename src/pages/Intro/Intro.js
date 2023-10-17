@@ -78,6 +78,7 @@ function Intro() {
       );
 
       console.log("게임 시작", response.data);
+      localStorage.setItem("crushPercent", 50);
     } catch (error) {
       console.error("Error submitting answer: ", error);
     }
