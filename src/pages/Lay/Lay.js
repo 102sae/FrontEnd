@@ -295,7 +295,7 @@ const Lay = () => {
       setProgressCount((prev) => prev + 1);
       //10단계 끝나면 레이 결과창으로 이동
       if (progressCount == 10) {
-        navigate("/lay-result")
+        navigate("/lay-result");
       }
     }
   }, [currentScenarioIndex]);
@@ -395,7 +395,6 @@ const Lay = () => {
         {showQuiz && (
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
-
             <TermQuiz
               id={apiTermData.id} //용어 문제 번호
               term={apiTermData.term} //용어

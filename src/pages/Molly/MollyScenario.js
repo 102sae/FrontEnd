@@ -7,12 +7,18 @@ const MollyScenario = () => {
   const [companyApiData, setCompanyApiData] = useState({
     companyName: "S전자",
     companyInfo: "시가 총액도 높고 거래가 활발히 일어나는 주식인데",
+    startYear: "2018",
+    endYear: "2022",
   });
+
+  localStorage.setItem("startYear", companyApiData.startYear);
 
   const getCompanyInfo = async () => {
     try {
-      const response = await axios.get("api 링크");
-      console.log("용어게임 문제 API", response.data);
+      const response = await axios.get(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/question"
+      );
+      console.log("회사 정보 API", response.data);
       setCompanyApiData(response.data);
     } catch (error) {
       console.error("Error fetching data from API: ", error);
@@ -69,8 +75,9 @@ const MollyScenario = () => {
       arrowColor: palette.molly_purple,
       menu: {
         show: true,
+        navigate: true,
         option: ["용어 공부를 하고 올게", "가보자고~"],
-        nextIndex: [0, 2],
+        nextIndex: [3, 2],
       },
     },
     {
@@ -88,8 +95,7 @@ const MollyScenario = () => {
       index: 5,
       nextIndex: 6,
       image: MollyHi,
-      dialog:
-        "2018년부터 2022년까지의 S회사의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!",
+      dialog: `${companyApiData.startYear}년부터 ${companyApiData.endYear}년까지의 S회사의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!`,
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {

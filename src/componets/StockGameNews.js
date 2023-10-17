@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./StockGameNews.module.css";
 import StockGameNews from "../assets/images/StockGameNews.png";
-import NewsScenario from "../pages/Molly/NewsScenario";
+import NewsScenarioData from "../pages/Molly/NewsScenario";
 
 const StockGameNewsPaper = ({
   year,
@@ -11,6 +11,8 @@ const StockGameNewsPaper = ({
   const handleImageClick = () => {
     toggleStockGameNews(!showStockGameNews);
   };
+
+  const NewsScenario = NewsScenarioData();
 
   return showStockGameNews ? (
     <div className={styles.newsWrap} onClick={handleImageClick}>
