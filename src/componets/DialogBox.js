@@ -52,23 +52,6 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
         </text>
       </svg>
 
-      {/* 대화 내용 */}
-      <foreignObject x="150" y="80" width="850" height="300">
-        <div
-          xmlns="http://www.w3.org/1999/xhtml"
-          className={styles.dialogText}
-          style={{
-            whiteSpace: "pre-wrap",
-            fontSize: "32px",
-            color: palette.black,
-            textAlign: "center",
-            letterSpacing: "2px",
-            lineHeight: "1.5",
-          }}
-        >
-          {dialog}
-        </div>
-      </foreignObject>
 
       {/* 화살표 */}
       <svg

@@ -167,7 +167,7 @@ const Lay = () => {
       index: 9,
       nextIndex: 10,
       image: LayThinking,
-      dialog: `${apiTermData.term}은 뭔지 알아? \n ${apiTermData.term}이 뭔지 나에게 알려줄래?`,
+      dialog: `${apiTermData.term}은 무엇인지 맞춰봐!`,
       name: "레이",
       arrowColor: palette.ray_blue,
       menu: {
@@ -229,7 +229,7 @@ const Lay = () => {
         { 
           headers }
       );
-      console.log(response.data);
+      console.log("용어게임 문제 API", response.data);
       setApiTermData(response.data.data);
     } 
     catch (error) {
@@ -248,7 +248,7 @@ const Lay = () => {
       {
         headers,
       });
-      console.log(response.data.data);
+      console.log("용어게임 해설 API", response.data.data);
       setApiSolData(response.data.data);
     } 
     catch (error) {
@@ -274,13 +274,13 @@ const Lay = () => {
       setShowLayCrush(true);
       const timeoutId = setTimeout(() => {
         setShowLayCrush(false);
-      }, 1000);
+      }, 5000);
     } else {
       setCurrentScenarioIndex(5);
       setShowLayCrush(true);
       const timeoutId = setTimeout(() => {
         setShowLayCrush(false);
-      }, 1000);
+      }, 5000);
     }
   };
 
@@ -293,9 +293,12 @@ const Lay = () => {
   }, [currentScenarioIndex]);
 
 
+  //용어 게임 문제 API 호출
   useEffect(() => {
-    getData();
-  },[]);
+    if (currentScenarioIndex === 3 || currentScenarioIndex === 9) {
+      getData();
+    }
+  }, [currentScenarioIndex]);
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {

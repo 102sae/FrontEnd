@@ -6,7 +6,6 @@ import styles from "./TermQuiz.module.css";
 import LayThinking from "../assets/images/Lay/lay_thinking.svg";
 
 const TermQuiz = ({ id, term, items, onQuizFinish }) => {
-  const [apiCorrectData, setApiCorrectData] = useState(null); //정답 확인 api
   // const [termId, setTermId] = useState(0);
   const [userAnswerId, setUserAnswerId] = useState(null);
   const [answerId, setAnswerId] = useState(null);
@@ -14,27 +13,6 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   // const [userPoint, setUserPoint] = useState(null);
   // let isCorrectAnswer = false;
 
-  const onClickAnswer = async (index) => {
-    console.log("유저 선택 userAnswerId", index);
-    console.log("정답 확인 POST API", id);
-    await postData(id, index); // postData 함수가 완료될 때까지 기다립니다.
-    // isCorrectAnswer = userAnswerId === answerId;
-    setTimeout(() => {
-      const quizResult = {
-        userCorrect: apiCorrectData?.correct, // 선택적 체이닝을 사용하여 안전하게 접근합니다.
-        userPoint: apiCorrectData?.point, // 선택적 체이닝을 사용하여 안전하게 접근합니다.
-        userAnswerId: index,
-        termId: id,
-      };
-      // 호감도 변화
-      const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
-      localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + quizResult?.userPoint))); // 선택적 체이닝을 사용하여 안전하게 접근합니다.
-      console.log("quizResult", quizResult);
-      onQuizFinish(quizResult);
-    }, 1000);
-};
-
-  
   const quizItems = [
     {
       id:  items[0].id,
@@ -52,6 +30,37 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
       position: { top: 572, left: 107.5 },
     },
   ];
+
+  const onClickAnswer = async (index) => {
+    console.log("유저 선택 userAnswerId", index);
+    console.log("정답 확인 POST API", id);
+
+    const apiCorrectResponse = await postData(id, index); // postData 함수가 완료될 때까지 기다립니다.
+    // isCorrectAnswer = userAnswerId === answerId;
+
+    console.log("정답 확인 POST API", apiCorrectResponse);
+  
+    setTimeout(() => {
+      const quizResult = {
+        userCorrect: apiCorrectResponse.correct,
+        userPoint: apiCorrectResponse.point,
+        userAnswerId: index,
+        termId: id,
+      };
+      
+      // 호감도 변화
+      const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
+      console.log("기존 호감도: ",storedCrushPercent)
+      console.log("변화한 호감도: ", storedCrushPercent + quizResult.userPoint)
+      localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + quizResult.userPoint))); 
+
+      console.log("quizResult", quizResult);
+      onQuizFinish(quizResult);
+    }, 1000);
+};
+
+  
+  
 
   //정답 확인 POST API
   const postData = async (currentId, userSelectAnswer) => {
@@ -71,9 +80,8 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
                 headers: headers,
             }
         );
-        console.log("정답 확인 POST API 결과 데이터", response.data);
-        setApiCorrectData(response.data.data);
-        onQuizFinish();
+        console.log("정답 확인 POST API", response.data);
+        return response.data.data;
     } catch (error) {
         console.error("Error submitting answer: ", error);
     }
