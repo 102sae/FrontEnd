@@ -1,6 +1,5 @@
 import palette from "../../styles/color";
 import MollyHi from "../../assets/images/Molly/molly_hi.png";
-import MollyPot from "../../assets/images/Molly/molly_pot.png";
 import MollyTrading1 from "../../assets/images/Molly/molly_trading1.png";
 
 const introScenario = [
