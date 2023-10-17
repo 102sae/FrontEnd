@@ -2,26 +2,26 @@
 .newsWrap {
   position: absolute;
   z-index: 100;
-  bottom: 0; /* 시작 위치는 하단에서 */
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%) translateY(100%); /* translateY 변환 추가 */
+  transform: translateX(-50%) translateY(100%);
   animation: slide-up 0.5s ease-out forwards;
-  opacity: 0; /* 초기에는 투명하게 설정 */
+  opacity: 0;
 }
 
 @keyframes slide-up {
   to {
-    bottom: 20px; /* 목표 위치로 이동 (올라감) */
-    transform: translateX(-50%) translateY(0); /* translateY를 0으로 설정하여 이동 */
-    opacity: 1; /* 페이드 인 효과를 위해 투명도를 1로 설정 */
+    bottom: 20px;
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes slide-up-title {
   to {
-    top: 160px; /* 목표 위치로 이동 (올라감) */
-    transform: translateX(-50%) translateY(0); /* translateY를 0으로 설정하여 이동 */
-    opacity: 1; /* 페이드 인 효과를 위해 투명도를 1로 설정 */
+    top: 160px;
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
   }
 }
 
@@ -55,12 +55,5 @@
 .newsYear {
   font-size: 16px;
   font-family: Fira Sans;
-  font-style: normal;
-  font-weight: 700;
-  color: gray;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(100%);
-  animation: slide-up-year 0.5s ease-out forwards;
-  opacity: 0;
+  padding: 0px 20px;
 }

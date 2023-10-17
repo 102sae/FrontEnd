@@ -40,8 +40,12 @@ const Molly = () => {
   const [showBubbleStart, setShowBubbleStart] = useState(false);
   const [showStockGameNews, setShowStockGameNews] = useState(false);
   const [startStockGame, setStartStockGame] = useState(false);
-  const [stockGameCount, setStockGameCount] = useState(0);
+  const [stockGameCount, setStockGameCount] = useState(0); //프로그레스바
   const [stockGameYear, setStockGameYear] = useState(2018);
+  const [crushPercent, setCrushPercent] = useState(
+    parseInt(localStorage.getItem("crushPercent"))
+  );
+
   const [chartData, setChartData] = useState({
     id: 1,
     year: 2019,
@@ -53,7 +57,7 @@ const Molly = () => {
     id: 0,
     stockRate: 19.23,
     answer: false,
-    point: -10,
+    point: 10,
   });
 
   //투자 게임 시작 API 호출
@@ -92,6 +96,8 @@ const Molly = () => {
     handleGameCount();
     console.log(currentYear);
     //postBuySell(currentYear,"BUY");
+    //getChartData(currentYear);
+    handleCrushPercent();
   };
 
   //매도 버튼 클릭
@@ -101,11 +107,24 @@ const Molly = () => {
     console.log(currentYear);
     //postBuySell(currentYear,"SELL");
     //getChartData(currentYear);
+    handleCrushPercent();
   };
 
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
   const handleGameCount = () => {
     setStockGameCount((prev) => prev + 1);
+    setStockGameYear((prev) => prev + 1);
+  };
+
+  //호감도 변경
+  const handleCrushPercent = () => {
+    console.log("기존 호감도: ", crushPercent);
+    setCrushPercent(crushPercent + buySellApiData.point);
+    console.log("변화한 호감도: ", crushPercent);
+    localStorage.setItem(
+      "crushPercent",
+      Math.min(100, Math.max(0, crushPercent))
+    );
   };
 
   //매수&매도 API 연결
@@ -204,6 +223,13 @@ const Molly = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [currentScenarioIndex]);
+
+  //프로그레스바 상승
+  useEffect(() => {
+    if (stockGameCount === 5) {
+      navigate("/molly-result");
+    }
+  }, [stockGameCount]);
 
   return (
     <div className={styles.root}>
@@ -323,7 +349,7 @@ const Molly = () => {
                     setShowBubbleBuy(false);
                   }}
                 >
-                  <TradingButton year={2020} />
+                  <TradingButton year={2020} startStockGame={startStockGame} />
                   {showBubbleYear && (
                     <img
                       className={styles.bubbleYear}
@@ -390,7 +416,7 @@ const Molly = () => {
               {/* 뉴스 버튼이 눌리면 뉴스 기사 나타남 */}
               {showStockGameNews && (
                 <StockGameNewsPaper
-                  year={2021}
+                  year={stockGameYear}
                   showStockGameNews={showStockGameNews}
                   toggleStockGameNews={handleHintButtonClick}
                 />
@@ -410,7 +436,8 @@ const Molly = () => {
                 <TradingButton
                   onBuyClick={onBuyClick}
                   onSellClick={onSellClick}
-                  year={2020}
+                  year={stockGameYear}
+                  startStockGame={startStockGame}
                 />
               </div>
 
