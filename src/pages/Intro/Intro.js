@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import "../../styles/reset.css";
 import "../../styles/global.css";
 import styles from "./Intro.module.css";
@@ -20,7 +19,6 @@ import ReactTyped from "react-typed";
 import introScenario from "./IntroScenario";
 
 function Intro() {
-  
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
   const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
@@ -30,22 +28,22 @@ function Intro() {
   const handleDialogBoxClick = () => {
     if (!showFullText) {
       setShowFullText(true);
-  } else {
+    } else {
       setShowFullText(false);
       if (currentScenarioIndex < introScenario.length - 1) {
-          setCurrentScenarioIndex(introScenario[currentScenarioIndex].nextIndex);
+        setCurrentScenarioIndex(introScenario[currentScenarioIndex].nextIndex);
       } else if (currentScenarioIndex === introScenario.length - 1) {
-          setShowDialogBox(false);
+        setShowDialogBox(false);
       }
-  }
+    }
   };
 
   const handleKeyDown = (e) => {
-    if(e.key === "Enter" || e.key === " "){
-      handleDialogBoxClick(); 
+    if (e.key === "Enter" || e.key === " ") {
+      handleDialogBoxClick();
     }
     console.log(e.key);
-  }
+  };
 
   const handleMenuOptionClick = (option, currentIndex) => {
     if (option === "select1") {
@@ -58,31 +56,7 @@ function Intro() {
       console.log("2선택");
     }
   };
-  
-  //게임 시작 POST API
-  const postGameStart = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-  
-      // 요청 데이터 (비어있는 객체 또는 필요한 데이터를 넣을 수 있음)
-      const requestData = {}; 
-      const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/start",
-        requestData,
-        {
-          headers: headers,
-        }
-      );
-  
-      console.log("게임 시작", response.data);
-    } catch (error) {
-      console.error("Error submitting answer: ", error);
-    }
-  };
-  
+
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
     if (introScenario[currentScenarioIndex].menu.show) {
@@ -97,7 +71,7 @@ function Intro() {
   return (
     <div
       className={`${styles.root} ${
-        introScenario[currentScenarioIndex].name !== "??" 
+        introScenario[currentScenarioIndex].name !== "??"
           ? styles.solBackground
           : ""
       }`}
@@ -105,35 +79,35 @@ function Intro() {
       <div className={styles.dialogContainer}>
         {introScenario[currentScenarioIndex].name === "??" ? (
           //쏠 등장 전
-          <div 
-          tabIndex={1}
-          className={styles.DialogBoxWrap} onClick={handleDialogBoxClick}
-          onKeyDown={handleKeyDown}>
+          <div
+            tabIndex={1}
+            className={styles.DialogBoxWrap}
+            onClick={handleDialogBoxClick}
+            onKeyDown={handleKeyDown}
+          >
             <DialogBox
               name={introScenario[currentScenarioIndex].name}
               backgroundColor={palette.main_dialog}
               arrowColor={palette.sol_text}
             />
             <div className={styles.dialogText}>
-            {showFullText 
-            ? (
-                  introScenario[currentScenarioIndex].dialog
+              {showFullText ? (
+                introScenario[currentScenarioIndex].dialog
               ) : (
-                  <ReactTyped
-                    key={currentScenarioIndex}
-                    strings={[introScenario[currentScenarioIndex].dialog]}
-                    typeSpeed={50}
-                    onComplete={() => setShowFullText(true)} 
-                     />
-                  )
-            }
+                <ReactTyped
+                  key={currentScenarioIndex}
+                  strings={[introScenario[currentScenarioIndex].dialog]}
+                  typeSpeed={50}
+                  onComplete={() => setShowFullText(true)}
+                />
+              )}
             </div>
           </div>
         ) : (
           //쏠이 등장 이후
 
           <div
-          tabIndex={1}
+            tabIndex={1}
             className={styles.characterWrap}
             onClick={
               introScenario[currentScenarioIndex] &&
@@ -147,7 +121,6 @@ function Intro() {
                 ? null
                 : handleKeyDown
             }
-
           >
             {showDialogBox && (
               <div>
@@ -164,18 +137,16 @@ function Intro() {
                   arrowColor={introScenario[currentScenarioIndex].arrowColor}
                 />
                 <div className={styles.dialogText}>
-              {showFullText 
-                ? (
-                  introScenario[currentScenarioIndex].dialog
-                ) : (
-                  <ReactTyped
-                    key={currentScenarioIndex}
-                    strings={[introScenario[currentScenarioIndex].dialog]}
-                    typeSpeed={50}
-                    onComplete={() => setShowFullText(true)} 
-                   />
-                  )
-            }
+                  {showFullText ? (
+                    introScenario[currentScenarioIndex].dialog
+                  ) : (
+                    <ReactTyped
+                      key={currentScenarioIndex}
+                      strings={[introScenario[currentScenarioIndex].dialog]}
+                      typeSpeed={50}
+                      onComplete={() => setShowFullText(true)}
+                    />
+                  )}
                 </div>
               </div>
             )}
@@ -189,15 +160,13 @@ function Intro() {
           />
         )}
 
-
         {
           /* 마지막 시나리오 후 프렌즈 선택창 */
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-                <Link to="/lay"  className={styles.link}>
+                <Link to="/lay" className={styles.link}>
                   <FriendSelectBox
-                  onClick={postGameStart()}
                     friendNameImage={Layname}
                     friendImage={Lay}
                     hoverFriendImage={LaySmile}
@@ -222,5 +191,4 @@ function Intro() {
     </div>
   );
 }
-
 export default Intro;

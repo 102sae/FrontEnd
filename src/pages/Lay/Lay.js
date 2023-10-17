@@ -395,7 +395,6 @@ const Lay = () => {
         {showQuiz && (
           <div className={styles.top}>
             {/* 퀴즈 타이틀 */}
-
             <TermQuiz
               id={apiTermData.id} //용어 문제 번호
               term={apiTermData.term} //용어
