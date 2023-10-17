@@ -22,6 +22,7 @@ import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
 import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg";
 import StockChart from "../../componets/StockChart";
 import { useNavigate } from "react-router-dom";
+import MollyCrush from "../../componets/MollyCrush";
 
 const Molly = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const Molly = () => {
   const [showBubbleBuy, setShowBubbleBuy] = useState(false);
   const [showBubbleStart, setShowBubbleStart] = useState(false);
   const [showStockGameNews, setShowStockGameNews] = useState(false);
+  const [showMollyCrush, setShowMollyCrush] = useState(false);
   const [startStockGame, setStartStockGame] = useState(false);
   const [stockGameCount, setStockGameCount] = useState(0); //프로그레스바
   const [stockGameYear, setStockGameYear] = useState(2018);
@@ -56,11 +58,12 @@ const Molly = () => {
   const [buySellApiData, setBuySellApiData] = useState({
     id: 0,
     stockRate: 19.23,
-    answer: false,
-    point: 10,
+    answer: "SELL",
+    point: -10,
+    correct: false,
   });
 
-  //투자 게임 시작 API 호출
+  //게임 시작 POST API
   const postGameStart = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -97,7 +100,7 @@ const Molly = () => {
     console.log(currentYear);
     //postBuySell(currentYear,"BUY");
     //getChartData(currentYear);
-    handleCrushPercent();
+    handleQuizFinish();
   };
 
   //매도 버튼 클릭
@@ -107,7 +110,7 @@ const Molly = () => {
     console.log(currentYear);
     //postBuySell(currentYear,"SELL");
     //getChartData(currentYear);
-    handleCrushPercent();
+    handleQuizFinish();
   };
 
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
@@ -116,18 +119,32 @@ const Molly = () => {
     setStockGameYear((prev) => prev + 1);
   };
 
-  //호감도 변경
-  const handleCrushPercent = () => {
+
+  //퀴즈 종료 이후
+  const handleQuizFinish = () => {
+    //호감도 변경값 저장
     console.log("기존 호감도: ", crushPercent);
-    setCrushPercent(crushPercent + buySellApiData.point);
-    console.log("변화한 호감도: ", crushPercent);
-    localStorage.setItem(
-      "crushPercent",
-      Math.min(100, Math.max(0, crushPercent))
-    );
+    const updateCrushPercent = Math.min(100, Math.max(0, crushPercent + buySellApiData.point))
+    setCrushPercent(updateCrushPercent);
+    console.log("변화한 호감도: ", updateCrushPercent);
+    localStorage.setItem("crushPercent", updateCrushPercent);
+
+    //몰리 호감도 창
+    if (buySellApiData.correct) {
+      setShowMollyCrush(true);
+      const timeoutId = setTimeout(() => {
+        setShowMollyCrush(false);
+      }, 80000);
+    } else {
+      setShowMollyCrush(true);
+      const timeoutId = setTimeout(() => {
+        setShowMollyCrush(false);
+      }, 80000);
+    }
+
   };
 
-  //매수&매도 API 연결
+  //결과 확인 POST API
   const postBuySell = async (currentYear, userAnswer) => {
     console.log("연도 ", currentYear);
     console.log("BUY or SELL", userAnswer);
@@ -332,7 +349,6 @@ const Molly = () => {
                     />
                   )}
                 </div>
-
                 <CrushBar />
               </div>
               <div>
@@ -470,6 +486,11 @@ const Molly = () => {
               <StockGameBox />
               {/* 주가 차트 */}
               <StockChart chartData={chartData} />
+
+              {/* 몰리 호감도 변화 */}
+              {showMollyCrush && (
+                <MollyCrush correct={buySellApiData.correct} point={buySellApiData.point} stockRate={buySellApiData.stockRate} />
+              )}
             </div>
           </div>
         )
