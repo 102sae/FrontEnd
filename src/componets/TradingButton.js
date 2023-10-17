@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TradingButton.module.css";
-const TradingButton = ({ onBuyClick, onSellClick, year }) => {
+const TradingButton = ({ onBuyClick, onSellClick, year, startStockGame }) => {
   return (
     <div>
       {/* 년도 */}
@@ -9,14 +9,17 @@ const TradingButton = ({ onBuyClick, onSellClick, year }) => {
       {/* 매수 & 매도 버튼 */}
       <div className={styles.button_wrap}>
         {/* 매수 */}
-        <button className={styles.button_buy} onClick={() => onBuyClick(year)}>
+        <button
+          className={styles.button_buy}
+          onClick={startStockGame ? () => onBuyClick(year) : null}
+        >
           매수
         </button>
 
         {/* 매도 */}
         <button
           className={styles.button_sell}
-          onClick={() => onSellClick(year)}
+          onClick={startStockGame ? () => onSellClick(year) : null}
         >
           매도
         </button>
