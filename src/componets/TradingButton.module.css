@@ -1,45 +1,50 @@
-.button_wrap{
-    display: flex;
-    justify-content:space-around;
-    position: relative; 
+.button_wrap {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
-.year{
-    z-index: 1;
-}
-
-.year_txt{
-    font-family: "ONESHINHANBOLD";
-    color: #FFF;
-    z-index: 1;
+.year_txt {
+  font-family: "ONESHINHANBOLD";
+  font-size: 26px;
+  z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 450px;
+  letter-spacing: "1px";
 }
 
 .button_buy,
 .button_sell {
-    width: 180px;
-    height: 68px;
-    border-radius: 30px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #FFF;
-    font-family: "ONESHINHANBOLD";
-    font-size: 32px;
-    cursor: pointer;
-    z-index: 1;
+  width: 180px;
+  height: 68px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-family: "ONESHINHANBOLD";
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .button_buy {
-    background: rgba(230, 47, 47, 0.75);
+  background: rgba(230, 47, 47, 0.75);
+  position: absolute;
+  top: 450px;
+  left: 190px;
 }
 
 .button_buy:hover {
-    background: rgb(230, 47, 47);
+  background: rgb(230, 47, 47);
 }
 
 .button_sell {
-    background: rgba(44, 136, 81, 0.75);
+  background: rgba(44, 136, 81, 0.75);
+  position: absolute;
+  top: 450px;
+  left: 600px;
 }
 
 .button_sell:hover {
-    background: rgb(44, 136, 81);
+  background: rgb(44, 136, 81);
 }
-

@@ -1,7 +1,7 @@
 import palette from "../../styles/color";
 import MollyHi from "../../assets/images/Molly/molly_hi.png";
 import MollyPot from "../../assets/images/Molly/molly_pot.png";
-import MollyTrading1 from "../../assets/images/Molly/molly_trading1.png"
+import MollyTrading1 from "../../assets/images/Molly/molly_trading1.png";
 
 const introScenario = [
   {
@@ -57,7 +57,8 @@ const introScenario = [
     index: 4,
     nextIndex: 5,
     image: MollyHi,
-    dialog: "우리가 투자할 회사는 삼성전자야~ 삼성전자는 ...",
+    dialog:
+      "우리가 투자 연습을 해볼 회사는 대한민국 최고의 반도체 회사인 S회사야~ 시가 총액도 높고 거래가 활발히 일어나는 주식인데 같이 주요 뉴스를 확인하면서 연습해보자~ ",
     name: "몰리",
     arrowColor: palette.molly_purple,
     menu: {
@@ -69,7 +70,7 @@ const introScenario = [
     nextIndex: 6,
     image: MollyHi,
     dialog:
-      "2010년부터 2020년까지의 삼성전자의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!",
+      "2018년부터 2022년까지의 S회사의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!",
     name: "몰리",
     arrowColor: palette.molly_purple,
     menu: {
@@ -104,27 +105,12 @@ const introScenario = [
     index: 8,
     nextIndex: 9,
     image: MollyHi,
-    dialog:
-      "매수를 한 후에 그 해에 주가가 오르거나 매도를 한 후에 주가가 내려가면 나의 호감도는 높아질거야!",
+    dialog: "준비가 됐다면 나를 한번 더 클릭해서 게임을 시작하면 돼~",
     name: "몰리",
     arrowColor: palette.molly_purple,
     menu: {
       show: false,
     },
   },
-  // {
-  //   index: 9,
-  //   nextIndex: 10,
-  //   image: MollyTrading1,
-  //   dialog:
-  //     "이제 진짜 투자하러 가볼까?",
-  //   name: "몰리",
-  //   arrowColor: palette.molly_purple,
-  //   menu: {
-  //     show: true,
-  //     option: ["렛츠고", "가보자고~"],
-  //     nextIndex: [10, 10],
-  //   },
-  // },
 ];
 export default introScenario;

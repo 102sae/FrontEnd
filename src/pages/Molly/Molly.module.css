@@ -4,12 +4,24 @@
   width: 1024px;
   height: 767px;
   margin: 0 auto;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 224, 224, 0.69) 0%,
-    #e0ceee 100%
-  );
+  background-color: var(--lay_blue);
   position: relative;
+  background-image: url("../../assets/images/stars.png");
+  background-repeat: repeat;
+  animation: backgroundMove 10s linear infinite;
+  transition: background-color 0.5s ease;
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .introHeader {
@@ -20,7 +32,16 @@
 .top {
   display: flex;
   align-items: center;
+  justify-content: center;
   justify-content: space-around;
+}
+
+.bubble_container {
+  margin-left: 35px;
+}
+
+.progressWrap {
+  width: 630px;
 }
 
 .content {
@@ -66,33 +87,44 @@
   z-index: 2;
 }
 
-.bubble_progress{
+.bubble_progress {
   position: absolute;
-  top: 100px;
+  top: 110px;
   left: 200px;
   z-index: 2;
 }
 
-.bubble_year{
+.bubble_year {
   position: absolute;
-  top: 100px;
-  left: 750px;
+  top: 50px;
+  left: 480px;
   z-index: 2;
 }
 
-.bubble_buy{
+.bubble_buy {
   position: absolute;
-  top: 350px;
-  left: 100px;
+  top: 330px;
+  left: 0px;
   z-index: 2;
-
 }
 
-.bubble_sell{
+.bubble_sell {
   position: absolute;
-  top: 350px;
-  left: 600px;
+  top: 330px;
+  left: 560px;
   z-index: 2;
-
 }
 
+.bubbleStart {
+  position: absolute;
+  bottom: 270px;
+  right: 30px;
+  z-index: 5;
+}
+
+.mollyImg {
+  position: absolute;
+  bottom: 10px;
+  right: -15px;
+  z-index: 1;
+}
