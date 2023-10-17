@@ -73,10 +73,8 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
         );
         console.log("정답 확인 POST API 결과 데이터", response.data);
         setApiCorrectData(response.data.data);
-
         onQuizFinish();
-    } 
-    catch (error) {
+    } catch (error) {
         console.error("Error submitting answer: ", error);
     }
 };

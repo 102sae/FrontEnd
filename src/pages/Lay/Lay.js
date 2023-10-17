@@ -256,21 +256,14 @@ const Lay = () => {
     }
   };
 
-  //프로그레스바 상승
-  useEffect(() => {
-    if (currentScenarioIndex === 8) {
-      setProgressCount((prev) => prev + 1);
-    }
-  }, [currentScenarioIndex]);
-
   //퀴즈 종료 이후
   const handleQuizFinish = (quizResult) => {
     const termId = quizResult.termId;
     const correct = quizResult.userCorrect;
     const point = quizResult.userPoint;
     setLayCrushInfo({ correct, point }); // 호감도 상태 설정
-    console.log("정답 여부:", correct); //finish
-    console.log("호감도 변화 값:", point); //finish
+    console.log("정답 여부:", correct); 
+    console.log("호감도 변화 값:", point); 
 
     getDataSol(termId);
     setShowQuiz(false);
@@ -290,6 +283,15 @@ const Lay = () => {
       }, 1000);
     }
   };
+
+
+  //프로그레스바 상승
+  useEffect(() => {
+    if (currentScenarioIndex === 8) {
+      setProgressCount((prev) => prev + 1);
+    }
+  }, [currentScenarioIndex]);
+
 
   useEffect(() => {
     getData();
