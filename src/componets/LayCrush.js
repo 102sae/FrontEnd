@@ -1,8 +1,8 @@
 import React from "react";
 
 const LayCrush = ({ correct, point }) => {
-  console.log("corrrect",correct);
-  console.log("point", point);
+  console.log("LayCrush 컴포넌트 corrrect",correct);
+  console.log("LayCrush 컴포넌트 point", point);
 
   return (
     <div>
@@ -49,10 +49,10 @@ const LayCrush = ({ correct, point }) => {
             letterSpacing: "1px",
         }}>
         <div>
-          {correct == "true" ? (
-            <p>호감도가 {point} 상승하였습니다.</p>
+          {correct ? (
+            <p>호감도가 <span style={{ color: "blue" }}>{point}</span> 상승하였습니다.</p>
           ) : (
-            <p>호감도가 {point} 하락하였습니다.</p>
+            <p>호감도가 <span style={{ color: "red" }}>{point}</span> 하락하였습니다.</p>
           )}
         </div>
       </text>
