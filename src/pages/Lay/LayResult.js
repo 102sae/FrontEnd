@@ -16,8 +16,17 @@ const LayResult = () => {
     const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
     const [showFullText, setShowFullText] = useState(false);
     
-
     const result = localStorage.getItem("crushPercent");
+    console.log("result", result);
+
+    useEffect(() => {
+        if (result === "100") {
+            setCurrentScenarioIndex(0); // 결과가 100일 때의 인덱스
+        } else {
+            setCurrentScenarioIndex(2); // 그 외의 경우의 인덱스
+        }
+    },[]);
+    
 
     const LayResultScenario = [
         {
@@ -46,10 +55,10 @@ const LayResult = () => {
         },
         {
             index: 2,
-            nextIndex: "레이",
+            nextIndex: "",
             image:LayThinking,
             dialog: "호감도 달성에 실패했어... \n 아직 준비가 더 필요해 보여",
-            name: "",
+            name: "레이",
             arrowColor: palette.ray_blue,
             menu: {
                 show: true,
@@ -75,10 +84,11 @@ const LayResult = () => {
         setShowFullText(false);
         if ( currentScenarioIndex < LayResultScenario.length - 1) {
             setCurrentScenarioIndex(LayResultScenario[currentScenarioIndex].nextIndex);
-        } else if (LayResultScenario[currentScenarioIndex].quiz.show === true) {
+        }else {
             setShowDialogBox(false); // 대화 상자 감추기
             console.log(currentScenarioIndex);
-        }};
+          }
+        };
     };
 
     //메뉴 클릭하기
