@@ -72,7 +72,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
             Authorization: `Bearer ${token}`,
         };
         const response = await axios.post(
-            `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/answers/check`,
+            `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions/${currentId}/answers/check`,
             {
                 userAnswerId: userSelectAnswer,
             },
