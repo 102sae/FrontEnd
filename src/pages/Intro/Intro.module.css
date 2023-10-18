@@ -7,6 +7,7 @@
   background-image: url("../../assets/images/stars.png");
   background-repeat: repeat;
   animation: backgroundMove 20s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes fadeIn {
@@ -41,11 +42,11 @@
 }
 
 .solBackground {
-  transition: background-color 0.5  s ease;
+  transition: background-color 0.5 s ease;
   background-image: url("../../assets/images/intro_bg.png");
 }
 
-.selectBackground{
+.selectBackground {
   background: linear-gradient(0deg, #a3c7f7 0%, #d4eaf7 100%);
 }
 

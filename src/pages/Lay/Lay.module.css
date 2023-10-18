@@ -3,6 +3,7 @@
   height: 767px;
   margin: 20px auto;
   position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes fadeIn {
