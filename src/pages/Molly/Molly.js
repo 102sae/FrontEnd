@@ -48,7 +48,7 @@ const Molly = () => {
   const [buySellApiData, setBuySellApiData] = useState(0);
   const [companyApiData, setCompanyApiData] = useState(0);
   const [crushPercent, setCrushPercent] = useState(
-    parseInt(localStorage.getItem("crushPercent"))
+    localStorage.getItem("crushPercent")
   );
 
   //시나리오 파일 가져오기
@@ -150,6 +150,13 @@ const Molly = () => {
       },
     },
   ];
+
+  useEffect(() => {
+    if (currentScenarioIndex === 7) {
+      postBuySell(stockGameYear, "BUY");
+      setStockGameYear((prev) => prev + 1);
+    }
+  }, [currentScenarioIndex]);
 
   //투자 게임 시작 POST API
   const postTradingGameStart = async () => {
@@ -285,6 +292,7 @@ const Molly = () => {
 
   //퀴즈 종료 이후
   const handleQuizFinish = () => {
+    console.log(typeof buySellApiData.point);
     //호감도 변경값 저장
     console.log("기존 호감도: ", crushPercent);
     const updateCrushPercent = Math.min(
@@ -322,7 +330,7 @@ const Molly = () => {
         "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/answers/check",
         {
           year: stockGameYear,
-          userAnswerId: userAnswer,
+          userAnswer: userAnswer,
         },
         {
           headers: headers,
@@ -535,7 +543,10 @@ const Molly = () => {
                     setShowBubbleBuy(false);
                   }}
                 >
-                  <TradingButton year={2020} startStockGame={startStockGame} />
+                  <TradingButton
+                    year={stockGameYear}
+                    startStockGame={startStockGame}
+                  />
                   {showBubbleYear && (
                     <img
                       className={styles.bubbleYear}
