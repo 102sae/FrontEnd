@@ -67,21 +67,22 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     console.log("정답 확인 POST API 인자(currentId)", currentId);
     console.log("유저가 선택한 답(userSelectAnswer)", userSelectAnswer);
     try {
-      const token = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions/${currentId}/answers/check`,
-        {
-          userAnswerId: userSelectAnswer,
-        },
-        {
-          headers: headers,
-        }
-      );
-      console.log("정답 확인 POST API", response.data);
-      return response.data.data;
+        const token = localStorage.getItem("token");
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        const response = await axios.post(
+            `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions/${currentId}/answers/check`,
+            {
+                userAnswerId: userSelectAnswer,
+            },
+            {
+                headers: headers,
+            }
+        );
+        console.log("정답 확인 POST API", response.data);
+        return response.data.data;
+
     } catch (error) {
       console.error("Error submitting answer: ", error);
     }

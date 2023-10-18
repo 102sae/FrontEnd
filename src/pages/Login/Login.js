@@ -57,7 +57,7 @@ const Login = ({ toggleForm, onLogin }) => {
   return (
     <div className={styles.wrap}>
       <div className={styles.section1}>
-        {/* <p className={styles.subtitle}>두근두근!</p> */}
+        <p className={styles.subtitle}>두근두근!</p>
         <p className={styles.title}>주식 프렌즈!</p>
         <img src={LoginTeam} className={styles.authImg} alt="로그인 팀" />
       </div>
