@@ -44,7 +44,7 @@ const Molly = () => {
   const [stockGameCount, setStockGameCount] = useState(0);
   const [stockGameYear, setStockGameYear] = useState(2018);
   const [newsData, setNewsData] = useState(null);
-  const [chartData, setChartData] = useState(0);
+  const [chartData, setChartData] = useState(null);
   const [buySellApiData, setBuySellApiData] = useState(0);
   const [companyApiData, setCompanyApiData] = useState(0);
   const [crushPercent, setCrushPercent] = useState(
@@ -196,7 +196,7 @@ const Molly = () => {
       //시작 연도 로컬스토리지에 저장
       console.log("회사 정보 API - companyApiData", companyApiData);
       console.log("회사 정보 API - startYear", response.data.data.startYear);
-      localStorage.setItem("currentYear", response.data.data.startYear);
+      localStorage.setItem("stockGameYear", response.data.data.startYear);
       setStockGameYear(response.data.data.startYear);
       console.log("setStockGameYear", stockGameYear)
     } catch (error) {
@@ -242,6 +242,7 @@ const Molly = () => {
         );
         console.log("차트 데이터 API", response.data.data);
         setChartData(response.data.data);
+        return response.data.data;
       } catch (error) {
         console.error("Error : ", error);
       }
@@ -256,30 +257,34 @@ const Molly = () => {
   };
 
   //매수 버튼 클릭
-  const onBuyClick = (currentYear) => {
+  const onBuyClick = (stockGameYear) => {
     console.log("매수 버튼 클릭");
-    handleGameCount();
-    console.log(currentYear);
-    postBuySell(currentYear,"BUY");
-    getChartData(stockGameYear);
+    const updateStockGameYear = handleGameCount();
+    console.log("매수 클릭후 다음년도", updateStockGameYear);
+    postBuySell(updateStockGameYear,"BUY");
+    getChartData(updateStockGameYear);
     handleQuizFinish();
   };
 
   //매도 버튼 클릭
-  const onSellClick = (currentYear) => {
+  const onSellClick = (stockGameYear) => {
     console.log("매도 버튼 클릭");
-    handleGameCount();
-    console.log(currentYear);
-    postBuySell(currentYear,"SELL");
-    getChartData(stockGameYear);
+    const updateStockGameYear = handleGameCount();
+    console.log("매수 클릭후 다음년도", updateStockGameYear);
+    postBuySell(updateStockGameYear,"SELL");
+    getChartData(updateStockGameYear);
     handleQuizFinish();
   };
 
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
   const handleGameCount = () => {
     setStockGameCount((prev) => prev + 1);
-    setStockGameYear((prev) => prev + 1);
+    const updateStockGameYear = stockGameYear +1;
+    console.log("setStockGameCount",stockGameCount)
+    console.log("updateStockGameYear",stockGameYear);
+    return updateStockGameYear;
   };
+
 
   //퀴즈 종료 이후
   const handleQuizFinish = () => {
@@ -308,8 +313,8 @@ const Molly = () => {
   };
 
   //결과 확인 POST API
-  const postBuySell = async (currentYear, userAnswer) => {
-    console.log("연도 ", currentYear);
+  const postBuySell = async (stockGameYear, userAnswer) => {
+    console.log("연도 ", stockGameYear);
     console.log("BUY or SELL", userAnswer);
     try {
       const token = localStorage.getItem("token");
@@ -319,7 +324,7 @@ const Molly = () => {
       const response = await axios.post(
         "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/answers/check",
         {
-          year: currentYear,
+          year: stockGameYear,
           userAnswerId: userAnswer,
         },
         {
@@ -389,6 +394,7 @@ const Molly = () => {
     const fetchData = async () => {
       await postTradingGameStart(); // postTradingGameStart 함수 실행
       await getCompanyInfo(); // getCompanyInfo 함수 실행
+      await getChartData(stockGameYear);
     };
     fetchData(); // fetchData 함수 호출
   }, []);
