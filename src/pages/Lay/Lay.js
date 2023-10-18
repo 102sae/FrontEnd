@@ -253,7 +253,9 @@ const Lay = () => {
         }
       );
       console.log("용어게임 해설 API", response.data.data);
-      <div dangerouslySetInnerHTML={{ __html: setApiSolData(response.data.data) }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: setApiSolData(response.data.data) }}
+      />;
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
@@ -299,6 +301,32 @@ const Lay = () => {
     }
   }, [currentScenarioIndex]);
 
+  //용어 게임 시작 POST API
+  const postTermGameStart = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // 요청 데이터 (비어있는 객체 또는 필요한 데이터를 넣을 수 있음)
+      const requestData = {};
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/start`,
+        requestData,
+        {
+          headers: headers,
+        }
+      );
+
+      console.log("용어 게임 시작", response.data);
+      localStorage.setItem("crushPercent", 50);
+      localStorage.setItem("nickName", response.data.data);
+    } catch (error) {
+      console.error("Error submitting answer: ", error);
+    }
+  };
+
   //용어 게임 문제 API 호출
   useEffect(() => {
     if (currentScenarioIndex === 2 || currentScenarioIndex === 8) {
@@ -316,6 +344,10 @@ const Lay = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [currentScenarioIndex]);
+
+  useEffect(() => {
+    postTermGameStart();
+  }, []);
 
   return (
     <div
