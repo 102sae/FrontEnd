@@ -253,7 +253,7 @@ const Lay = () => {
         }
       );
       console.log("용어게임 해설 API", response.data.data);
-      setApiSolData(response.data.data);
+      <div dangerouslySetInnerHTML={{ __html: setApiSolData(response.data.data) }} />
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
