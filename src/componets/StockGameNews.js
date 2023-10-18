@@ -6,7 +6,8 @@ import StockGameNews from "../assets/images/StockGameNews.png";
 const StockGameNewsPaper = ({
   newsData,
   showStockGameNews,
-  toggleStockGameNews,}) => {
+  toggleStockGameNews,
+}) => {
   const handleImageClick = () => {
     toggleStockGameNews(!showStockGameNews);
   };
@@ -37,9 +38,7 @@ const StockGameNewsPaper = ({
         },
       ],
     },
-
   ];
-
 
   return showStockGameNews ? (
     <div className={styles.newsWrap} onClick={handleImageClick}>

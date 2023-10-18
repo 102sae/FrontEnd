@@ -5,7 +5,6 @@ import Crush from "../assets/images/icon_crush.svg";
 const CrushBar = () => {
   // 로컬 스토리지에서 호감도 가져오기, 기본 값은 50
   const crushPercent = parseInt(localStorage.getItem("crushPercent"));
-  console.log(crushPercent);
   useEffect(() => {}, []);
 
   return (

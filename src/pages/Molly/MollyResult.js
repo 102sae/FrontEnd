@@ -50,7 +50,7 @@ const MollyResult = () => {
       menu: {
         show: true,
         option: ["바로 투자하러 가기", "용어게임 하러가기"],
-        nextIndex: [0, 0],
+        nextIndex: [1, 0],
       },
     },
     {
@@ -98,7 +98,11 @@ const MollyResult = () => {
     console.log("Option:", option);
     console.log("Current Index:", currentIndex);
     if (option === "select1") {
-      navigate("/molly");
+      if (currentIndex === 1) {
+        window.location.href = "https://www.shinhansec.com/";
+      } else {
+        navigate("/molly");
+      }
     } else if (option === "select2") {
       navigate("/lay");
     }
