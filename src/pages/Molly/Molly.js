@@ -42,11 +42,15 @@ const Molly = () => {
   const [showMollyCrush, setShowMollyCrush] = useState(false);
   const [startStockGame, setStartStockGame] = useState(false);
   const [stockGameCount, setStockGameCount] = useState(0);
-  const [stockGameYear, setStockGameYear] = useState(2018);
+  const [stockGameYear, setStockGameYear] = useState(0);
+  const [currentYear, setCurrentYear] = useState(0);
   const [newsData, setNewsData] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [buySellApiData, setBuySellApiData] = useState(0);
   const [companyApiData, setCompanyApiData] = useState(0);
+  const [onSellButtonClick, setOnSellButtonClick] = useState(false);
+  const [onBuyButtonClick, setOnBuyButtonClick] = useState(false);
+
   const [crushPercent, setCrushPercent] = useState(
     localStorage.getItem("crushPercent")
   );
@@ -151,10 +155,10 @@ const Molly = () => {
     },
   ];
 
+  //튜토리얼로 넘어갈떄 첫번째 차트 불러오기
   useEffect(() => {
     if (currentScenarioIndex === 7) {
-      postBuySell(stockGameYear, "BUY");
-      setStockGameYear((prev) => prev + 1);
+      postBuySell(currentYear, "BUY");
     }
   }, [currentScenarioIndex]);
 
@@ -205,20 +209,21 @@ const Molly = () => {
       localStorage.setItem("stockGameYear", response.data.data.startYear);
       setStockGameYear(response.data.data.startYear);
       console.log("setStockGameYear", stockGameYear);
+      setCurrentYear(response.data.data.startYear - 1);
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
   };
 
   //뉴스정보 GET API
-  const getNewsData = async (stockGameYear) => {
+  const getNewsData = async (currentYear) => {
     try {
       const token = localStorage.getItem("token");
       const headers = {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/news?year=${stockGameYear}`,
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/news?year=${currentYear}`,
         {
           headers: headers,
         }
@@ -232,8 +237,8 @@ const Molly = () => {
   };
 
   //주가조회 GET API
-  const getChartData = async (stockGameYear) => {
-    console.log("주가조회 api 안에 년도", stockGameYear);
+  const getChartData = async (currentYear) => {
+    console.log("주가조회 api 안에 년도", currentYear);
     try {
       const token = localStorage.getItem("token");
       const headers = {
@@ -241,7 +246,7 @@ const Molly = () => {
       };
 
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/stocks?year=${stockGameYear}`,
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/stocks?year=${currentYear}`,
         {
           headers,
         }
@@ -257,37 +262,55 @@ const Molly = () => {
 
   //투자 게임 시작 버튼
   const handleStartGame = () => {
+    //실제 게임 차트로 넘기기
+    setCurrentYear(stockGameYear);
+
+    //게임 시작 상태로 변경
     setStartStockGame(true);
+    //실제 게임 시작 연도 차트 데이터 호출
     getChartData(stockGameYear);
+    //실제 게임 시작 연도 뉴스 데이터 호출
     getNewsData(stockGameYear);
   };
 
   //매수 버튼 클릭
-  const onBuyClick = (stockGameYear) => {
+  const onBuyClick = (currentYear) => {
+    setOnBuyButtonClick(true);
     console.log("매수 버튼 클릭");
+    //프로그레스바 증가 & 다음년도로 넘어가기
     handleGameCount();
-    console.log("매수 클릭후 다음년도", stockGameYear);
-    postBuySell(stockGameYear, "BUY");
-    getChartData(stockGameYear);
-    handleQuizFinish();
   };
 
   //매도 버튼 클릭
-  const onSellClick = (stockGameYear) => {
+  const onSellClick = (currentYear) => {
+    setOnSellButtonClick(true);
     console.log("매도 버튼 클릭");
     handleGameCount();
-    console.log("매수 클릭후 다음년도", stockGameYear);
-    postBuySell(stockGameYear, "SELL");
-    getChartData(stockGameYear);
-    handleQuizFinish();
+    console.log("매도 클릭후 다음년도", currentYear);
   };
+
+  useEffect(() => {
+    if (onBuyButtonClick) {
+      postBuySell(currentYear, "BUY");
+      getChartData(currentYear);
+      getNewsData(currentYear);
+      handleQuizFinish();
+      setOnBuyButtonClick(false);
+    } else if (onSellButtonClick) {
+      postBuySell(currentYear, "SELL");
+      getChartData(currentYear);
+      getNewsData(currentYear);
+      handleQuizFinish();
+      setOnSellButtonClick(false);
+    }
+  }, [currentYear]);
 
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
   const handleGameCount = () => {
+    //프로그레스바 증가
+    console.log("prev", currentYear);
     setStockGameCount((prev) => prev + 1);
-    setStockGameYear((prev) => prev + 1);
-    console.log("setStockGameCount", stockGameCount);
-    console.log("updateStockGameYear", stockGameYear);
+    setCurrentYear((prev) => prev + 1);
   };
 
   //퀴즈 종료 이후
@@ -318,8 +341,8 @@ const Molly = () => {
   };
 
   //결과 확인 POST API
-  const postBuySell = async (stockGameYear, userAnswer) => {
-    console.log("연도 ", stockGameYear);
+  const postBuySell = async (currentYear, userAnswer) => {
+    console.log("연도 ", currentYear);
     console.log("BUY or SELL", userAnswer);
     try {
       const token = localStorage.getItem("token");
@@ -329,7 +352,7 @@ const Molly = () => {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/answers/check`,
         {
-          year: stockGameYear,
+          year: currentYear,
           userAnswer: userAnswer,
         },
         {
@@ -337,6 +360,7 @@ const Molly = () => {
         }
       );
       console.log("매수&매도 POST API", response.data.data);
+
       setBuySellApiData(response.data.data);
       //return response.data.data;
     } catch (error) {
@@ -397,7 +421,7 @@ const Molly = () => {
     const fetchData = async () => {
       await postTradingGameStart(); // postTradingGameStart 함수 실행
       await getCompanyInfo(); // getCompanyInfo 함수 실행
-      await getChartData(stockGameYear);
+      await getChartData(currentYear);
     };
     fetchData(); // fetchData 함수 호출
   }, []);
@@ -544,7 +568,7 @@ const Molly = () => {
                   }}
                 >
                   <TradingButton
-                    year={stockGameYear}
+                    year={currentYear}
                     startStockGame={startStockGame}
                   />
                   {showBubbleYear && (
@@ -634,7 +658,7 @@ const Molly = () => {
                 <TradingButton
                   onBuyClick={onBuyClick}
                   onSellClick={onSellClick}
-                  year={stockGameYear}
+                  year={currentYear}
                   startStockGame={startStockGame}
                 />
               </div>
