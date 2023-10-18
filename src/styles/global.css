@@ -1,16 +1,12 @@
+
 @font-face {
-  font-family: "ONESHINHANBOLD";
-  src: url("../assets/font/ONESHINHANBOLD.TTF") format("truetype");
+  font-family: "SOYO Maple Bold";
+  src: url("../assets/font/SOYO\ Maple\ Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "ONESHINHANMEDIUM";
-  src: url("../assets/font/ONESHINHANMEDIUM.TTF") format("truetype");
-}
-
-@font-face {
-  font-family: "ONESHINHANLIGHT";
-  src: url("../assets/font/ONESHINHANLIGHT.TTF") format("truetype");
+  font-family: "SOYO Maple Regular";
+  src: url("../assets/font/SOYO\ Maple\ Regular.ttf") format("truetype");
 }
 
 :root {
@@ -27,6 +23,6 @@
 }
 
 body {
-  font-family: "ONESHINHANLIGHT";
+  font-family: "SOYO Maple Regular";
   letter-spacing: -0.1px;
 }

@@ -7,7 +7,6 @@ import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import MenuBox from "../../componets/MenuBox";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Lay from "../../assets/images/Lay/lay_default.png";
 import LaySmile from "../../assets/images/Lay/lay_smile.png";
 import Layname from "../../assets/images/Lay/lay_name.png";
@@ -79,6 +78,7 @@ function Intro() {
 
       console.log("게임 시작", response.data);
       localStorage.setItem("crushPercent", 50);
+      localStorage.setItem("nickName", response.data.data);
     } catch (error) {
       console.error("Error submitting answer: ", error);
     }

@@ -59,7 +59,7 @@
   select {
     width: 70vw;
     padding: 12px;
-    font-family: Poppins;
+    font-family: "SOYO Maple Regular";
     font-size: 18px;
     background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
       no-repeat 95% 50%;
@@ -95,7 +95,7 @@
     border: none;
     border-radius: 8px;
     margin-bottom: 20px;
-    font-family: Poppins;
+    font-family: "SOYO Maple Bold";
     font-size: 24px;
     cursor: pointer;
   }

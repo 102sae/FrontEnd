@@ -59,8 +59,8 @@ const Molly = () => {
     id: 0,
     stockRate: 19.23,
     answer: "SELL",
-    point: -10,
-    correct: false,
+    point: 10,
+    correct: true,
   });
 
   //게임 시작 POST API
@@ -134,12 +134,12 @@ const Molly = () => {
       setShowMollyCrush(true);
       const timeoutId = setTimeout(() => {
         setShowMollyCrush(false);
-      }, 80000);
+      }, 5000);
     } else {
       setShowMollyCrush(true);
       const timeoutId = setTimeout(() => {
         setShowMollyCrush(false);
-      }, 80000);
+      }, 5000);
     }
 
   };
