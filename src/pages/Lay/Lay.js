@@ -347,7 +347,7 @@ const Lay = () => {
           {showDialogBox && (
             <div>
               {/* 프로그레스바 & 호감도 */}
-              <div className={styles.top}>
+              <div className={styles.hometop}>
                 <img
                   src={HomeIcon}
                   alt="HomeIcon"

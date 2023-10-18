@@ -2,7 +2,7 @@ import Chart from "react-apexcharts";
 import style from "./StockChart.module.css";
 
 const StockChart = ({ chartData }) => {
-  const formattedDates = chartData.date.map(dateString => {
+  const formattedDates = chartData.date.map((dateString) => {
     const year = dateString.slice(0, 4);
     const month = dateString.slice(4, 6);
     const day = dateString.slice(6, 8);

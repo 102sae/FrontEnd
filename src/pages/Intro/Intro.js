@@ -83,30 +83,6 @@ function Intro() {
     }
   };
 
-  //투자 게임 시작 POST API
-  const postTradingGameStart = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-
-      // 요청 데이터
-      const requestData = {};
-      const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/start",
-        requestData,
-        {
-          headers: headers,
-        }
-      );
-
-      console.log("투자 게임 시작", response.data);
-    } catch (error) {
-      console.error("Error: ", error);
-    }
-  };
-
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
     if (introScenario[currentScenarioIndex].menu.show) {
@@ -215,7 +191,11 @@ function Intro() {
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-                <Link to="/lay" className={styles.link} onClick={postTermGameStart()}>
+                <Link
+                  to="/lay"
+                  className={styles.link}
+                  onClick={postTermGameStart()}
+                >
                   <FriendSelectBox
                     friendNameImage={Layname}
                     friendImage={Lay}
@@ -224,7 +204,7 @@ function Intro() {
                   />
                 </Link>
 
-                <Link to="/molly" className={styles.link} onClick={postTradingGameStart()}>
+                <Link to="/molly" className={styles.link}>
                   <FriendSelectBox
                     friendNameImage={Mollyname}
                     friendImage={Molly}

@@ -39,10 +39,17 @@
   transform: scale(0.95); /* 클릭 시 크기를 조절하여 누르는 효과를 줍니다. */
 }
 
-.top {
+.hometop {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.top {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .progressWrap {

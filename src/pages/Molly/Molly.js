@@ -51,8 +51,8 @@ const Molly = () => {
     parseInt(localStorage.getItem("crushPercent"))
   );
 
-   //시나리오 파일 가져오기
-   const MollyScenario = [
+  //시나리오 파일 가져오기
+  const MollyScenario = [
     {
       index: 0,
       nextIndex: 1,
@@ -107,7 +107,7 @@ const Molly = () => {
       index: 4,
       nextIndex: 5,
       image: MollyHi,
-      dialog: `우리가 투자 연습을 해볼 회사는 ${companyApiData.companyName}야~ ${companyApiData.companyInfo} 같이 주요 뉴스를 확인하며 연습해보자~`,
+      dialog: `우리가 투자 연습을 해볼 주식은 ${companyApiData.companyName}야~ ${companyApiData.companyInfo} 같이 주요 뉴스를 확인하며 연습해보자~`,
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {
@@ -118,7 +118,7 @@ const Molly = () => {
       index: 5,
       nextIndex: 6,
       image: MollyHi,
-      dialog: `${companyApiData.startYear}년부터 ${companyApiData.endYear}년까지의 ${companyApiData.companyName}회사의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!`,
+      dialog: `${companyApiData.startYear}년부터 ${companyApiData.endYear}년까지의 ${companyApiData.companyName}의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!`,
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {
@@ -175,7 +175,6 @@ const Molly = () => {
     }
   };
 
-
   //회사 정보 GET API
   const getCompanyInfo = async () => {
     try {
@@ -198,7 +197,7 @@ const Molly = () => {
       console.log("회사 정보 API - startYear", response.data.data.startYear);
       localStorage.setItem("stockGameYear", response.data.data.startYear);
       setStockGameYear(response.data.data.startYear);
-      console.log("setStockGameYear", stockGameYear)
+      console.log("setStockGameYear", stockGameYear);
     } catch (error) {
       console.error("Error fetching data from API: ", error);
     }
@@ -225,29 +224,29 @@ const Molly = () => {
     }
   };
 
-    //주가조회 GET API
-    const getChartData = async (stockGameYear) => {
-      console.log("주가조회 api 안에 년도",stockGameYear);
-      try {
-        const token = localStorage.getItem("token");
-        const headers = {
-          Authorization: `Bearer ${token}`,
-        };
-  
-        const response = await axios.get(
-          `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/stocks?year=${stockGameYear}`, 
-          {
-            headers,
-          }
-        );
-        console.log("차트 데이터 API", response.data.data);
-        setChartData(response.data.data);
-        return response.data.data;
-      } catch (error) {
-        console.error("Error : ", error);
-      }
-    };
+  //주가조회 GET API
+  const getChartData = async (stockGameYear) => {
+    console.log("주가조회 api 안에 년도", stockGameYear);
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
 
+      const response = await axios.get(
+        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/stocks?year=${stockGameYear}`,
+        {
+          headers,
+        }
+      );
+      console.log("차트 데이터 API", response.data.data);
+      console.log(response.data.data);
+      setChartData(response.data.data);
+      return response.data.data;
+    } catch (error) {
+      console.error("Error : ", error);
+    }
+  };
 
   //투자 게임 시작 버튼
   const handleStartGame = () => {
@@ -261,7 +260,7 @@ const Molly = () => {
     console.log("매수 버튼 클릭");
     handleGameCount();
     console.log("매수 클릭후 다음년도", stockGameYear);
-    postBuySell(stockGameYear,"BUY");
+    postBuySell(stockGameYear, "BUY");
     getChartData(stockGameYear);
     handleQuizFinish();
   };
@@ -271,7 +270,7 @@ const Molly = () => {
     console.log("매도 버튼 클릭");
     handleGameCount();
     console.log("매수 클릭후 다음년도", stockGameYear);
-    postBuySell(stockGameYear,"SELL");
+    postBuySell(stockGameYear, "SELL");
     getChartData(stockGameYear);
     handleQuizFinish();
   };
@@ -279,12 +278,10 @@ const Molly = () => {
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
   const handleGameCount = () => {
     setStockGameCount((prev) => prev + 1);
-    const updateStockGameYear = stockGameYear +1;
-    console.log("setStockGameCount",stockGameCount)
-    console.log("updateStockGameYear",stockGameYear);
-    return updateStockGameYear;
+    setStockGameYear((prev) => prev + 1);
+    console.log("setStockGameCount", stockGameCount);
+    console.log("updateStockGameYear", stockGameYear);
   };
-
 
   //퀴즈 종료 이후
   const handleQuizFinish = () => {
@@ -339,8 +336,6 @@ const Molly = () => {
     }
   };
 
-
-
   // 다음 대화로 넘기기
   const handleDialogBoxClick = () => {
     if (!showFullText) {
@@ -387,7 +382,7 @@ const Molly = () => {
   };
 
   useEffect(() => {
-    setCrushPercent(parseInt(localStorage.getItem("crushPercent")))
+    setCrushPercent(parseInt(localStorage.getItem("crushPercent")));
   }, []);
 
   useEffect(() => {
@@ -591,13 +586,13 @@ const Molly = () => {
                 {/* 게임 배경 */}
                 <StockGameBox />
                 {/* 주가 차트 */}
-                <StockChart chartData={chartData}/>
+                <StockChart chartData={chartData} />
               </div>
             </div>
           )
         }
       </div>
-      
+
       {
         /* 실제 투자 게임 시작 */
         startStockGame && (
