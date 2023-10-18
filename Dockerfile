@@ -17,7 +17,7 @@ COPY . .
 
 # 3000번 포트 노출
 EXPOSE 3000
-
+ENV REACT_APP_SERVER_PORT "https://apishinhan-stock-friend.com"
 # npm start 스크립트 실행
 CMD ["npm", "start"]
 
