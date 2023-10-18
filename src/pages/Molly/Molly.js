@@ -46,14 +46,14 @@ const Molly = () => {
   const [currentYear, setCurrentYear] = useState(0);
   const [newsData, setNewsData] = useState(null);
   const [chartData, setChartData] = useState(null);
-  const [buySellApiData, setBuySellApiData] = useState(0);
+  const [buySellApiData, setBuySellApiData] = useState({
+    point: 0,
+  });
   const [companyApiData, setCompanyApiData] = useState(0);
   const [onSellButtonClick, setOnSellButtonClick] = useState(false);
   const [onBuyButtonClick, setOnBuyButtonClick] = useState(false);
 
-  const [crushPercent, setCrushPercent] = useState(
-    localStorage.getItem("crushPercent")
-  );
+  const [crushPercent, setCrushPercent] = useState(50);
 
   //시나리오 파일 가져오기
   const MollyScenario = [
@@ -154,14 +154,6 @@ const Molly = () => {
       },
     },
   ];
-
-  //튜토리얼로 넘어갈떄 첫번째 차트 불러오기
-  useEffect(() => {
-    if (currentScenarioIndex === 7) {
-      postBuySell(currentYear, "BUY");
-    }
-  }, [currentScenarioIndex]);
-
   //투자 게임 시작 POST API
   const postTradingGameStart = async () => {
     try {
@@ -179,7 +171,7 @@ const Molly = () => {
           headers: headers,
         }
       );
-
+      localStorage.setItem("crushPercent", 50);
       console.log("투자 게임 시작", response.data);
     } catch (error) {
       console.error("Error: ", error);
@@ -294,16 +286,18 @@ const Molly = () => {
       postBuySell(currentYear, "BUY");
       getChartData(currentYear);
       getNewsData(currentYear);
-      handleQuizFinish();
       setOnBuyButtonClick(false);
     } else if (onSellButtonClick) {
       postBuySell(currentYear, "SELL");
       getChartData(currentYear);
       getNewsData(currentYear);
-      handleQuizFinish();
       setOnSellButtonClick(false);
     }
   }, [currentYear]);
+
+  useEffect(() => {
+    handleQuizFinish();
+  }, [buySellApiData]);
 
   //투자 게임 내년으로 넘어가기(다음 단계로 넘어가기
   const handleGameCount = () => {
@@ -315,7 +309,6 @@ const Molly = () => {
 
   //퀴즈 종료 이후
   const handleQuizFinish = () => {
-    console.log(typeof buySellApiData.point);
     //호감도 변경값 저장
     console.log("기존 호감도: ", crushPercent);
     const updateCrushPercent = Math.min(
