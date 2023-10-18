@@ -266,19 +266,17 @@ const Molly = () => {
   };
 
   //매수 버튼 클릭
-  const onBuyClick = (currentYear) => {
+  const onBuyClick = () => {
     setOnBuyButtonClick(true);
-    console.log("매수 버튼 클릭");
     //프로그레스바 증가 & 다음년도로 넘어가기
     handleGameCount();
   };
 
   //매도 버튼 클릭
-  const onSellClick = (currentYear) => {
+  const onSellClick = () => {
     setOnSellButtonClick(true);
-    console.log("매도 버튼 클릭");
+
     handleGameCount();
-    console.log("매도 클릭후 다음년도", currentYear);
   };
 
   useEffect(() => {
@@ -433,7 +431,9 @@ const Molly = () => {
   //프로그레스바 상승
   useEffect(() => {
     if (stockGameCount === 5) {
-      navigate("/molly-result");
+      setTimeout(() => {
+        navigate("/molly-result");
+      }, 1500);
     }
   }, [stockGameCount]);
 
