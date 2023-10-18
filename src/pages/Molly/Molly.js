@@ -44,7 +44,15 @@ const Molly = () => {
   const [stockGameCount, setStockGameCount] = useState(0);
   const [stockGameYear, setStockGameYear] = useState(2018);
   const [newsData, setNewsData] = useState(null);
-  const [chartData, setChartData] = useState(0);
+  const [chartData, setChartData] = useState({
+    year: 2017,
+    price: [
+      9335, 9190, 
+    ],
+    date: [
+      "20170102", "20170103", 
+    ]
+  });
   const [buySellApiData, setBuySellApiData] = useState(0);
   const [companyApiData, setCompanyApiData] = useState(0);
   const [crushPercent, setCrushPercent] = useState(
@@ -389,6 +397,7 @@ const Molly = () => {
     const fetchData = async () => {
       await postTradingGameStart(); // postTradingGameStart 함수 실행
       await getCompanyInfo(); // getCompanyInfo 함수 실행
+      await getChartData(stockGameYear);
     };
     fetchData(); // fetchData 함수 호출
   }, []);
