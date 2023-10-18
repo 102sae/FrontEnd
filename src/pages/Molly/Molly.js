@@ -23,6 +23,7 @@ import MollyHi from "../../assets/images/Molly/molly_hi.png";
 import StockChart from "../../componets/StockChart";
 import { useNavigate } from "react-router-dom";
 import MollyCrush from "../../componets/MollyCrush";
+import HomeIcon from "../../assets/images/home_icon.png";
 
 const Molly = () => {
   const navigate = useNavigate();
@@ -259,12 +260,14 @@ const Molly = () => {
     setStockGameYear((prev) => prev + 1);
   };
 
-
   //퀴즈 종료 이후
   const handleQuizFinish = () => {
     //호감도 변경값 저장
     console.log("기존 호감도: ", crushPercent);
-    const updateCrushPercent = Math.min(100, Math.max(0, crushPercent + buySellApiData.point))
+    const updateCrushPercent = Math.min(
+      100,
+      Math.max(0, crushPercent + buySellApiData.point)
+    );
     setCrushPercent(updateCrushPercent);
     console.log("변화한 호감도: ", updateCrushPercent);
     localStorage.setItem("crushPercent", updateCrushPercent);
@@ -281,7 +284,6 @@ const Molly = () => {
         setShowMollyCrush(false);
       }, 5000);
     }
-
   };
 
   //결과 확인 POST API
@@ -414,6 +416,12 @@ const Molly = () => {
           <div>
             {showDialogBox && (
               <div className={styles.introHeader}>
+                <img
+                  src={HomeIcon}
+                  alt="HomeIcon"
+                  className={styles.homeIcon}
+                  onClick={() => navigate("/home")}
+                />
                 {/* 호감도 */}
                 <CrushBar />
               </div>
@@ -649,7 +657,11 @@ const Molly = () => {
 
               {/* 몰리 호감도 변화 */}
               {showMollyCrush && (
-                <MollyCrush correct={buySellApiData.correct} point={buySellApiData.point} stockRate={buySellApiData.stockRate} />
+                <MollyCrush
+                  correct={buySellApiData.correct}
+                  point={buySellApiData.point}
+                  stockRate={buySellApiData.stockRate}
+                />
               )}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import "../../styles/reset.css";
 import "../../styles/global.css";
 import styles from "./Intro.module.css";
@@ -57,7 +57,6 @@ function Intro() {
     }
   };
 
-
   //용어 게임 시작 POST API
   const postTermGameStart = async () => {
     try {
@@ -67,7 +66,7 @@ function Intro() {
       };
 
       // 요청 데이터 (비어있는 객체 또는 필요한 데이터를 넣을 수 있음)
-      const requestData = {}; 
+      const requestData = {};
       const response = await axios.post(
         "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/start",
         requestData,

@@ -3,6 +3,7 @@
   height: 767px;
   margin: 20px auto;
   position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes fadeIn {
@@ -25,11 +26,28 @@
     background-position: 0 0;
   }
 }
+
+.homeIcon {
+  width: 83px;
+  height: 77px;
+  margin-left: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.homeIcon:active {
+  transform: scale(0.95); /* 클릭 시 크기를 조절하여 누르는 효과를 줍니다. */
+}
+
 .top {
-  margin: 0;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.progressWrap {
+  width: 630px;
+  margin-left: -10px;
 }
 
 .content {

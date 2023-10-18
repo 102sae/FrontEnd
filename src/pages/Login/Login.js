@@ -106,12 +106,6 @@ const Login = ({ toggleForm, onLogin }) => {
           </Link>
           하기
         </p>
-        <br />
-        <p>
-          <Link to="/intro" className={styles.link}>
-            비회원으로 진행하기
-          </Link>
-        </p>
       </div>
     </div>
   );
