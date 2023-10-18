@@ -225,6 +225,27 @@ const Molly = () => {
     }
   };
 
+    //주가조회 GET API
+    const getChartData = async (stockGameYear) => {
+      console.log("주가조회 api 안에 년도",stockGameYear);
+      try {
+        const token = localStorage.getItem("token");
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
+  
+        const response = await axios.get(
+          `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/stocks?year=${stockGameYear}`, 
+          {
+            headers,
+          }
+        );
+        console.log("차트 데이터 API", response.data.data);
+        setChartData(response.data.data);
+      } catch (error) {
+        console.error("Error : ", error);
+      }
+    };
 
 
   //투자 게임 시작 버튼
@@ -240,7 +261,7 @@ const Molly = () => {
     handleGameCount();
     console.log(currentYear);
     postBuySell(currentYear,"BUY");
-    getChartData(currentYear);
+    getChartData(stockGameYear);
     handleQuizFinish();
   };
 
@@ -250,7 +271,7 @@ const Molly = () => {
     handleGameCount();
     console.log(currentYear);
     postBuySell(currentYear,"SELL");
-    getChartData(currentYear);
+    getChartData(stockGameYear);
     handleQuizFinish();
   };
 
@@ -313,26 +334,7 @@ const Molly = () => {
     }
   };
 
-  //주가조회 GET API
-  const getChartData = async (stockGameYear) => {
-    console.log("주가조회 api 안에 년도",stockGameYear);
-    try {
-      const token = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
 
-      const response = await axios.get(
-        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/stocks?year=${stockGameYear}`, 
-        {
-          headers,
-        }
-      );
-      console.log("차트 데이터 API", response.data);
-    } catch (error) {
-      console.error("Error : ", error);
-    }
-  };
 
   // 다음 대화로 넘기기
   const handleDialogBoxClick = () => {
@@ -583,7 +585,7 @@ const Molly = () => {
                 {/* 게임 배경 */}
                 <StockGameBox />
                 {/* 주가 차트 */}
-                <StockChart />
+                <StockChart chartData={chartData}/>
               </div>
             </div>
           )
