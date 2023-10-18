@@ -11,7 +11,7 @@ env:
   AWS_REGION: ap-northeast-2                   
   ECR_REPOSITORY_NAME: "team-2"
   ENV_NAME: "prod"
-  APP: "client-app" 
+  APP: "686710509719.dkr.ecr.ap-northeast-2.amazonaws.com/team-2" 
 
 jobs:
   deploy:
