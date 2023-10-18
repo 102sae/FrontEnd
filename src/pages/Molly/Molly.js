@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Molly.module.css";
 import axios from "axios";
-import MollyScenarioIntro from "./MollyScenario";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
 import ReactTyped from "react-typed";
@@ -20,6 +19,7 @@ import BubbleSell from "../../assets/images/Bubble/bubble_sell.svg";
 import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
 import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
 import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg";
+import MollyHi from "../../assets/images/Molly/molly_hi.png";
 import StockChart from "../../componets/StockChart";
 import { useNavigate } from "react-router-dom";
 import MollyCrush from "../../componets/MollyCrush";
@@ -27,8 +27,6 @@ import HomeIcon from "../../assets/images/home_icon.png";
 
 const Molly = () => {
   const navigate = useNavigate();
-  //시나리오 파일 가져오기
-  const MollyScenario = MollyScenarioIntro();
 
   const [showMenuBox, setShowMenuBox] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(true);
@@ -43,29 +41,118 @@ const Molly = () => {
   const [showStockGameNews, setShowStockGameNews] = useState(false);
   const [showMollyCrush, setShowMollyCrush] = useState(false);
   const [startStockGame, setStartStockGame] = useState(false);
-  const [stockGameCount, setStockGameCount] = useState(0); //프로그레스바
+  const [stockGameCount, setStockGameCount] = useState(0);
   const [stockGameYear, setStockGameYear] = useState(2018);
+  const [newsData, setNewsData] = useState(null);
+  const [chartData, setChartData] = useState(0);
+  const [buySellApiData, setBuySellApiData] = useState(0);
+  const [companyApiData, setCompanyApiData] = useState(0);
   const [crushPercent, setCrushPercent] = useState(
     parseInt(localStorage.getItem("crushPercent"))
   );
 
-  const [chartData, setChartData] = useState({
-    id: 1,
-    year: 2019,
-    price: [56000, 56100, 57000, 56500],
-    date: ["2019-01-01", "2019-01-02", "2019-01-03", "2019-01-04"],
-  });
+   //시나리오 파일 가져오기
+   const MollyScenario = [
+    {
+      index: 0,
+      nextIndex: 1,
+      image: MollyHi,
+      dialog:
+        "안녕! 나를 선택해줘서 고마워~ 우리 같이 투자 연습을 해보면서 실제 투자에 대한 감각을 높여보자!",
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: false,
+      },
+    },
+    {
+      index: 1,
+      nextIndex: 2,
+      image: MollyHi,
+      dialog: "같이 투자 연습을 해볼래?",
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: true,
+        option: ["렛츠 고!", "마음의 준비가 필요해"],
+        nextIndex: [2, 3],
+      },
+    },
+    {
+      index: 2,
+      nextIndex: 4,
+      image: MollyHi,
+      dialog: "그럼 먼저 투자 게임에 대한 설명을 해줄게~",
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: false,
+      },
+    },
+    {
+      index: 3,
+      nextIndex: "",
+      image: MollyHi,
+      dialog: "용어 공부를 더 하다가 올래? 조급해하지 않아도 돼~",
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: true,
+        navigate: true,
+        option: ["용어 공부를 하고 올게", "가보자고~"],
+        nextIndex: [3, 2],
+      },
+    },
+    {
+      index: 4,
+      nextIndex: 5,
+      image: MollyHi,
+      dialog: `우리가 투자 연습을 해볼 회사는 ${companyApiData.companyName}야~ ${companyApiData.companyInfo} 같이 주요 뉴스를 확인하며 연습해보자~`,
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: false,
+      },
+    },
+    {
+      index: 5,
+      nextIndex: 6,
+      image: MollyHi,
+      dialog: `${companyApiData.startYear}년부터 ${companyApiData.endYear}년까지의 ${companyApiData.companyName}회사의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!`,
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: false,
+      },
+    },
+    {
+      index: 6,
+      nextIndex: 7,
+      image: MollyHi,
+      dialog:
+        "매수를 한 후에 그 해에 주가가 오르거나 매도를 한 후에 주가가 내려가면 나의 호감도는 높아질거야!",
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: false,
+      },
+    },
+    {
+      index: 7,
+      nextIndex: 8,
+      image: MollyHi,
+      dialog:
+        "반대로 매수를 했는데 그해의 주가가 떨어지거나 매도를 했는데 주가가 상승하면 나의 호감도는 떨어지겠지? 실제 게임화면으로 이동해서 설명해줄게~",
+      name: "몰리",
+      arrowColor: palette.molly_purple,
+      menu: {
+        show: false,
+      },
+    },
+  ];
 
-  const [buySellApiData, setBuySellApiData] = useState({
-    id: 0,
-    stockRate: 19.23,
-    answer: "SELL",
-    point: -10,
-    correct: false,
-  });
-
-  //게임 시작 POST API
-  const postGameStart = async () => {
+  //투자 게임 시작 POST API
+  const postTradingGameStart = async () => {
     try {
       const token = localStorage.getItem("token");
       const headers = {
@@ -88,10 +175,63 @@ const Molly = () => {
     }
   };
 
+
+  //회사 정보 GET API
+  const getCompanyInfo = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/question",
+        {
+          headers,
+        }
+      );
+      console.log("회사 정보 API", response.data.data);
+      setCompanyApiData(response.data.data);
+
+      //시작 연도 로컬스토리지에 저장
+      console.log("회사 정보 API - companyApiData", companyApiData);
+      console.log("회사 정보 API - startYear", response.data.data.startYear);
+      localStorage.setItem("currentYear", response.data.data.startYear);
+      setStockGameYear(response.data.data.startYear);
+      console.log("setStockGameYear", stockGameYear)
+    } catch (error) {
+      console.error("Error fetching data from API: ", error);
+    }
+  };
+
+  //뉴스정보 GET API
+  const getNewsData = async (stockGameYear) => {
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.get(
+        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/news?year=${stockGameYear}`,
+        {
+          headers: headers,
+        }
+      );
+      console.log("투자 게임 뉴스 API", response.data);
+      setNewsData(response.data.data);
+      return response.data.data;
+    } catch (error) {
+      console.error("Error : ", error);
+    }
+  };
+
+
+
   //투자 게임 시작 버튼
   const handleStartGame = () => {
     setStartStockGame(true);
-    //postGameStart();
+    getChartData(stockGameYear);
+    getNewsData(stockGameYear);
   };
 
   //매수 버튼 클릭
@@ -99,8 +239,8 @@ const Molly = () => {
     console.log("매수 버튼 클릭");
     handleGameCount();
     console.log(currentYear);
-    //postBuySell(currentYear,"BUY");
-    //getChartData(currentYear);
+    postBuySell(currentYear,"BUY");
+    getChartData(currentYear);
     handleQuizFinish();
   };
 
@@ -109,8 +249,8 @@ const Molly = () => {
     console.log("매도 버튼 클릭");
     handleGameCount();
     console.log(currentYear);
-    //postBuySell(currentYear,"SELL");
-    //getChartData(currentYear);
+    postBuySell(currentYear,"SELL");
+    getChartData(currentYear);
     handleQuizFinish();
   };
 
@@ -137,12 +277,12 @@ const Molly = () => {
       setShowMollyCrush(true);
       const timeoutId = setTimeout(() => {
         setShowMollyCrush(false);
-      }, 80000);
+      }, 5000);
     } else {
       setShowMollyCrush(true);
       const timeoutId = setTimeout(() => {
         setShowMollyCrush(false);
-      }, 80000);
+      }, 5000);
     }
   };
 
@@ -156,7 +296,7 @@ const Molly = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        `매수매도API`,
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/answers/check",
         {
           year: currentYear,
           userAnswerId: userAnswer,
@@ -165,22 +305,29 @@ const Molly = () => {
           headers: headers,
         }
       );
-      console.log("매수&매도 POST API", response.data);
-      setBuySellApiData(response.data);
-      return response.data;
+      console.log("매수&매도 POST API", response.data.data);
+      setBuySellApiData(response.data.data);
+      //return response.data.data;
     } catch (error) {
       console.error("Error: ", error);
     }
   };
 
-  //차트 데이터 API
-  const getChartData = async (currentYear) => {
+  //주가조회 GET API
+  const getChartData = async (stockGameYear) => {
+    console.log("주가조회 api 안에 년도",stockGameYear);
     try {
-      const response = await axios.get("차트 데이터 API", {
-        params: {
-          year: currentYear,
-        },
-      });
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get(
+        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/stocks?year=${stockGameYear}`, 
+        {
+          headers,
+        }
+      );
       console.log("차트 데이터 API", response.data);
     } catch (error) {
       console.error("Error : ", error);
@@ -231,6 +378,18 @@ const Molly = () => {
       console.log("2선택");
     }
   };
+
+  useEffect(() => {
+    setCrushPercent(parseInt(localStorage.getItem("crushPercent")))
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await postTradingGameStart(); // postTradingGameStart 함수 실행
+      await getCompanyInfo(); // getCompanyInfo 함수 실행
+    };
+    fetchData(); // fetchData 함수 호출
+  }, []);
 
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
@@ -430,6 +589,7 @@ const Molly = () => {
           )
         }
       </div>
+      
       {
         /* 실제 투자 게임 시작 */
         startStockGame && (
@@ -440,7 +600,7 @@ const Molly = () => {
               {/* 뉴스 버튼이 눌리면 뉴스 기사 나타남 */}
               {showStockGameNews && (
                 <StockGameNewsPaper
-                  year={stockGameYear}
+                  newsData={newsData}
                   showStockGameNews={showStockGameNews}
                   toggleStockGameNews={handleHintButtonClick}
                 />
