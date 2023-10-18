@@ -8,7 +8,8 @@ import Signup from "./pages/Signup/Signup";
 import Lay from "./pages/Lay/Lay";
 import Molly from "./pages/Molly/Molly";
 import LayResult from "./pages/Lay/LayResult";
-import MollyResult from "./pages/Molly/MollyResult"
+import MollyResult from "./pages/Molly/MollyResult";
+import Home from "./pages/Home/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -20,6 +21,7 @@ root.render(
         <Route path="/intro" element={<Intro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/lay" element={<Lay />} />
         <Route path="/lay-result" element={<LayResult />} />
         <Route path="/molly" element={<Molly />} />

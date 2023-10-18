@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/reset.css";
 import "../../styles/global.css";
 import styles from "./Lay.module.css";
@@ -16,9 +17,7 @@ import axios from "axios";
 import TermQuiz from "../../componets/TermQuiz";
 import LayCrush from "../../componets/LayCrush";
 import ReactTyped from "react-typed";
-import SolutionBackground from "../../assets/images/sol_solution_bg.png";
-import { useNavigate } from "react-router-dom";
-import LayResult from "./LayResult";
+import HomeIcon from "../../assets/images/home_icon.png";
 
 const Lay = () => {
   const navigate = useNavigate();
@@ -349,7 +348,15 @@ const Lay = () => {
             <div>
               {/* 프로그레스바 & 호감도 */}
               <div className={styles.top}>
-                <ProgressBar character="레이" progressCount={progressCount} />
+                <img
+                  src={HomeIcon}
+                  alt="HomeIcon"
+                  className={styles.homeIcon}
+                  onClick={() => navigate("/home")}
+                />
+                <div className={styles.progressWrap}>
+                  <ProgressBar character="레이" progressCount={progressCount} />
+                </div>
                 <CrushBar />
               </div>
 

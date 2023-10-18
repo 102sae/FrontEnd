@@ -4,19 +4,10 @@
   margin: 20px auto;
   background-color: var(--black);
   position: relative;
-  background-image: url("../../assets/images/stars.png");
+  background-image: url("../../assets/images/intro_bg.png");
   background-repeat: repeat;
   animation: backgroundMove 20s linear infinite;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes backgroundMove {
@@ -29,25 +20,6 @@
   100% {
     background-position: 0 0;
   }
-}
-
-.characterWrap {
-  transition: background-color 1s ease;
-}
-
-.characterImage {
-  position: absolute;
-  bottom: 280px;
-  left: 380px;
-}
-
-.solBackground {
-  transition: background-color 0.5 s ease;
-  background-image: url("../../assets/images/intro_bg.png");
-}
-
-.selectBackground {
-  background: linear-gradient(0deg, #a3c7f7 0%, #d4eaf7 100%);
 }
 
 .friendsWrap {
