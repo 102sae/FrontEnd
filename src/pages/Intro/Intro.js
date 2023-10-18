@@ -68,7 +68,7 @@ function Intro() {
       // 요청 데이터 (비어있는 객체 또는 필요한 데이터를 넣을 수 있음)
       const requestData = {};
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/start",
+        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/start`,
         requestData,
         {
           headers: headers,

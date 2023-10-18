@@ -227,7 +227,7 @@ const Lay = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions",
+        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions`,
         {
           headers,
         }
@@ -247,7 +247,7 @@ const Lay = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
-        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/term-quiz/questions/${currentId}/solution`,
+        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions/${currentId}/solution`,
         {
           headers,
         }
