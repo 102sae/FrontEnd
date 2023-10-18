@@ -78,7 +78,7 @@ const MollyCrush = ({ correct, point, stockRate }) => {
         <div>
           {correct ? (
             <p>
-              주가 증감율 : <span style={{ color: "red" }}>+{stockRate}% </span>{" "}
+              주가 증감율 : <span style={{ color: "red" }}>{stockRate}% </span>{" "}
               👉 호감도가 <span style={{ color: "red" }}>{point}</span>{" "}
               상승하였습니다.
             </p>

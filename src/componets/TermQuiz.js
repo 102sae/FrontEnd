@@ -15,7 +15,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
 
   const quizItems = [
     {
-      id:  items[0].id,
+      id: items[0].id,
       text: items[0].content,
       position: { top: 192, left: 107.5 },
     },
@@ -35,11 +35,11 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     console.log("유저 선택 userAnswerId", index);
     console.log("정답 확인 POST API", id);
 
-    const apiCorrectResponse = await postData(id, index); 
+    const apiCorrectResponse = await postData(id, index);
     // isCorrectAnswer = userAnswerId === answerId;
 
     console.log("정답 확인 POST API", apiCorrectResponse);
-  
+
     setTimeout(() => {
       const quizResult = {
         userPoint: apiCorrectResponse.point,
@@ -47,20 +47,20 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
         userAnswerId: index,
         termId: id,
       };
-      
+
       // 호감도 변화
       const storedCrushPercent = parseInt(localStorage.getItem("crushPercent"));
-      console.log("기존 호감도: ",storedCrushPercent)
-      console.log("변화한 호감도: ", storedCrushPercent + quizResult.userPoint)
-      localStorage.setItem("crushPercent", Math.min(100, Math.max(0, storedCrushPercent + quizResult.userPoint))); 
+      console.log("기존 호감도: ", storedCrushPercent);
+      console.log("변화한 호감도: ", storedCrushPercent + quizResult.userPoint);
+      localStorage.setItem(
+        "crushPercent",
+        Math.min(100, Math.max(0, storedCrushPercent + quizResult.userPoint))
+      );
 
       console.log("quizResult", quizResult);
       onQuizFinish(quizResult);
     }, 1000);
-};
-
-  
-  
+  };
 
   //정답 확인 POST API
   const postData = async (currentId, userSelectAnswer) => {
@@ -82,13 +82,11 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
         );
         console.log("정답 확인 POST API", response.data);
         return response.data.data;
-    } catch (error) {
-        console.error("Error submitting answer: ", error);
-    }
-};
 
-  
-  
+    } catch (error) {
+      console.error("Error submitting answer: ", error);
+    }
+  };
 
   return (
     <div>
@@ -175,32 +173,32 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
       {/* 정답 및 오답 이미지 */}
       {userAnswerId !== null && (
         <div className={styles.quiz_answer}>
-            {quizItems.map((index) => (
+          {quizItems.map((index) => (
             <svg
-                key={index.id}
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-                style={{
+              key={index.id}
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 40 40"
+              fill="none"
+              style={{
                 position: "absolute",
                 top: index.position.top,
                 left: index.position.left,
-                }}
+              }}
             >
-                <path
+              <path
                 d={
-                    index.id === answerId
+                  index.id === answerId
                     ? "M17.6866 30.5898L32.5253 15.7511C33.0292 15.2473 33.0292 14.4302 32.5253 13.9264L30.7006 12.1016C30.1967 11.5977 29.3797 11.5977 28.8757 12.1016L16.7742 24.2031L11.1243 18.5531C10.6204 18.0493 9.80339 18.0493 9.29944 18.5531L7.47468 20.3779C6.97081 20.8818 6.97081 21.6988 7.47468 22.2027L15.8618 30.5898C16.3657 31.0937 17.1827 31.0937 17.6866 30.5898Z"
                     : "M29.8065 25.25C30.1855 25.629 30.1855 26.2419 29.8065 26.621L26.6129 29.8065C26.2339 30.1855 25.621 30.1855 25.2419 29.8065L20 24.5161L14.75 29.8065C14.371 30.1855 13.7581 30.1855 13.379 29.8065L10.1935 26.6129C9.81452 26.2339 9.81452 25.621 10.1935 25.2419L15.4839 20L10.1935 14.75C9.81452 14.371 9.81452 13.7581 10.1935 13.379L13.3871 10.1855C13.7661 9.80645 14.379 9.80645 14.7581 10.1855L20 15.4839L25.25 10.1935C25.629 9.81452 26.2419 9.81452 26.621 10.1935L29.8145 13.3871C30.1935 13.7661 30.1935 14.379 29.8145 14.7581L24.5161 20L29.8065 25.25Z"
                 }
                 fill={index.id === answerId ? "#1D449B" : "#FA3939"}
-                />
+              />
             </svg>
-            ))}
+          ))}
         </div>
-        )}
+      )}
     </div>
   );
 };
