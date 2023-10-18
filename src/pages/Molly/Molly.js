@@ -169,7 +169,7 @@ const Molly = () => {
       // 요청 데이터
       const requestData = {};
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/start",
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/start`,
         requestData,
         {
           headers: headers,
@@ -191,7 +191,7 @@ const Molly = () => {
       };
 
       const response = await axios.get(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/question",
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/question`,
         {
           headers,
         }
@@ -218,7 +218,7 @@ const Molly = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.get(
-        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/news?year=${stockGameYear}`,
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/news?year=${stockGameYear}`,
         {
           headers: headers,
         }
@@ -241,7 +241,7 @@ const Molly = () => {
       };
 
       const response = await axios.get(
-        `http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/companies/stocks?year=${stockGameYear}`,
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/companies/stocks?year=${stockGameYear}`,
         {
           headers,
         }
@@ -327,7 +327,7 @@ const Molly = () => {
         Authorization: `Bearer ${token}`,
       };
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/answers/check",
+        `${process.env.REACT_APP_SERVER_PORT}/api/stock-quiz/answers/check`,
         {
           year: stockGameYear,
           userAnswer: userAnswer,

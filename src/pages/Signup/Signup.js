@@ -32,7 +32,7 @@ const Signup = ({ toggleForm, onSignup }) => {
     console.log("회원가입 데이터:", signupData);
     try {
       const response = await axios.post(
-        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/member/signin",
+        `${process.env.REACT_APP_SERVER_PORT}/api/member/signin`,
         signupData
       );
 
