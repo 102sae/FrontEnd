@@ -57,32 +57,6 @@ function Intro() {
     }
   };
 
-  //용어 게임 시작 POST API
-  const postTermGameStart = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-
-      // 요청 데이터 (비어있는 객체 또는 필요한 데이터를 넣을 수 있음)
-      const requestData = {};
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/start`,
-        requestData,
-        {
-          headers: headers,
-        }
-      );
-
-      console.log("용어 게임 시작", response.data);
-      localStorage.setItem("crushPercent", 50);
-      localStorage.setItem("nickName", response.data.data);
-    } catch (error) {
-      console.error("Error submitting answer: ", error);
-    }
-  };
-
   //마지막 대화가 종료된 후 1초 후에 선택지 보여주기
   useEffect(() => {
     if (introScenario[currentScenarioIndex].menu.show) {
@@ -191,11 +165,7 @@ function Intro() {
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-                <Link
-                  to="/lay"
-                  className={styles.link}
-                  onClick={postTermGameStart()}
-                >
+                <Link to="/lay" className={styles.link}>
                   <FriendSelectBox
                     friendNameImage={Layname}
                     friendImage={Lay}
