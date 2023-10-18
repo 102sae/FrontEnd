@@ -3,7 +3,7 @@
   height: 767px;
   margin: 20px auto;
   position: relative;
-  background-image: url("../../assets/images/stars.png");
+  background-image: url("../../assets/images/result_success_bg.png");
   background-color: var(--lay_blue);
   background-repeat: repeat;
   animation: backgroundMove 10s linear infinite;
