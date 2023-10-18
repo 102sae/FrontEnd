@@ -58,8 +58,8 @@ function Intro() {
   };
 
 
-  //게임 시작 POST API
-  const postGameStart = async () => {
+  //용어 게임 시작 POST API
+  const postTermGameStart = async () => {
     try {
       const token = localStorage.getItem("token");
       const headers = {
@@ -76,11 +76,35 @@ function Intro() {
         }
       );
 
-      console.log("게임 시작", response.data);
+      console.log("용어 게임 시작", response.data);
       localStorage.setItem("crushPercent", 50);
       localStorage.setItem("nickName", response.data.data);
     } catch (error) {
       console.error("Error submitting answer: ", error);
+    }
+  };
+
+  //투자 게임 시작 POST API
+  const postTradingGameStart = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // 요청 데이터
+      const requestData = {};
+      const response = await axios.post(
+        "http://shinhan-stock-friends-lb-252672342.ap-northeast-2.elb.amazonaws.com/api/stock-quiz/start",
+        requestData,
+        {
+          headers: headers,
+        }
+      );
+
+      console.log("투자 게임 시작", response.data);
+    } catch (error) {
+      console.error("Error: ", error);
     }
   };
 
@@ -192,9 +216,8 @@ function Intro() {
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-                <Link to="/lay" className={styles.link}>
+                <Link to="/lay" className={styles.link} onClick={postTermGameStart()}>
                   <FriendSelectBox
-                    onClick={postGameStart()}
                     friendNameImage={Layname}
                     friendImage={Lay}
                     hoverFriendImage={LaySmile}
@@ -202,7 +225,7 @@ function Intro() {
                   />
                 </Link>
 
-                <Link to="/molly" className={styles.link}>
+                <Link to="/molly" className={styles.link} onClick={postTradingGameStart()}>
                   <FriendSelectBox
                     friendNameImage={Mollyname}
                     friendImage={Molly}

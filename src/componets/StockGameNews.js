@@ -1,18 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styles from "./StockGameNews.module.css";
 import StockGameNews from "../assets/images/StockGameNews.png";
-import NewsScenarioData from "../pages/Molly/NewsScenario";
 
 const StockGameNewsPaper = ({
-  year,
+  newsData,
   showStockGameNews,
-  toggleStockGameNews,
-}) => {
+  toggleStockGameNews,}) => {
   const handleImageClick = () => {
     toggleStockGameNews(!showStockGameNews);
   };
 
-  const NewsScenario = NewsScenarioData();
+  const NewsScenario = [
+    {
+      year: newsData.year,
+      news: [
+        {
+          newsHead: newsData.news[0].newsHead,
+          newsUrl: newsData.news[0].newsUrl,
+        },
+        {
+          newsHead: newsData.news[1].newsHead,
+          newsUrl: newsData.news[1].newsUrl,
+        },
+        {
+          newsHead: newsData.news[2].newsHead,
+          newsUrl: newsData.news[2].newsUrl,
+        },
+        {
+          newsHead: newsData.news[3].newsHead,
+          newsUrl: newsData.news[3].newsUrl,
+        },
+        {
+          newsHead: newsData.news[4].newsHead,
+          newsUrl: newsData.news[4].newsUrl,
+        },
+      ],
+    },
+
+  ];
+
 
   return showStockGameNews ? (
     <div className={styles.newsWrap} onClick={handleImageClick}>
@@ -22,9 +49,9 @@ const StockGameNewsPaper = ({
         className={styles.StockGameNews}
       />
       <div className={styles.newsTitleWrap}>
-        <p className={styles.newsYear}>{year}년 주요 뉴스</p>
+        <p className={styles.newsYear}>{newsData.year}년 주요 뉴스</p>
         {NewsScenario.map((newsList) => {
-          if (newsList.year === year) {
+          if (newsList.year === newsData.year) {
             return newsList.news.map((news, index) => {
               return (
                 <li className={styles.newsTitle} key={index}>
