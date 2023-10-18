@@ -2,15 +2,20 @@ import Chart from "react-apexcharts";
 import style from "./StockChart.module.css";
 
 const StockChart = ({ chartData }) => {
+  const formattedDates = chartData.date.map(dateString => {
+    const year = dateString.slice(0, 4);
+    const month = dateString.slice(4, 6);
+    const day = dateString.slice(6, 8);
+    return `${year}-${month}-${day}`;
+  });
+
   return (
     <div className={style.chartWrap}>
       <Chart
         type="line"
         series={[
           {
-            data: [
-              chartData.price
-            ],
+            data: chartData.price,
           },
         ]}
         options={{
@@ -28,9 +33,7 @@ const StockChart = ({ chartData }) => {
             axisTicks: { show: false },
             labels: { show: false },
             type: "datetime",
-            categories: [
-              chartData.date
-            ],
+            categories: formattedDates,
           },
         }}
       ></Chart>
