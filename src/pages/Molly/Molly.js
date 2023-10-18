@@ -259,20 +259,20 @@ const Molly = () => {
   //매수 버튼 클릭
   const onBuyClick = (stockGameYear) => {
     console.log("매수 버튼 클릭");
-    const updateStockGameYear = handleGameCount();
-    console.log("매수 클릭후 다음년도", updateStockGameYear);
-    postBuySell(updateStockGameYear,"BUY");
-    getChartData(updateStockGameYear);
+    handleGameCount();
+    console.log("매수 클릭후 다음년도", stockGameYear);
+    postBuySell(stockGameYear,"BUY");
+    getChartData(stockGameYear);
     handleQuizFinish();
   };
 
   //매도 버튼 클릭
   const onSellClick = (stockGameYear) => {
     console.log("매도 버튼 클릭");
-    const updateStockGameYear = handleGameCount();
-    console.log("매수 클릭후 다음년도", updateStockGameYear);
-    postBuySell(updateStockGameYear,"SELL");
-    getChartData(updateStockGameYear);
+    handleGameCount();
+    console.log("매수 클릭후 다음년도", stockGameYear);
+    postBuySell(stockGameYear,"SELL");
+    getChartData(stockGameYear);
     handleQuizFinish();
   };
 
