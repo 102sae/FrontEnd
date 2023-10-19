@@ -299,6 +299,9 @@ const Lay = () => {
       if (crushPercent == 100) {
         navigate("/lay-result");
       }
+      else if (crushPercent == 0) {
+        navigate("/lay-result");
+      }
       else if (progressCount == 10) {
         navigate("/lay-result");
       }

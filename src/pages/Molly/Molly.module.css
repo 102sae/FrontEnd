@@ -67,7 +67,9 @@
 }
 
 .characterWrap img {
-  width: 360px;
+  position: absolute;
+  bottom: 280px;
+  left: 350px;
 }
 
 .dialogText {
