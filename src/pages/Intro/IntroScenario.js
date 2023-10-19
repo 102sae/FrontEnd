@@ -10,7 +10,7 @@ const introScenario = [
     nextIndex: 1,
     image: "",
     dialog:
-      "밤하늘의 북쪽에서 가장 밝게 빛나는 별,\n 북극성에 우주여행작가 쏠이 살고 있었어요.",
+      "밤하늘의 북쪽에서 가장 밝게 빛나는 별, 북극성에 우주여행작가 쏠이 살고 있었어요.",
     name: "??",
     arrowColor: palette.sol_text,
     menu: {
@@ -21,8 +21,7 @@ const introScenario = [
     index: 1,
     nextIndex: 2,
     image: "",
-    dialog:
-      "쏠은 조금 더 특별한 여행을 하고 싶다는 생각이 들었어요. \n문득 오래전부터 꼭 여행해 보고 싶었던 별,",
+    dialog: "쏠은 조금 더 특별한 여행을 하고 싶다는 생각이 들었어요.",
     name: "??",
     arrowColor: palette.sol_text,
     menu: {
@@ -33,7 +32,8 @@ const introScenario = [
     index: 2,
     nextIndex: 3,
     image: "",
-    dialog: "유난히 푸르게 빛나던 지구가 떠올랐습니다.",
+    dialog:
+      "문득 오래전부터 꼭 여행해 보고 싶었던 별, 유난히 푸르게 빛나던 지구가 떠올랐습니다.",
     name: "??",
     arrowColor: palette.sol_text,
     menu: {
@@ -78,8 +78,7 @@ const introScenario = [
     index: 6,
     nextIndex: 7,
     image: Sol,
-    dialog:
-      "너에게 선물을 주려고 지구에 왔어!",
+    dialog: "너에게 선물을 주려고 지구에 왔어!",
     name: "쏠",
     arrowColor: palette.sol_text,
     menu: {
@@ -103,7 +102,7 @@ const introScenario = [
     nextIndex: 9,
     image: Sol,
     dialog:
-      "그래서 말인데, 북극성에서 또 다른 내 친구들이 온대!\n 이 친구들과 친해진다면 주식의 기본 지식을 얻을 수 있고 실전 투자에 자신감이 생길거야!",
+      "그래서 말인데, 북극성에서 또 다른 내 친구들이 온대! 이 친구들과 친해진다면 주식의 기본 지식을 얻을 수 있고 실전 투자에 자신감이 생길거야!",
     name: "쏠",
     arrowColor: palette.sol_text,
     menu: {
@@ -114,8 +113,7 @@ const introScenario = [
     index: 9,
     nextIndex: 11,
     image: Sol,
-    dialog:
-      "내 친구들이 너에 대한 호감도가 100%가 되면 선물을 줄거야.",
+    dialog: "내 친구들이 너에 대한 호감도가 100%가 되면 선물을 줄거야.",
     name: "쏠",
     arrowColor: palette.sol_text,
     menu: {
@@ -197,7 +195,8 @@ const introScenario = [
     index: 16,
     nextIndex: 17,
     image: LayHi,
-    dialog: "안녕! 나는 지구에서 제일 유명한 뮤지션이 되고 싶은 레이야~\n 나는 얼른 멋진 음반을 내고 싶어서 돈이 필요한데 투자 용어에 대해서 하나도 알지 못해.",
+    dialog:
+      "안녕! 나는 지구에서 제일 유명한 뮤지션이 되고 싶은 레이야~ 나는 얼른 멋진 음반을 내고 싶어서 돈이 필요한데 투자 용어에 대해서 하나도 알지 못해.",
     name: "레이",
     arrowColor: palette.ray_blue,
     menu: {
@@ -224,13 +223,14 @@ const introScenario = [
     arrowColor: palette.molly_purple,
     menu: {
       show: false,
-    }, 
+    },
   },
   {
     index: 19,
     nextIndex: 20,
     image: MollyHi,
-    dialog: "나는 어느덧 지구에 산지 5년차인데 더 큰 카페를 운영하기위한 자금이 필요해.\n 증권 초보라 어려운게 많아.",
+    dialog:
+      "나는 어느덧 지구에 산지 5년차인데 더 큰 카페를 운영하기위한 자금이 필요해. 증권 초보라 어려운게 많아.",
     name: "몰리",
     arrowColor: palette.molly_purple,
     menu: {
@@ -241,7 +241,8 @@ const introScenario = [
     index: 20,
     nextIndex: 21,
     image: MollyHi,
-    dialog: "북극성에만 있는 타임머신을 사용해서 과거로 돌아가 지금까지 지구에서 있었던 상황들을 투자해보려고 해. 혹시 나 좀 도와줄래?",
+    dialog:
+      "북극성에만 있는 타임머신을 사용해서 과거로 돌아가 지금까지 지구에서 있었던 상황들을 투자해보려고 해. 혹시 나 좀 도와줄래?",
     name: "몰리",
     arrowColor: palette.molly_purple,
     menu: {
