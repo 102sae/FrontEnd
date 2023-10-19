@@ -9,6 +9,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   // const [termId, setTermId] = useState(0);
   const [userAnswerId, setUserAnswerId] = useState(null);
   const [answerId, setAnswerId] = useState(null);
+  const [isClickDisabled, setIsClickDisabled] = useState(false);
   // const [userCorrect, setUserCorrect] = useState(null);
   // const [userPoint, setUserPoint] = useState(null);
   // let isCorrectAnswer = false;
@@ -31,14 +32,22 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     },
   ];
 
+  //여러번 클릭 비활성화
+  const handleAnswerClick = (id) => {
+    if (!isClickDisabled) {
+      onClickAnswer(id);
+      setIsClickDisabled(true); // 클릭 이벤트 비활성화
+    }
+  };
+
+
   const onClickAnswer = async (index) => {
     console.log("유저 선택 userAnswerId", index);
     console.log("정답 확인 POST API", id);
 
     const apiCorrectResponse = await postData(id, index);
     // isCorrectAnswer = userAnswerId === answerId;
-
-    console.log("정답 확인 POST API", apiCorrectResponse);
+    console.log("클릭 시에 정답 확인 POST API", apiCorrectResponse);
 
     setTimeout(() => {
       const quizResult = {
@@ -80,7 +89,6 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
                 headers: headers,
             }
         );
-        console.log("정답 확인 POST API", response.data);
         return response.data.data;
 
     } catch (error) {
@@ -141,7 +149,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
               top: index.position.top,
               left: index.position.left,
             }}
-            onClick={() => onClickAnswer(index.id)}
+            onClick={() => handleAnswerClick(index.id)}
           >
             <g filter="url(#filter0_d_74_9294)">
               <path
