@@ -35,8 +35,8 @@ const Login = ({ toggleForm, onLogin }) => {
           withCredentials: true,
         }
       );
-
-      console.log(response);
+      console.log(response.headers);
+      console.log(response.headers.get("Accesstoken"));
       // 토큰 값을 가져옴
       const token = response.headers.accesstoken;
       console.log("TEST : " + token);
