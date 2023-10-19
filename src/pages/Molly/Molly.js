@@ -134,7 +134,7 @@ const Molly = () => {
       nextIndex: 7,
       image: MollyHi,
       dialog:
-        "주식을 보유하고 있는 기간은 1년이고, 다음해 1월까지의 주식 증감율에 따라 호감도가 달라질거야! 매수를 한 후에 주가가 오르거나 매도를 한 후에 주가가 내려가면 나의 호감도는 높아져~",
+        "주식을 보유하고 있는 기간은 1년이고, 다음해 1월의 주가에 따라 호감도가 달라질거야! 매수를 한 후에 주가가 오르거나 매도를 한 후에 주가가 내려가면 나의 호감도는 높아져~",
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {
@@ -596,7 +596,7 @@ const Molly = () => {
                     setShowBubbleStart(false);
                   }}
                 >
-                  {showBubbleStart && (
+                  {!showBubbleBuy && (
                     <img
                       className={styles.bubbleStart}
                       src={BubbleStart}
