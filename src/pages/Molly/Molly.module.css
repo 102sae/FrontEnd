@@ -47,6 +47,7 @@
   justify-content: space-around;
   margin-left: 35px;
   margin-top: -10px;
+  cursor: pointer;
 }
 
 .progressWrap {
@@ -73,7 +74,7 @@
   width: 600px;
   height: 100px;
   position: absolute;
-  bottom: 120px;
+  bottom: 125px;
   left: 220px;
   white-space: "pre-wrap";
   font-size: 24px;
