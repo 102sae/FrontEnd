@@ -12,7 +12,7 @@
   }
 
   .title {
-    font-size: 42px;
+    font-size: 38px;
     font-weight: bold;
     margin-bottom: 20px;
     color: var(--shinhan_blue);
@@ -51,11 +51,11 @@
 
   .nickname input,
   .password input {
-    width: 70vw;
+    width: 50vw;
     height: 40px;
     padding: 10px;
     font-size: 18px;
-    background-color: rgba(236, 236, 236, 1);
+    background-color: transparent;
     border: none;
     outline: none;
   }
@@ -79,7 +79,7 @@
   }
 
   .link {
-    font-size: 18px;
+    font-size: 14px;
     color: var(--shinhan_blue);
     transition: color 0.3s ease; /* 컬러 변경에 트랜지션 효과 추가 */
   }
@@ -122,6 +122,13 @@
     width: 50vw;
     height: auto;
   }
+
+  .nickname input,
+  .password input {
+    background-color: transparent;
+    width: 20vw;
+  }
+
 }
 
 @media screen and (min-width: 1024px) {
