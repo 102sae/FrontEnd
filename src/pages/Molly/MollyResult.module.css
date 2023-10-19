@@ -3,7 +3,6 @@
   height: 767px;
   margin: 20px auto;
   position: relative;
-  background-image: url("../../assets/images/result_success_bg.png");
   background-color: var(--lay_blue);
   background-repeat: repeat;
   animation: backgroundMove 10s linear infinite;
@@ -31,7 +30,7 @@
 }
 
 .character_wrap img {
-  width: 270px;
+  width: 280px;
 }
 
 .dialogText {
@@ -42,7 +41,7 @@
 
   top: 540px;
   left: 230px;
-  white-space: "pre-wrap";
+  white-space: pre-wrap;
   font-size: 24px;
   color: var(--black);
   text-align: center;
