@@ -37,7 +37,7 @@ const Login = ({ toggleForm, onLogin }) => {
       );
 
       // 토큰 값을 가져옴
-      const token = response.headers.accesstoken;
+      const token = response.Headers.Accesstoken;
       console.log("TEST : " + token);
       // 토큰을 LocalStorage에 저장
       localStorage.setItem("token", token);
