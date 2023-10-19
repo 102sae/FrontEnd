@@ -8,6 +8,7 @@ import DialogBox from "../../componets/DialogBox";
 import ReactTyped from "react-typed";
 import MenuBox from "../../componets/MenuBox";
 import { useNavigate } from "react-router-dom";
+import HomeIcon from "../../assets/images/home_icon.png";
 
 const MollyResult = () => {
   const navigate = useNavigate();
@@ -148,7 +149,15 @@ const MollyResult = () => {
             <div>
               {/* 프로그레스바 & 호감도 */}
               <div className={styles.top}>
+              <div className={styles.hometop}>
+                <img
+                  src={HomeIcon}
+                  alt="HomeIcon"
+                  className={styles.homeIcon}
+                  onClick={() => navigate("/home")}
+                />
                 <CrushBar />
+                </div>
               </div>
 
               {/* 이미지 렌더링 */}
