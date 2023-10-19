@@ -85,7 +85,7 @@ const Lay = () => {
       index: 3,
       nextIndex: 4,
       image: LayThinking,
-      dialog: `요즘 뉴스에 ${apiTermData.term}을 사라는 말이 많더라고... \n그런데 ${apiTermData.term}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
+      dialog: `요즘 뉴스에 ${apiTermData.term}에 대해 많이 나오더라고... 그런데 ${apiTermData.term}이 정확하게 뭔지 모르겠어서 나 좀 도와줄래?`,
       name: "레이",
       arrowColor: palette.ray_blue,
       menu: {
@@ -141,7 +141,7 @@ const Lay = () => {
       index: 7,
       nextIndex: 8,
       image: SolSolution,
-      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면\n ${apiSolData.description}(이)야~`,
+      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면 ${apiSolData.description}(이)야~`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -155,7 +155,7 @@ const Lay = () => {
       index: 8,
       nextIndex: 9,
       image: SolKKK,
-      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
+      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~ 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {

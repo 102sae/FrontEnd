@@ -122,7 +122,7 @@ const Molly = () => {
       index: 5,
       nextIndex: 6,
       image: MollyHi,
-      dialog: `${companyApiData.startYear}년부터 ${companyApiData.endYear}년까지의 ${companyApiData.companyName}의 주가를 보여줄게! 그리고 너는 1년마다 매수를 할건지 매도를 할건지 선택할 수 있어!`,
+      dialog: `${companyApiData.startYear}년부터 ${companyApiData.endYear}년까지의 ${companyApiData.companyName}의 주가를 보여줄게! 그리고 너는 매년 2월에 매수를 할건지 매도를 할건지 선택할 수 있어!`,
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {
@@ -134,7 +134,7 @@ const Molly = () => {
       nextIndex: 7,
       image: MollyHi,
       dialog:
-        "매수를 한 후에 그 해에 주가가 오르거나 매도를 한 후에 주가가 내려가면 나의 호감도는 높아질거야!",
+        "주식을 보유하고 있는 기간은 1년이고, 다음해의 1월까지의 주식 증감율에 따라 호감도가 달라질거야! 매수를 한 후에 주가가 오르거나 매도를 한 후에 주가가 내려가면 나의 호감도는 높아져~",
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {
@@ -146,7 +146,7 @@ const Molly = () => {
       nextIndex: 8,
       image: MollyHi,
       dialog:
-        "반대로 매수를 했는데 그해의 주가가 떨어지거나 매도를 했는데 주가가 상승하면 나의 호감도는 떨어지겠지? 실제 게임화면으로 이동해서 설명해줄게~",
+        "반대로 매수를 했는데 내년 말의 주가가 떨어지거나 매도를 했는데 주가가 상승하면 나의 호감도는 떨어지겠지? 이제 실제 게임화면으로 이동해서 설명해줄게~",
       name: "몰리",
       arrowColor: palette.molly_purple,
       menu: {

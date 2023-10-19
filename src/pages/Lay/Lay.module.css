@@ -84,7 +84,8 @@
   overflow-x: hidden;
   top: 540px;
   left: 230px;
-  white-space: "pre-wrap";
+  word-break: keep-all;
+  white-space: pre-wrap;
   font-size: 24px;
   color: var(--black);
   text-align: center;

@@ -4,7 +4,9 @@ const TradingButton = ({ onBuyClick, onSellClick, year, startStockGame }) => {
   return (
     <div>
       {/* 년도 */}
-      <div className={styles.year_txt}>{year}년</div>
+      <div className={styles.year_txt}>
+        {year}년 2월 ~ {year + 1}년 1월
+      </div>
 
       {/* 매수 & 매도 버튼 */}
       <div className={styles.button_wrap}>

@@ -31,7 +31,7 @@ const StockChart = ({ chartData }) => {
           xaxis: {
             axisBorder: { show: false },
             axisTicks: { show: false },
-            labels: { show: false },
+            labels: { show: true, format: "MM" },
             type: "datetime",
             categories: formattedDates,
           },
