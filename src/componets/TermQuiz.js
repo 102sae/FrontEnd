@@ -131,7 +131,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
           top: 40,
         }}
       >
-        {term}이 뭘까?
+        {term}이(가) 뭘까?
       </text>
 
       {/* 용어 게임 바디 */}

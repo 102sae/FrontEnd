@@ -1,8 +1,8 @@
 import React from "react";
 
 const LayCrush = ({ correct, point }) => {
-  console.log("LayCrush 컴포넌트 corrrect",correct);
-  console.log("LayCrush 컴포넌트 point", point);
+  //console.log("LayCrush 컴포넌트 corrrect",correct);
+  //console.log("LayCrush 컴포넌트 point", point);
 
   return (
     <div>

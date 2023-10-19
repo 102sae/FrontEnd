@@ -141,7 +141,7 @@ const Lay = () => {
       index: 7,
       nextIndex: 8,
       image: SolSolution,
-      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면 ${apiSolData.description}(이)야~`,
+      dialog: `${apiTermData.term}는(은) 한국예탁결제원에 따르면 \n ${apiSolData.description}(이)야~`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -155,7 +155,7 @@ const Lay = () => {
       index: 8,
       nextIndex: 9,
       image: SolKKK,
-      dialog: `하하하! 얼빠진 얼굴 하고 있네! 포기하기엔 이르다구~ 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
+      dialog: `하하하! 얼빠진 얼굴 하고 있네! 어렵지?\n 나 쏠이가 다시 쉽게 설명해줄게~\n ${apiSolData.explanation}`,
       name: "쏠",
       arrowColor: palette.sol_text,
       menu: {
@@ -297,6 +297,9 @@ const Lay = () => {
       const crushPercent = parseInt(localStorage.getItem("crushPercent"));
       //10단계 끝나면 레이 결과창으로 이동
       if (crushPercent == 100) {
+        navigate("/lay-result");
+      }
+      else if (crushPercent == 0) {
         navigate("/lay-result");
       }
       else if (progressCount == 10) {
