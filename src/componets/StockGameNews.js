@@ -54,7 +54,11 @@ const StockGameNewsPaper = ({
             return newsList.news.map((news, index) => {
               return (
                 <li className={styles.newsTitle} key={index}>
-                  <a href={news.newsUrl} target="_blank">
+                  <a
+                    className={styles.newsUrl}
+                    href={news.newsUrl}
+                    target="_blank"
+                  >
                     {news.newsHead}
                   </a>
                 </li>
