@@ -10,10 +10,24 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
-.top {
+
+
+.homeIcon {
+  width: 83px;
+  height: 77px;
+  margin-left: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.homeIcon:active {
+  transform: scale(0.95); /* 클릭 시 크기를 조절하여 누르는 효과를 줍니다. */
+}
+
+.hometop {
   display: flex;
-  justify-content: flex-end;
-  margin-top: -10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .content {

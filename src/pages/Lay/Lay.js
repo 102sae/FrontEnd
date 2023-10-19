@@ -294,8 +294,12 @@ const Lay = () => {
     if (currentScenarioIndex === 3 || currentScenarioIndex === 8) {
       console.log("프로그레스바 단계", progressCount);
       setProgressCount((prev) => prev + 1);
+      const crushPercent = parseInt(localStorage.getItem("crushPercent"));
       //10단계 끝나면 레이 결과창으로 이동
-      if (progressCount == 10) {
+      if (crushPercent == 100) {
+        navigate("/lay-result");
+      }
+      else if (progressCount == 10) {
         navigate("/lay-result");
       }
     }

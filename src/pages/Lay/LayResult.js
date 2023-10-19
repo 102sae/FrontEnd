@@ -8,6 +8,7 @@ import DialogBox from "../../componets/DialogBox";
 import ReactTyped from "react-typed";
 import MenuBox from "../../componets/MenuBox";
 import { useNavigate } from "react-router-dom";
+import HomeIcon from "../../assets/images/home_icon.png";
 
 const LayResult = () => {
   const navigate = useNavigate();
@@ -146,11 +147,18 @@ const LayResult = () => {
         >
           {showDialogBox && (
             <div>
+              <div className={styles.hometop}>
+                <img
+                  src={HomeIcon}
+                  alt="HomeIcon"
+                  className={styles.homeIcon}
+                  onClick={() => navigate("/home")}
+                />
               {/* 프로그레스바 & 호감도 */}
               <div className={styles.top}>
                 <CrushBar />
               </div>
-
+            </div>
               {/* 이미지 렌더링 */}
               <div className={styles.character_wrap}>
                 <img
