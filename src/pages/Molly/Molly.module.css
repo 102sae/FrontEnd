@@ -113,7 +113,7 @@
   position: absolute;
   top: 110px;
   left: 200px;
-  z-index: 2;
+  z-index: 10;
 }
 
 .bubbleYear {
@@ -154,7 +154,7 @@
 
 .bubbleStartMsg {
   position: absolute;
-  bottom: 220px;
+  bottom: 235px;
   right: 120px;
   z-index: 5;
 }
