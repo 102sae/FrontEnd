@@ -57,3 +57,7 @@
   font-family: "SOYO Maple Bold";
   padding: 0px 20px;
 }
+
+.newsUrl:hover {
+  text-decoration: underline;
+}
