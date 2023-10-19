@@ -29,8 +29,8 @@
 - 실전파인 몰리를 선택하면 주어진 차트와 뉴스를 통해 매수와 매도 연습을 하는 실전 투자 게임을 시작합니다.
 
 <div style="display: flex; justify-content: space-around;">
-    <img src="image.png" alt="인트로 1" width="300" /> &nbsp;&nbsp;&nbsp;
-    <img src="image-1.png" alt="인트로 2" width="300" />
+    <img src="./src/assets/images/Readme/image.png" alt="인트로 1" width="300" /> &nbsp;&nbsp;&nbsp;
+    <img src="./src/assets/images/Readme/image-1.png" alt="인트로 2" width="300" />
 </div>
 <br>
 
@@ -44,8 +44,8 @@
 <br>
 
 <div style="display: flex; justify-content: space-around;">
-    <img src="image-2.png" alt="용어 게임 1" width="300" /> &nbsp;&nbsp;&nbsp;
-    <img src="image-3.png" alt="용어 게임 2" width="300" />
+    <img src="./src/assets/images/Readme/image-2.png" alt="용어 게임 1" width="300" /> &nbsp;&nbsp;&nbsp;
+    <img src="./src/assets/images/Readme/image-3.png" alt="용어 게임 2" width="300" />
 </div>
 
 <br>
@@ -60,11 +60,11 @@
   <br>
 
 <div style="display: flex; justify-content: space-around;">
-    <img src="image-4.png" alt="투자 게임 1" width="300" /> &nbsp;&nbsp;&nbsp;
-    <img src="image-5.png" alt="투자 게임 2" width="300" />
+    <img src="./src/assets/images/Readme/image-4.png" alt="투자 게임 1" width="300" /> &nbsp;&nbsp;&nbsp;
+    <img src="./src/assets/images/Readme/image-5.png" alt="투자 게임 2" width="300" />
 </div>
 <br>
----
+
 
 ## 🌟 서비스 기대 효과 & 사업 확장성
 
