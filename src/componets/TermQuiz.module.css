@@ -37,6 +37,10 @@
     background-color: rgba(0, 0, 0, 0.285);
 }
 
+.quiz_list:active{
+    transform: scale(0.90); /* 클릭 시 크기를 조절하여 누르는 효과를 줍니다. */
+}
+
 .quiz_list_txt{
     width:100%;
     text-align: center;

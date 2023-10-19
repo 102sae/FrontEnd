@@ -32,6 +32,7 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     },
   ];
 
+  //여러번 클릭 비활성화
   const handleAnswerClick = (id) => {
     if (!isClickDisabled) {
       onClickAnswer(id);
