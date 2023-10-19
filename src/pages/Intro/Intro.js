@@ -191,11 +191,7 @@ function Intro() {
           !showDialogBox && (
             <div className={styles.wrap}>
               <div className={styles.friendsWrap}>
-                <Link
-                  to="/lay"
-                  className={styles.link}
-                  onClick={postTermGameStart()}
-                >
+                <Link to="/lay" className={styles.link}>
                   <FriendSelectBox
                     friendNameImage={Layname}
                     friendImage={Lay}
