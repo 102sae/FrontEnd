@@ -18,7 +18,7 @@
 - **Open API**: 한국 예탁 결제원 - 금융 용어 조회 API, SHINHAN OPEN API, 네이버 증권 API
 - **Tool**: Notion, Slack, Github
 
----
+
 
 ## 📝 페이지 소개
 
@@ -46,6 +46,12 @@
 <div style="display: flex; justify-content: space-around;">
     <img src="./src/assets/images/Readme/image-2.png" alt="용어 게임 1" width="300" /> &nbsp;&nbsp;&nbsp;
     <img src="./src/assets/images/Readme/image-3.png" alt="용어 게임 2" width="300" />
+    <br>
+</div>
+<div style="display: flex; justify-content: space-around;">
+    <img src="./src/assets/images/Readme/laysol1.png" alt="용어 게임 1" width="300" /> &nbsp;&nbsp;&nbsp;
+    <img src="./src/assets/images/Readme/laysol2.png" alt="용어 게임 2" width="300" />
+    <br>
 </div>
 
 <br>
