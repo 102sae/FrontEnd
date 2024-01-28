@@ -5,7 +5,7 @@ import LayShiny from "../../assets/images/Lay/lay_shiny.png";
 import LayThinking from "../../assets/images/Lay/lay_thinking.png";
 import CrushBar from "../../componets/CrushBar";
 import DialogBox from "../../componets/DialogBox";
-import ReactTyped from "react-typed";
+import { ReactTyped } from "react-typed";
 import MenuBox from "../../componets/MenuBox";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "../../assets/images/home_icon.png";
@@ -154,11 +154,11 @@ const LayResult = () => {
                   className={styles.homeIcon}
                   onClick={() => navigate("/home")}
                 />
-              {/* 프로그레스바 & 호감도 */}
-              <div className={styles.top}>
-                <CrushBar />
+                {/* 프로그레스바 & 호감도 */}
+                <div className={styles.top}>
+                  <CrushBar />
+                </div>
               </div>
-            </div>
               {/* 이미지 렌더링 */}
               <div className={styles.character_wrap}>
                 <img

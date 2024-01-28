@@ -16,7 +16,7 @@ import ProgressBar from "../../componets/ProgressBar";
 import axios from "axios";
 import TermQuiz from "../../componets/TermQuiz";
 import LayCrush from "../../componets/LayCrush";
-import ReactTyped from "react-typed";
+import { ReactTyped } from "react-typed";
 import HomeIcon from "../../assets/images/home_icon.png";
 
 const Lay = () => {
@@ -298,11 +298,9 @@ const Lay = () => {
       //10단계 끝나면 레이 결과창으로 이동
       if (crushPercent == 100) {
         navigate("/lay-result");
-      }
-      else if (crushPercent == 0) {
+      } else if (crushPercent == 0) {
         navigate("/lay-result");
-      }
-      else if (progressCount == 10) {
+      } else if (progressCount == 10) {
         navigate("/lay-result");
       }
     }

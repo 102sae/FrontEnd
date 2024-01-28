@@ -5,7 +5,7 @@ import MollyPot from "../../assets/images/Molly/molly_pot.png";
 import MollySad from "../../assets/images/Molly/molly_sad.png";
 import CrushBar from "../../componets/CrushBar";
 import DialogBox from "../../componets/DialogBox";
-import ReactTyped from "react-typed";
+import { ReactTyped } from "react-typed";
 import MenuBox from "../../componets/MenuBox";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "../../assets/images/home_icon.png";
@@ -149,14 +149,14 @@ const MollyResult = () => {
             <div>
               {/* 프로그레스바 & 호감도 */}
               <div className={styles.top}>
-              <div className={styles.hometop}>
-                <img
-                  src={HomeIcon}
-                  alt="HomeIcon"
-                  className={styles.homeIcon}
-                  onClick={() => navigate("/home")}
-                />
-                <CrushBar />
+                <div className={styles.hometop}>
+                  <img
+                    src={HomeIcon}
+                    alt="HomeIcon"
+                    className={styles.homeIcon}
+                    onClick={() => navigate("/home")}
+                  />
+                  <CrushBar />
                 </div>
               </div>
 

@@ -15,7 +15,7 @@ import MollySmile from "../../assets/images/Molly/molly_smile.png";
 import Mollyname from "../../assets/images/Molly/molly_name.png";
 import NoticeBox from "../../componets/NoticeBox";
 import FriendSelectBox from "../../componets/FriendSelectBox";
-import ReactTyped from "react-typed";
+import { ReactTyped } from "react-typed";
 import introScenario from "./IntroScenario";
 
 function Intro() {

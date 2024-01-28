@@ -3,7 +3,7 @@ import styles from "./Molly.module.css";
 import axios from "axios";
 import DialogBox from "../../componets/DialogBox";
 import palette from "../../styles/color";
-import ReactTyped from "react-typed";
+import { ReactTyped } from "react-typed";
 import CrushBar from "../../componets/CrushBar";
 import MenuBox from "../../componets/MenuBox";
 import StockGameBox from "../../componets/StockGameBox";
