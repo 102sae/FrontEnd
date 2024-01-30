@@ -3,10 +3,10 @@ import styles from "./LayResult.module.css";
 import palette from "../../styles/color";
 import LayShiny from "../../assets/images/Lay/lay_shiny.png";
 import LayThinking from "../../assets/images/Lay/lay_thinking.png";
-import CrushBar from "../../componets/CrushBar";
-import DialogBox from "../../componets/DialogBox";
+import CrushBar from "../../components/Atom/CrushBar";
+import { DialogBox } from "../../components";
 import { ReactTyped } from "react-typed";
-import MenuBox from "../../componets/MenuBox";
+import MenuBox from "../../components/Atom/MenuBox";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "../../assets/images/home_icon.png";
 

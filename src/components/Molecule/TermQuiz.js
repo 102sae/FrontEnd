@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import palette from "../styles/color";
 import styles from "./TermQuiz.module.css";
-import LayThinking from "../assets/images/Lay/lay_thinking.png";
+import LayThinking from "../../assets/images/Lay/lay_thinking.png";
 
 const TermQuiz = ({ id, term, items, onQuizFinish }) => {
   // const [termId, setTermId] = useState(0);
@@ -40,7 +39,6 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     }
   };
 
-
   const onClickAnswer = async (index) => {
     console.log("유저 선택 userAnswerId", index);
     console.log("정답 확인 POST API", id);
@@ -76,21 +74,20 @@ const TermQuiz = ({ id, term, items, onQuizFinish }) => {
     console.log("정답 확인 POST API 인자(currentId)", currentId);
     console.log("유저가 선택한 답(userSelectAnswer)", userSelectAnswer);
     try {
-        const token = localStorage.getItem("token");
-        const headers = {
-            Authorization: `Bearer ${token}`,
-        };
-        const response = await axios.post(
-            `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions/${currentId}/answers/check`,
-            {
-                userAnswerId: userSelectAnswer,
-            },
-            {
-                headers: headers,
-            }
-        );
-        return response.data.data;
-
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_PORT}/api/term-quiz/questions/${currentId}/answers/check`,
+        {
+          userAnswerId: userSelectAnswer,
+        },
+        {
+          headers: headers,
+        }
+      );
+      return response.data.data;
     } catch (error) {
       console.error("Error submitting answer: ", error);
     }

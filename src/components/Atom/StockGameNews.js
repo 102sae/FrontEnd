@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import styles from "./StockGameNews.module.css";
-import StockGameNews from "../assets/images/StockGameNews.png";
+import StockGameNews from "../../assets/images/StockGameNews.png";
 
 const StockGameNewsPaper = ({
   newsData,

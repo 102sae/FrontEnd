@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
-import FriendSelectBox from "../../componets/FriendSelectBox";
+import { FriendSelectBox } from "../../components";
 import Lay from "../../assets/images/Lay/lay_default.png";
 import LaySmile from "../../assets/images/Lay/lay_smile.png";
 import Layname from "../../assets/images/Lay/lay_name.png";
 import Molly from "../../assets/images/Molly/molly_default.png";
 import MollySmile from "../../assets/images/Molly/molly_smile.png";
 import Mollyname from "../../assets/images/Molly/molly_name.png";
-import NoticeBox from "../../componets/NoticeBox";
+import NoticeBox from "../../components/Atom/NoticeBox";
 
 const Home = () => {
   return (

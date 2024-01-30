@@ -3,10 +3,8 @@ import styles from "./MollyResult.module.css";
 import palette from "../../styles/color";
 import MollyPot from "../../assets/images/Molly/molly_pot.png";
 import MollySad from "../../assets/images/Molly/molly_sad.png";
-import CrushBar from "../../componets/CrushBar";
-import DialogBox from "../../componets/DialogBox";
+import { DialogBox, MenuBox, CrushBar } from "../../components";
 import { ReactTyped } from "react-typed";
-import MenuBox from "../../componets/MenuBox";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "../../assets/images/home_icon.png";
 

@@ -3,19 +3,21 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/reset.css";
 import "../../styles/global.css";
 import styles from "./Lay.module.css";
-import DialogBox from "../../componets/DialogBox";
+import {
+  DialogBox,
+  MenuBox,
+  CrushBar,
+  LayCrush,
+  ProgressBar,
+  TermQuiz,
+} from "../../components";
 import palette from "../../styles/color";
-import MenuBox from "../../componets/MenuBox";
-import CrushBar from "../../componets/CrushBar";
 import LaySmile from "../../assets/images/Lay/lay_smile.png";
 import LayShiny from "../../assets/images/Lay/lay_shiny.png";
 import LayThinking from "../../assets/images/Lay/lay_thinking.png";
 import SolSolution from "../../assets/images/sol_solution.png";
 import SolKKK from "../../assets/images/sol_kkk.png";
-import ProgressBar from "../../componets/ProgressBar";
 import axios from "axios";
-import TermQuiz from "../../componets/TermQuiz";
-import LayCrush from "../../componets/LayCrush";
 import { ReactTyped } from "react-typed";
 import HomeIcon from "../../assets/images/home_icon.png";
 

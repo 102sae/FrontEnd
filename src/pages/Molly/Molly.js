@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Molly.module.css";
 import axios from "axios";
-import DialogBox from "../../componets/DialogBox";
+import {
+  DialogBox,
+  MenuBox,
+  CrushBar,
+  ProgressBar,
+  StockChart,
+  StockGameBox,
+  MollyCrush,
+  TradingButton,
+  StockGameNewsPaper,
+} from "../../components";
 import palette from "../../styles/color";
 import { ReactTyped } from "react-typed";
-import CrushBar from "../../componets/CrushBar";
-import MenuBox from "../../componets/MenuBox";
-import StockGameBox from "../../componets/StockGameBox";
 import { ReactComponent as HintButton } from "../../assets/images/hint_button.svg";
-import ProgressBar from "../../componets/ProgressBar";
-import TradingButton from "../../componets/TradingButton";
-import StockGameNewsPaper from "../../componets/StockGameNews";
 import MollyTrading from "../../assets/images/Molly/molly_trading.png";
 import BubbleHint from "../../assets/images/Bubble/bubble_hint.svg";
 import BubbleProgress from "../../assets/images/Bubble/bubble_progress.svg";
@@ -20,9 +24,7 @@ import BubbleBuy from "../../assets/images/Bubble/bubble_buy.svg";
 import BubbleStart from "../../assets/images/Bubble/bubble_start.svg";
 import BubbleStartMsg from "../../assets/images/Bubble/bubble_start_message.svg";
 import MollyHi from "../../assets/images/Molly/molly_hi.png";
-import StockChart from "../../componets/StockChart";
 import { useNavigate } from "react-router-dom";
-import MollyCrush from "../../componets/MollyCrush";
 import HomeIcon from "../../assets/images/home_icon.png";
 
 const Molly = () => {

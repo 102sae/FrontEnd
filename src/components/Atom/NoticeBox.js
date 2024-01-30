@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./NoticeBox.module.css";
 import PropTypes from "prop-types";
 
 const NoticeBox = ({ notice }) => {
@@ -22,7 +21,6 @@ const NoticeBox = ({ notice }) => {
       />
 
       <text
-        className={styles.noticeItem}
         x="50%"
         y="50%"
         dominantBaseline="middle"

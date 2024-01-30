@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./CrushBar.module.css";
-import Crush from "../assets/images/icon_crush.svg";
+import Crush from "../../assets/images/icon_crush.svg";
 
 const CrushBar = () => {
   // 로컬 스토리지에서 호감도 가져오기, 기본 값은 50

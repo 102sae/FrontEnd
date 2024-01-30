@@ -1,6 +1,4 @@
 import React from "react";
-import palette from "../styles/color";
-import styles from "./DialogBox.module.css";
 import PropTypes from "prop-types";
 
 const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
@@ -51,7 +49,6 @@ const DialogBox = ({ dialog, name, backgroundColor, arrowColor }) => {
           {name}
         </text>
       </svg>
-
 
       {/* 화살표 */}
       <svg

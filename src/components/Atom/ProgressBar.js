@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ProgressBar.module.css";
-import LayPB1 from "../assets/images/Lay/lay_pb1.png";
-import MollyPB1 from "../assets/images/Molly/molly_pb1.png";
+import LayPB1 from "../../assets/images/Lay/lay_pb1.png";
+import MollyPB1 from "../../assets/images/Molly/molly_pb1.png";
 
 const ProgressBar = ({ character, progressCount }) => {
   const [count, setCount] = useState(0);
